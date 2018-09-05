@@ -1,10 +1,10 @@
-@extends('padrao.head')
+@extends('hotsite.padrao.head')
 
 @section('titulo', 'Login')
 
 <body>
 
-    @include('padrao.header')
+    @include('hotsite.padrao.header')
 	
 	<div class="limiter">
         <div class="container-login100" style="background-image: url('{{'../assets/images/bg-02.jpg'}}');">
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 
-    @include('padrao.footer')
+    @include('hotsite.padrao.footer')
 
 </body>
 

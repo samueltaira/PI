@@ -12,21 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('hotsite.index');
 });
 
 Route::get ('/login', function(){
-    return view('login');
+    return view('hotsite.login');
 });
 
 Route::get ('/politica', function(){
-    return view('politica');
-});
-
-Route::get ('/core', function(){
-    return view('core');
+    return view('hotsite.politica');
 });
 
 Route::get ('/cadastro', function(){
-    return view('cadastro');
+    return view('hotsite.cadastro');
+});
+
+Route::get ('/core', function(){
+    return view('sistema.core');
 });

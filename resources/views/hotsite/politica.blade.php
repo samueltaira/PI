@@ -1,10 +1,10 @@
-@extends('padrao.head')
+@extends('hotsite.padrao.head')
 
 @section('titulo', 'Privacidade')
 
 <body>
 
-@include('padrao.header')
+@include('hotsite.padrao.header')
 
 <div class="container-generico" style="background-image: url('{{'../assets/images/bg-02.jpg'}}');">
     <div>
@@ -33,6 +33,6 @@
     </div>
 </div>
 
-@include('padrao.footer')
+@include('hotsite.padrao.footer')
 
 </body>
