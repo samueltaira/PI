@@ -11,6 +11,8 @@
   <header class="main-header">
     <!-- Logo -->
 
+
+
     <a href="" class="logo" style="padding-right: 20px">
         C o n t r o lH o t e l
     </a>
@@ -147,7 +149,7 @@
             </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="#registroClienteModal" data-toggle="modal" data-target="#registroClienteModal" ><i class="fa fa-plus"></i> Registrar</a></li>
+                  <li><a href="" data-toggle="modal" data-target="#registroClienteModal" ><i class="fa fa-plus"></i> Registrar</a></li>
                   <li><a href=""><i class="fa fa-edit"></i> Editar</a></li>
                   <li><a href=""><i class="fa fa-list"></i> Listar</a></li>
               </ul>
@@ -176,7 +178,7 @@
 
       </ul>
     </section>
-    <!-- /.sidebar -->
+
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -189,6 +191,8 @@
     <section class="content-header">
       <h1>
         Map Room
+
+
         <small>Quartos</small>
       </h1>
     </section>
@@ -396,76 +400,8 @@
 
 
 
-<!-- Modal de registro de Cliente -->
 
-<div class="modal fade" id="registroClienteModal" tabindex="-1" aria-hidden="true" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Cadastrar Cliente</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <form action="">
-                    <input type="hidden" id="id" name="id" value="">
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="nome" class="col-form-label">Nome:</label>
-                                <input type="text" class="form-control" id="nome" name="nome">
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="documento" class="col-form-label">Documento:</label>
-                                <input type="text" maxlength="11" placeholder="Ex.: xxxxxxxxxxx" class="form-control" id="documento" name="documento">
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <label for="email" class="col-form-label">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="telefone" class="col-form-label">Telefone:</label>
-                                <input type="tel" class="form-control" id="telefone" name="telefone">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <label for="cidade" class="col-form-label">Cidade:</label>
-                                <input type="text" class="form-control" id="cidade" name="cidade">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="estado" class="col-form-label">Estado:</label>
-                                <input type="text" maxlength="11" class="form-control" id="estado" name="estado">
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
 </body>
-</html>
