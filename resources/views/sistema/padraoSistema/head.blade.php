@@ -35,3 +35,191 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
+
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Logo -->
+
+
+
+        <a href="" class="logo" style="padding-right: 20px">
+            C o n t r o lH o t e l
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+
+                    <li class="dropdown notifications-menu">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-sign-in"></i>
+                            <span class="label label-danger">1</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Check-in hoje: 1</li>  <li>
+                                <a>
+                                    <i class="fa fa-bed text-green"></i>
+                                    Quarto 102 - Check-in: 14:00
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="label label-danger">1</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Check-out hoje: 1</li>
+                            <li>
+                                <a>
+                                    <i class="fa fa-bed text-red"></i>
+                                    Quarto 101 - Check-out: 12:00
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{!! asset('../images/teste.jpg') !!}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">Hotel Penha</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="{!! asset('../images/teste.jpg') !!}" class="img-circle" alt="User Image">
+
+                                <p>
+                                    Hotel Penha
+                                    <small>Penha-SC</small>
+                                </p>
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="" class="btn btn-default btn-flat">Perfil</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{url('/')}}" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{!! asset('../images/teste.jpg') !!}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>Hotel Penha</p>
+                    <a href=""><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Procurar clientes...">
+                    <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" data-widget="tree">
+
+
+
+                <li class="active treeview">
+                    <a href="">
+                        <i class="fa fa-map-o"></i>
+                        <span>Map Room</span>
+                        <span class="pull-right-container">
+              <span class="label label-primary pull-right"></span>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href=""><i class="fa fa-plus"></i> Adicionar Quarto</a></li>
+                        <li><a href=""><i class="fa fa-filter"></i> Filtrar</a></li>
+                        <li><a href=""><i class="fa fa-minus"></i> Inativar Quarto</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-address-book-o"></i>
+                        <span>Clientes</span>
+                        <span class="pull-right-container">
+              <span class="label label-primary pull-right"></span>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="" data-toggle="modal" data-target="#registroClienteModal" ><i class="fa fa-plus"></i> Registrar</a></li>
+                        <li><a href=""><i class="fa fa-edit"></i> Editar</a></li>
+                        <li><a href=""><i class="fa fa-list"></i> Listar</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                        <span class="pull-right-container">
+              <span class="label label-primary pull-right"></span>
+            </span>
+                    </a>
+
+                </li>
+
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-user-o"></i>
+                        <span>Perfil</span>
+                        <span class="pull-right-container">
+              <span class="label label-primary pull-right"></span>
+            </span>
+                    </a>
+                </li>
+
+            </ul>
+        </section>
+
+    </aside>
+
+    <div class="content-wrapper">
+    @yield  ('content')
+
+
+    </div>
+</div>
+</body>
+
+@include('sistema.padraoSistema.footer')

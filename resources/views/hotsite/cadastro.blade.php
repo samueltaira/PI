@@ -29,6 +29,11 @@
 					</div>
 
 					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
 						<input class="input100" type="tel" name="telefone" placeholder="Telefone">
 						<span class="focus-input100" data-placeholder="&#xe830;"></span>
 					</div>

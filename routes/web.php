@@ -11,22 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('hotsite.index');
-});
 
-Route::get ('/login', function(){
-    return view('hotsite.login');
-});
-
+//Rota para politica
 Route::get ('/politica', function(){
     return view('hotsite.politica');
 });
 
-Route::get ('/cadastro', function(){
-    return view('hotsite.cadastro');
+//Rotas para o hotsite
+Route::get('/', ['as' => 'hotsite.home', 'uses' => 'Hotsite\HomeController@index']);
+Route::get('/cadastro', ['as' => 'hotsite.cadastro', 'uses' => 'Hotsite\HomeController@cadastro']);
+
+
+//grupo para restringir acesso ao sistema
+Route::group(['middleware'=>'auth'], function(){
+
+   // Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
+
+
 });
 
-Route::get ('/core', function(){
-    return view('sistema.core');
-});
+//rotas para o sistema
+
+Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
+
+
+Route::get('/login', ['as' => 'sistema.login', 'uses' => 'Sistema\LoginController@index']);
+Route::post('/login/entrar', ['as' => 'sistema.login.entrar', 'uses' => 'Sistema\LoginController@entrar']);
+Route::post('/login/sair', ['as' => 'sistema.login.sair', 'uses' => 'Sistema\LoginController@sair']);
+
+
