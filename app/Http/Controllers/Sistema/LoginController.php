@@ -16,15 +16,15 @@ class LoginController extends Controller
     public function entrar(Request $req)
     {
 
-        $dados = $req -> all();
+        $dados = $req->all();
 
-        if(Auth::attempt(['email'=> $dados['email'], 'password' => $dados['senha']])){
+        if (Auth::attempt(['email' => $dados['email'], 'password' => $dados['senha']])) {
 
-        redirect()->route('sistema.home');
+            return redirect()->route('sistema.home');
 
-    }
+        }
 
-        redirect()->route('sistema.login');
+            return redirect()->route('login');
 
     }
 
@@ -32,7 +32,7 @@ class LoginController extends Controller
     {
 
         Auth::logout();
-        redirect()->route('hotsite.home');
+        return redirect()->route('login');
 
     }
 }

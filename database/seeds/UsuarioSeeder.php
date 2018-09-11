@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use app\User;
+use App\User;
 
 class UsuarioSeeder extends Seeder
 {
@@ -13,13 +13,13 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         $dados =[
-            'name' => "Samuel",
+            'nome' => "Samuel",
             'hotel'=> "Hotel Penha",
             'email'=> "samueltaira@hotmail.com",
             'password' => bcrypt("teste123"),
             'telefone'=> "47999999999",
             'quartos' => "20",
-            'admin' => "sim"
+            'admin' => "sim",
 
         ];
 
@@ -27,10 +27,12 @@ class UsuarioSeeder extends Seeder
 
             $usuario = User::where('email', '=', $dados['email'])->first();
             $usuario-> update($dados);
+            echo "Usuario alterado!";
 
         }else{
 
             User::create($dados);
+            echo "Usuario criado!";
 
         }
     }

@@ -32,8 +32,8 @@
                     </div>
                     <br>
                     <div class="col-lg-12">
-                        <button class="btn" style="font-family: Ubuntu-Regular, sans-serif;">Esqueceu sua senha?</button>
-                        <button class="btn" style="font-family: Ubuntu-Regular, sans-serif;">Como se cadastrar?</button>
+                        <button class="btn" formaction="" style="font-family: Ubuntu-Regular, sans-serif;">Esqueceu sua senha?</button>
+                        <button class="btn" formaction="" style="font-family: Ubuntu-Regular, sans-serif;">Como se cadastrar?</button>
                     </div>
                     
 

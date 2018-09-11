@@ -62,7 +62,7 @@
                     <!-- Messages: style can be found in dropdown.less-->
 
                     <li class="dropdown notifications-menu">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="{{route('sistema.login.sair')}}" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-sign-in"></i>
                             <span class="label label-danger">1</span>
                         </a>
