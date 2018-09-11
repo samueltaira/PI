@@ -22,10 +22,11 @@ class LoginController extends Controller
 
             return redirect()->route('sistema.home');
 
-        }
+        } else {
 
             return redirect()->route('login');
 
+        }
     }
 
     public function sair()
