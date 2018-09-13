@@ -9,14 +9,13 @@
        font-size: 25px ">Reservar
     </button>
 
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Map Room
-
-
-            <small>Quartos</small>
+            Mapa dos Quartos
         </h1>
+        <h4><a href=""><i class="fa fa-filter"></i> Filtrar quartos</a></h4>
     </section>
 
     <!-- Main content -->

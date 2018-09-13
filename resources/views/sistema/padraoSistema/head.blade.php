@@ -98,7 +98,7 @@
                     <li class="dropdown user user-menu">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{!! asset('../images/teste.jpg') !!}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Hotel Penha</span>
+                            <span class="hidden-xs">{{Auth::user()->nome}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -106,8 +106,8 @@
                                 <img src="{!! asset('../images/teste.jpg') !!}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Hotel Penha
-                                    <small>Penha-SC</small>
+                                    {{Auth::user()->hotel}}
+                                    <small>{{Auth::user()->email}}</small>
                                 </p>
                             </li>
 
@@ -117,7 +117,7 @@
                                     <a href="" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{url('/')}}" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{route('sistema.login.sair')}}" class="btn btn-default btn-flat">Sair</a>
                                 </div>
                             </li>
                         </ul>
@@ -168,7 +168,6 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href=""><i class="fa fa-plus"></i> Adicionar Quarto</a></li>
-                        <li><a href=""><i class="fa fa-filter"></i> Filtrar</a></li>
                         <li><a href=""><i class="fa fa-minus"></i> Inativar Quarto</a></li>
                     </ul>
                 </li>

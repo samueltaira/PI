@@ -38,6 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/login', ['as' => 'login', 'uses' => 'Sistema\LoginController@index']);
 Route::post('/login/entrar', ['as' => 'sistema.login.entrar', 'uses' => 'Sistema\LoginController@entrar']);
-Route::post('/login/sair', ['as' => 'sistema.login.sair', 'uses' => 'Sistema\LoginController@sair']);
+Route::get('/login/sair', ['as' => 'sistema.login.sair', 'uses' => 'Sistema\LoginController@sair']);
 
 

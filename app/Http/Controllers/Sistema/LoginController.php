@@ -24,9 +24,10 @@ class LoginController extends Controller
 
         } else {
 
-            return redirect()->route('login');
 
-
+            return redirect()
+                ->route('login')
+                ->with('message','Erro ao efetuar Login: Usuário e/ou senha incorreta');
         }
     }
 
