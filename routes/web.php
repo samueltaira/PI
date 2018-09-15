@@ -12,6 +12,8 @@
 */
 
 
+Auth::routes();
+
 //Rota para politica
 Route::get('/politica', function () {
     return view('hotsite.politica');
@@ -21,11 +23,13 @@ Route::get('/politica', function () {
 Route::get('/', ['as' => 'hotsite.home', 'uses' => 'Hotsite\HomeController@index']);
 Route::get('/cadastro', ['as' => 'hotsite.cadastro', 'uses' => 'Hotsite\HomeController@cadastro']);
 
+Route::post('/cadastro/registrar', ['as' => 'hotsite.cadastro.registrar', 'uses' => 'Hotsite\UserController@registrar']);
+
 //grupo para restringir acesso ao sistema
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
+Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
 
 
 });

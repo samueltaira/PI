@@ -8,10 +8,18 @@
 	
 	<div class="limiter">
         <div class="container-login100" style="background-image: url('{{'../assets/images/bg-02.jpg'}}');">
+
+
 			<div class="wrap-login100 p-t-30 p-b-50">
 				@if(Session::has('message'))
 					<div class="alert alert-danger" style="text-align: center">{{ Session::get('message') }}</div>
-				@endif
+
+                @elseif(Session::has('message_ok'))
+                    <div class="alert alert-success" style="text-align: center">{{ Session::get('message_ok') }}</div>
+
+                @endif
+
+
 				<span class="login100-form-title p-b-41" style="font-family: Ubuntu-Bold, sans-serif;">
 					Acesse sua conta
 				</span>

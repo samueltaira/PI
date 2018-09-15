@@ -11,7 +11,8 @@
 	<div class="limiter"><br>
 		<div class="container-login100" style="background-image: url('{{'../assets/images/bg-02.jpg'}}');">
 			<div class="wrap-login100 p-t-30 p-b-50">
-				<form class="login100-form validate-form p-b-33 p-t-5">
+				<form action="{{route('hotsite.cadastro.registrar')}}" method="post" class="login100-form validate-form p-b-33 p-t-5">
+					{{csrf_field()}}
 
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" name="nome" placeholder="Nome">
@@ -24,7 +25,7 @@
                     </div>
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="email" name="e-mail" placeholder="E-mail">
+						<input class="input100" type="email" name="email" placeholder="E-mail">
 						<span class="focus-input100" data-placeholder="&#xe818;"></span>
 					</div>
 
@@ -42,6 +43,9 @@
 						<input class="input100" type="text" name="quartos" placeholder="Nº de quartos">
 						<span class="focus-input100" data-placeholder="&#xe800;"></span>
 					</div>
+
+
+						<input type="hidden" name="admin" value="sim">
 
 
 
