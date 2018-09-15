@@ -35,10 +35,14 @@
                     </div>
                     <br>
                     <div class="col-lg-12">
-                        <button class="btn" formaction="" style="font-family: Ubuntu-Regular, sans-serif;">Esqueceu sua senha?</button>
-                        <button class="btn" formaction="" style="font-family: Ubuntu-Regular, sans-serif;">Como se cadastrar?</button>
+                        <a href="" class="btn" style="font-family: Ubuntu-Regular, sans-serif;">
+							Esqueceu sua senha?
+						</a>
+                        <a href="{{url('cadastro')}}" class="btn" style="font-family: Ubuntu-Regular, sans-serif;">
+							Como se cadastrar?
+						</a>
                     </div>
-                    
+
 
 				</form>
 			</div>

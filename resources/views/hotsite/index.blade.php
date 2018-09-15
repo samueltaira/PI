@@ -18,7 +18,7 @@
 
         <br>
         <h2 style="color: white; font-family: Ubuntu-Regular, sans-serif; font-size: 30px; text-align: center;">
-            Cadastre-se <a href="{{url('cadastro')}}" style="font-size: 30px; text-underline: white "><u>aqui</u></a> e
+            Cadastre-se <a href="{{url('cadastro')}}" style="font-size: 30px; text-underline: white "><u>aqui</u></a>
             comece a utilizar!
         </h2>
     </div>
