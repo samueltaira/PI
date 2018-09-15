@@ -24,6 +24,7 @@ class UserController extends Controller
             'hotel.min'          => "O Hotel deve conter pelo menos 3 caracteres",
             'password.min'       => "A senha deve conter no minimo 5 caracteres",
             'telefone.numeric'   => "No campo telefone, deverá conter apenas números",
+            'telefone.required'  => "O campo telefone, deve ser preenchido",
             'quartos.required'   => "Deve-se preencher o campo com a quantidade de quartos"
         ];
 
