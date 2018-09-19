@@ -84,10 +84,8 @@ return [
     |
     */
 
-    'username' => env('app107236008@heroku.com'),
-
-    'password' => env('swz9hplv7458'),
-
+    'username' => env('MAIL_USERNAME'),
+    'password' => env('MAIL_PASSWORD'),
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
