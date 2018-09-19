@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('app107236008@heroku.com'),
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('swz9hplv7458'),
 
     /*
     |--------------------------------------------------------------------------
