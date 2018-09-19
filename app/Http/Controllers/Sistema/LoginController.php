@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('hotsite.login');
+        return view('auth.login');
     }
 
     public function entrar(Request $req)

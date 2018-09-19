@@ -34,14 +34,7 @@ Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@i
 
 });
 
-//rotas para o sistema
-
-//Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
-
 
 Route::get('/login', ['as' => 'login', 'uses' => 'Sistema\LoginController@index']);
 Route::post('/login/entrar', ['as' => 'sistema.login.entrar', 'uses' => 'Sistema\LoginController@entrar']);
 Route::get('/login/sair', ['as' => 'sistema.login.sair', 'uses' => 'Sistema\LoginController@sair']);
-
-
-Auth::routes();
