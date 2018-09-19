@@ -43,3 +43,5 @@ Route::get('/login', ['as' => 'login', 'uses' => 'Sistema\LoginController@index'
 Route::post('/login/entrar', ['as' => 'sistema.login.entrar', 'uses' => 'Sistema\LoginController@entrar']);
 Route::get('/login/sair', ['as' => 'sistema.login.sair', 'uses' => 'Sistema\LoginController@sair']);
 
+
+Auth::routes();
