@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
+    'host' => env('MAIL_HOST'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'support@controlhotel.com'),
-        'name' => env('MAIL_FROM_NAME', 'ControlHotel'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@controlhotel.com.br'),
+        'name' => env('MAIL_FROM_NAME', 'ControlHotel Suporte'),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('app107236008@heroku.com'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('swz9hplv7458'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
