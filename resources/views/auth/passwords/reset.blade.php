@@ -9,14 +9,14 @@
         <div class="wrap-login100 p-t-30 p-b-50">
 
             @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
+                <div class="alert alert-danger invalid-feedback" role="alert">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
             @endif
             @if ($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
+                <div class="alert alert-danger invalid-feedback" role="alert">
                         <strong>{{ $errors->first('password') }}</strong>
-                    </span>
+                    </div>
             @endif
 
             <span class="login100-form-title p-b-41" style="font-family: Ubuntu-Bold, sans-serif;">

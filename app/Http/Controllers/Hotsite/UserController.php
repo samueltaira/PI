@@ -22,10 +22,12 @@ class UserController extends Controller
         $mensagens = [
             'nome.min'           => "O nome deve conter pelo menos 3 caracteres",
             'hotel.min'          => "O Hotel deve conter pelo menos 3 caracteres",
-            'password.min'       => "A senha deve conter no minimo 5 caracteres",
+            'password.min'       => "A senha deve conter no minimo 6 caracteres",
             'telefone.numeric'   => "No campo telefone, deverá conter apenas números",
             'telefone.required'  => "O campo telefone, deve ser preenchido",
-            'quartos.required'   => "Deve-se preencher o campo com a quantidade de quartos"
+            'telefone.min'       => "O campo telefone, deve ter no minimo 11 digitos",
+            'quartos.required'   => "Deve-se preencher o campo com a quantidade de quartos",
+            'quartos.numeric'    => "No campo quartos, deverá conter apenas números"
         ];
 
 
@@ -36,8 +38,8 @@ class UserController extends Controller
                 'hotel'         => 'required|min:3',
                 'email'         => 'required|email',
                 'password'      => 'required|min:5|max:25',
-                'telefone'      => 'required|numeric',
-                'quartos'       => 'required',
+                'telefone'      => 'required|numeric|min:11',
+                'quartos'       => 'required|numeric',
 
             ], $mensagens);
 

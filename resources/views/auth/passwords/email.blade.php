@@ -14,9 +14,9 @@
                 </div>
             @endif
             @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
+                <div class="alert alert-danger invalid-feedback" role="alert">
                         <strong>{{ $errors->first('email') }}</strong>
-                    </span>
+                    </div>
             @endif
 
             <span class="login100-form-title p-b-41" style="font-family: Ubuntu-Bold, sans-serif;">
