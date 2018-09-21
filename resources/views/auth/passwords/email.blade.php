@@ -10,12 +10,18 @@
 
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+                    <strong>
+                        <center>
+                            {{ session('status') }}
+                        </center>
+                    </strong>
                 </div>
             @endif
             @if ($errors->has('email'))
                 <div class="alert alert-danger" role="alert">
-                        <strong><center>{{ $errors->first('email') }}</center></strong>
+                    <strong>
+                        <center>{{ $errors->first('email') }}</center>
+                    </strong>
                 </div>
             @endif
 

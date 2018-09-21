@@ -10,13 +10,17 @@
 
             @if ($errors->has('email'))
                 <div class="alert alert-danger" role="alert">
-                        <strong><center>{{ $errors->first('email') }}</center></strong>
-                    </div>
+                    <strong>
+                        <center>{{ $errors->first('email') }}</center>
+                    </strong>
+                </div>
             @endif
             @if ($errors->has('password'))
                 <div class="alert alert-danger" role="alert">
-                        <strong><center>{{ $errors->first('password') }}</center></strong>
-                    </div>
+                    <strong>
+                        <center>{{ $errors->first('password') }}</center>
+                    </strong>
+                </div>
             @endif
 
             <span class="login100-form-title p-b-41" style="font-family: Ubuntu-Bold, sans-serif;">
