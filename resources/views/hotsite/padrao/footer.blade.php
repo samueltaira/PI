@@ -53,7 +53,7 @@
 
        <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:adm@controlhotel.com.br">adm@controlhotel.com.br</a></p>
+            <p><a href="mailto:samueltaira@gmail.com">samueltaira@gmail.com</a></p>
         </div>
 
     </div>
