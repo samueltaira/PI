@@ -9,12 +9,12 @@
         <div class="wrap-login100 p-t-30 p-b-50">
 
             @if ($errors->has('email'))
-                <div class="alert alert-danger invalid-feedback" role="alert">
+                <div class="alert alert-danger" role="alert">
                         <strong>{{ $errors->first('email') }}</strong>
-                    </span>
+                    </div>
             @endif
             @if ($errors->has('password'))
-                <div class="alert alert-danger invalid-feedback" role="alert">
+                <div class="alert alert-danger" role="alert">
                         <strong>{{ $errors->first('password') }}</strong>
                     </div>
             @endif
