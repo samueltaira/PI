@@ -47,7 +47,7 @@ class ResetPassword extends Notification
             ->line('Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta.')
             ->action('Resetar Senha', url(route('password.reset', $this->token, false)))
             ->line('Se você não solicitou uma alteração da senha, nenhuma ação adicional é necessária.')
-            ->line('Atenciosamente, ')
+            ->salutation('Atenciosamente, ')
             ->salutation('ControlHotel');
     }
 
