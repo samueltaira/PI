@@ -10,12 +10,12 @@
 
             @if ($errors->has('email'))
                 <div class="alert alert-danger" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong><center>{{ $errors->first('email') }}</center></strong>
                     </div>
             @endif
             @if ($errors->has('password'))
                 <div class="alert alert-danger" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
+                        <strong><center>{{ $errors->first('password') }}</center></strong>
                     </div>
             @endif
 
