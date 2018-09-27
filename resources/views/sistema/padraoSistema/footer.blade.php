@@ -19,7 +19,7 @@
 
 
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:adm@controlhotel.com.br">adm@controlhotel.com.br</a></p>
+            <p><a href="mailto:adm@controlhotel.com.br">samueltaira@gmail.com</a></p>
         </div>
 
             <div class="col-md-4">

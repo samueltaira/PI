@@ -31,11 +31,10 @@
     <link rel="stylesheet" href="{{asset('../assets/css/bootstrap3-wysihtml5.min.css')}}">
 
 
-
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
 
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -43,7 +42,6 @@
 
     <header class="main-header">
         <!-- Logo -->
-
 
 
         <a href="" class="logo" style="padding-right: 20px">
@@ -67,7 +65,8 @@
                             <span class="label label-danger">1</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">Check-in hoje: 1</li>  <li>
+                            <li class="header">Check-in hoje: 1</li>
+                            <li>
                                 <a>
                                     <i class="fa fa-bed text-green"></i>
                                     Quarto 102 - Check-in: 14:00
@@ -133,52 +132,46 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
 
-
-
-
-            <!-- Sidebar user panel
-
-            Área caso seja necessário incluir informações do usário no painel
-
-                <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="{//!! asset('../images/teste.jpg') !!}" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p>Hotel Penha</p>
-                    <a href=""><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            </div>
-            --!>
-
-
-            <!-- search form -->
             <form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Procurar clientes...">
                     <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
                 </div>
             </form>
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
+
             <ul class="sidebar-menu" data-widget="tree">
 
 
-
-                <li class="active treeview">
+                <li class="treeview">
                     <a href="">
                         <i class="fa fa-map-o"></i>
-                        <span>Map Room</span>
+                        <span>
+                            Map Room
+                        </span>
                         <span class="pull-right-container">
-              <span class="label label-primary pull-right"></span>
-            </span>
+                            <span class="label label-primary pull-right"></span>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-plus"></i> Adicionar Quarto</a></li>
-                        <li><a href=""><i class="fa fa-minus"></i> Inativar Quarto</a></li>
+                        <li>
+                            <a href="{{route('sistema.home')}}">
+                                <i class="fa fa-map"></i> Mapa dos Quartos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-plus"></i> Adicionar Quarto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-minus"></i> Inativar Quarto
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -187,34 +180,45 @@
                         <i class="fa fa-address-book-o"></i>
                         <span>Clientes</span>
                         <span class="pull-right-container">
-              <span class="label label-primary pull-right"></span>
-            </span>
+                            <span class="label label-primary pull-right"></span>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="" data-toggle="modal" data-target="#registroClienteModal" ><i class="fa fa-plus"></i> Registrar</a></li>
-                        <li><a href=""><i class="fa fa-edit"></i> Editar</a></li>
-                        <li><a href=""><i class="fa fa-list"></i> Listar</a></li>
+                        <li>
+                            <a href="{{route('sistema.main.hospedes')}}">
+                                <i class="fa fa-group"></i> Hóspedes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('sistema.cadastra.hospedes')}}">
+                                <i class="fa fa-plus"></i> Registrar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-edit"></i> Editar
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                        <span class="pull-right-container">
-              <span class="label label-primary pull-right"></span>
-            </span>
+                            <span>Dashboard</span>
+                                <span class="pull-right-container">
+                                    <span class="label label-primary pull-right"></span>
+                                </span>
                     </a>
-
                 </li>
 
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-user-o"></i>
-                        <span>Perfil</span>
-                        <span class="pull-right-container">
-              <span class="label label-primary pull-right"></span>
-            </span>
+                            <span>Perfil</span>
+                                <span class="pull-right-container">
+                                  <span class="label label-primary pull-right"></span>
+                                </span>
                     </a>
                 </li>
 
@@ -224,7 +228,7 @@
     </aside>
 
     <div class="content-wrapper">
-    @yield  ('content')
+        @yield  ('content')
 
 
     </div>

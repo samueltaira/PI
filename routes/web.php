@@ -30,7 +30,8 @@ Route::post('/cadastro/registrar', ['as' => 'hotsite.cadastro.registrar', 'uses'
 Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
-
+Route::get('/cadastraHospede', ['as' => 'sistema.cadastra.hospedes', 'uses' => 'Sistema\HospedeController@cadastrarHospede']);
+Route::get('/mainHospede', ['as' => 'sistema.main.hospedes', 'uses' => 'Sistema\HospedeController@mainHospede']);
 
 });
 
