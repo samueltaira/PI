@@ -9,12 +9,12 @@ class HospedeController extends Controller
 {
     public function mainHospede()
     {
-        return view('sistema.mainHospede');
+        return view('sistema.mainHospede',['Menu'=>'Hospede']);
     }
 
     public function cadastrarHospede()
     {
-        return view('sistema.cadastraHospede');
+        return view('sistema.cadastraHospede', ['Menu'=>'Hospede']);
     }
 
     public function salvarHospede(Request $req)

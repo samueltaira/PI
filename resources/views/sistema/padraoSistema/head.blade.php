@@ -4,36 +4,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('titulo')</title>
-
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{{asset('../assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('../assets/css/font-awesome.min.css')}}">
+    {{--<link rel="stylesheet" href="{{asset('/assets/css/font-awesome.min.css')}}">--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{asset('../assets/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/ionicons.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('../assets/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{asset('../assets/css/_all-skins.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/_all-skins.min.css')}}">
     <!-- Morris chart -->
-    <link rel="stylesheet" href="{{asset('../assets/css/morris.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/morris.css')}}">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="{{asset('../assets/css/jquery-jvectormap.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/jquery-jvectormap.css')}}">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="{{asset('../assets/css/bootstrap-datepicker.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/bootstrap-datepicker.min.css')}}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{asset('../assets/css/daterangepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/daterangepicker.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{asset('../assets/css/bootstrap3-wysihtml5.min.css')}}">
-
-
+    <link rel="stylesheet" href="{{asset('/assets/css/bootstrap3-wysihtml5.min.css')}}">
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- jQuery 3 -->
+    <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
 </head>
 
 
@@ -42,7 +41,6 @@
 
     <header class="main-header">
         <!-- Logo -->
-
 
         <a href="" class="logo" style="padding-right: 20px">
             C o n t r o lH o t e l
@@ -58,7 +56,6 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
-
                     <li class="dropdown notifications-menu">
                         <a href="{{route('sistema.login.sair')}}" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-sign-in"></i>
@@ -72,7 +69,6 @@
                                     Quarto 102 - Check-in: 14:00
                                 </a>
                             </li>
-
                         </ul>
                     </li>
 
@@ -96,13 +92,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{!! asset('../images/teste.jpg') !!}" class="user-image" alt="User Image">
+                            <img src="{!! asset('/images/teste.jpg') !!}" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{Auth::user()->nome}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="{!! asset('../images/teste.jpg') !!}" class="img-circle" alt="User Image">
+                                <img src="{!! asset('/images/teste.jpg') !!}" class="img-circle" alt="User Image">
 
                                 <p>
                                     {{Auth::user()->hotel}}
@@ -121,7 +117,6 @@
                             </li>
                         </ul>
                     </li>
-
                 </ul>
             </div>
         </nav>
@@ -134,7 +129,7 @@
 
             <form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Procurar clientes...">
+                    <input type="text" name="q" class="form-control" placeholder="Procurar clientes.">
                     <span class="input-group-btn">
                         <button type="submit" name="search" id="search-btn" class="btn btn-flat">
                             <i class="fa fa-search"></i>
@@ -144,9 +139,7 @@
             </form>
 
             <ul class="sidebar-menu" data-widget="tree">
-
-
-                <li class="treeview">
+                <li class="treeview" id="Mapa">
                     <a href="">
                         <i class="fa fa-map-o"></i>
                         <span>
@@ -175,7 +168,7 @@
                     </ul>
                 </li>
 
-                <li class="treeview">
+                <li class="treeview" id="Hospede">
                     <a href="">
                         <i class="fa fa-address-book-o"></i>
                         <span>Clientes</span>
@@ -205,8 +198,8 @@
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-dashboard"></i>
-                            <span>Dashboard</span>
-                                <span class="pull-right-container">
+                        <span>Dashboard</span>
+                        <span class="pull-right-container">
                                     <span class="label label-primary pull-right"></span>
                                 </span>
                     </a>
@@ -215,22 +208,18 @@
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-user-o"></i>
-                            <span>Perfil</span>
-                                <span class="pull-right-container">
-                                  <span class="label label-primary pull-right"></span>
-                                </span>
+                        <span>Perfil</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
                     </a>
                 </li>
-
             </ul>
         </section>
-
     </aside>
 
     <div class="content-wrapper">
         @yield  ('content')
-
-
     </div>
 </div>
 </body>

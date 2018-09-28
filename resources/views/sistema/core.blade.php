@@ -15,7 +15,7 @@
         <h1>
             Mapa dos Quartos
         </h1>
-        <h4><a href=""><i class="fa fa-filter"></i> Filtrar quartos</a></h4>
+        <h4><a href=""><i class="fa fa-filter"></i> Filtrar quartos </a></h4>
     </section>
 
     <!-- Main content -->
@@ -172,8 +172,9 @@
                 </div>
             </div>
         </div>
-
     </section>
+    <!-- jQuery 3 -->
+    <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
 @endsection
 
 

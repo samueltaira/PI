@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('sistema.core');
+        return view('sistema.core', ['Menu' => 'Mapa']);
     }
 }
