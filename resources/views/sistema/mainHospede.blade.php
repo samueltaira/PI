@@ -4,11 +4,19 @@
 
 @section('content')
 
-    <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Hóspede
-        </h1>
+        <div>
+            <h1>
+                Hóspede
+            </h1>
+        </div>
+
+        @if(Session::has('message'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-check"></i>Hóspede cadastrado com sucesso.
+            </div>
+        @endif
     </section>
 
     <!-- Main content -->
@@ -22,14 +30,15 @@
             <div class="box-body">
                 <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                             <div class="dataTables_length" id="example1_length"><label>Mostrar
-                                    <select name="example1_length" aria-controls="example1"  class="form-control input-sm">
+                                    <select name="example1_length" aria-controls="example1"
+                                            class="form-control input-sm">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                     </select> registros</label></div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-1">
                             <div id="example1_filter" class="dataTables_filter">
                                 <label>Procurar:
                                     <input type="search" class="form-control input-sm" placeholder=""
@@ -40,64 +49,63 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
-                                   aria-describedby="example1_info">
+                            <table id="Hospedes" class="table table-bordered table-striped dataTable" role="grid"
+                                   aria-describedby="example1_info" >
                                 <thead>
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Rendering engine: activate to sort column descending"
-                                        style="width: 181px;">Rendering engine
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending" style="width: 230px;">
-                                        Browser
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending"
-                                        style="width: 196px;">Platform(s)
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Engine version: activate to sort column ascending"
-                                        style="width: 156px;">Engine version
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">
-                                        CSS grade
-                                    </th>
-                                </tr>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                            colspan="1" aria-sort="ascending"
+                                            aria-label="ID: activate to sort column descending">ID
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Nome: activate to sort column ascending">
+                                            Nome
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Cidade: activate to sort column ascending">Cidade
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Estado: activate to sort column ascending">Estado
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="E-mail: activate to sort column ascending">
+                                            E-mail
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Contato: activate to sort column ascending">
+                                            Contato
+                                        </th>
+                                        <th>
+                                            Ação
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1">Gecko</td>
-                                    <td>Firefox 1.0</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>1.7</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1">Gecko</td>
-                                    <td>Netscape Navigator 9</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td>1.8</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1">Gecko</td>
-                                    <td>Mozilla 1.0</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td>1</td>
-                                    <td>A</td>
-                                </tr>
-                                </tbody>
+                                    @foreach($registros as $registro)
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1">{{$registro->id}}</td>
+                                        <td>{{$registro->nome}}</td>
+                                        <td>{{$registro->cidade}}</td>
+                                        <td>{{$registro->estado}}</td>
+                                        <td>{{$registro->email}}</td>
+                                        <td>{{$registro->contato}}</td>
+                                        <td >
+                                            <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-fw fa-edit"></i></button>
+                                            <button type="button" class="btn btn-flat btn-danger"><i class="fa fa-fw fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                               </tbody>
                                 <tfoot>
-                                <tr>
-                                    <th rowspan="1" colspan="1">Rendering engine</th>
-                                    <th rowspan="1" colspan="1">Browser</th>
-                                    <th rowspan="1" colspan="1">Platform(s)</th>
-                                    <th rowspan="1" colspan="1">Engine version</th>
-                                    <th rowspan="1" colspan="1">CSS grade</th>
-                                </tr>
+                                    <tr>
+                                        <th rowspan="1" colspan="1">ID</th>
+                                        <th rowspan="1" colspan="1">Nome</th>
+                                        <th rowspan="1" colspan="1">Cidade</th>
+                                        <th rowspan="1" colspan="1">Estado</th>
+                                        <th rowspan="1" colspan="1">E-mail</th>
+                                        <th rowspan="1" colspan="1">Contato</th>
+                                        <th rowspan="1" colspan="1">Ação</th>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>

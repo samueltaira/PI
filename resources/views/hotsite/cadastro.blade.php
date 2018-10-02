@@ -69,7 +69,10 @@
             @if(count($errors) != 0)
                 <div style="position: absolute; top: 20%; left: 10%; width: 20% ">
                     @foreach($errors->all() as $erro)
-                        <div class=" alert alert-danger" style="text-align: center;"><p>{{$erro}}</p></div>
+                        <div class=" alert alert-danger alert-dismissible" style="text-align: center;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <p>{{$erro}}</p></div>
+                        </div>
                     @endforeach
                 </div>
             @endif

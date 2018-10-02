@@ -176,14 +176,3 @@
     <!-- jQuery 3 -->
     <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
 @endsection
-
-
-
-
-
-
-
-
-
-
-

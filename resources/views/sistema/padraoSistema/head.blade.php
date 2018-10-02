@@ -160,11 +160,6 @@
                                 <i class="fa fa-plus"></i> Adicionar Quarto
                             </a>
                         </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-minus"></i> Inativar Quarto
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
@@ -185,11 +180,6 @@
                         <li>
                             <a href="{{route('sistema.cadastra.hospedes')}}">
                                 <i class="fa fa-plus"></i> Registrar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-edit"></i> Editar
                             </a>
                         </li>
                     </ul>
@@ -223,5 +213,7 @@
     </div>
 </div>
 </body>
+
+
 
 @include('sistema.padraoSistema.footer')

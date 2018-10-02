@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Hospede;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -9,7 +10,8 @@ class HospedeController extends Controller
 {
     public function mainHospede()
     {
-        return view('sistema.mainHospede',['Menu'=>'Hospede']);
+        $registros = Hospede::all();
+        return view('sistema.mainHospede',['Menu'=>'Hospede'], compact('registros'));
     }
 
     public function cadastrarHospede()
@@ -22,6 +24,8 @@ class HospedeController extends Controller
         $dados = $req->all();
         Hospede::create($dados);
 
-        //return redirect()->routes(''vai.p.pqp);
+        return redirect()->route('sistema.main.hospedes')
+                         ->with('message','Hóspede cadastrado com sucesso.');
+
     }
 }
