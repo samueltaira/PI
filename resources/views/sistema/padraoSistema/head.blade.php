@@ -193,6 +193,13 @@
                                     <span class="label label-primary pull-right"></span>
                                 </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="">
+                                <i class="fa fa-line-chart"></i> Gráficos
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="treeview">
@@ -203,6 +210,19 @@
                             <span class="label label-primary pull-right"></span>
                         </span>
                     </a>
+
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="">
+                                <i class="fa fa-cogs"></i> Configurações
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-user-plus"></i> Adicionar mais atendentes
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </section>
@@ -213,7 +233,6 @@
     </div>
 </div>
 </body>
-
 
 
 @include('sistema.padraoSistema.footer')

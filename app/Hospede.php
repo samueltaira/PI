@@ -8,7 +8,7 @@ class Hospede extends Model
 {
 
     protected $fillable = [
-        'id',  'nome', 'cidade', 'estado', 'email', 'contato', 'documento', 'dataNascimento'
+        'id',  'nome', 'cidade', 'email', 'contato', 'documento', 'dataNascimento'
     ];
 
 

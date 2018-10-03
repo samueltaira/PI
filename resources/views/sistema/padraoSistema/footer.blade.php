@@ -70,20 +70,19 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('/assets/js/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('/assets/js/demo.js')}}"></script>
-    <script>
-       $(function() {
-           localStorage['myKey'] = 'somestring';
-           getaMenu();
-        });
+{{--<script src="{{asset('/assets/js/demo.js')}}"></script>--}}
+    {{--<script>--}}
+       {{--$(function() {--}}
+           {{--getaMenu();--}}
+        {{--});--}}
 
-       function nomeMenu(pagina) {
-           localStorage['menu'] = pagina;
-       }
+       {{--function nomeMenu(pagina) {--}}
+           {{--localStorage['menu'] = pagina;--}}
+       {{--}--}}
 
 
-       function getaMenu() {
-           $('#{{$Menu}}').addClass('active');
-       }
-    </script>
+       {{--function getaMenu() {--}}
+           {{--$('#{{$Menu}}').addClass('active');--}}
+       {{--}--}}
+    {{--</script>--}}
 </footer>

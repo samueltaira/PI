@@ -17,6 +17,12 @@
                 <i class="icon fa fa-check"></i>Hóspede cadastrado com sucesso.
             </div>
         @endif
+        @if(Session::has('message1'))
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-check"></i>Hóspede editado com sucesso.
+            </div>
+        @endif
     </section>
 
     <!-- Main content -->
@@ -50,62 +56,73 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <table id="Hospedes" class="table table-bordered table-striped dataTable" role="grid"
-                                   aria-describedby="example1_info" >
+                                   aria-describedby="example1_info">
                                 <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="ID: activate to sort column descending">ID
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Nome: activate to sort column ascending">
-                                            Nome
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Cidade: activate to sort column ascending">Cidade
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Estado: activate to sort column ascending">Estado
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="E-mail: activate to sort column ascending">
-                                            E-mail
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Contato: activate to sort column ascending">
-                                            Contato
-                                        </th>
-                                        <th>
-                                            Ação
-                                        </th>
-                                    </tr>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="id" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="ID: activate to sort column descending">ID
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="nome" rowspan="1" colspan="1"
+                                        aria-label="Nome: activate to sort column ascending">
+                                        Nome
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataNascimento" rowspan="1" colspan="1"
+                                        aria-label="dataNascimento: activate to sort column ascending">
+                                        Data Nascimento
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="documento" rowspan="1" colspan="1"
+                                        aria-label="Documento: activate to sort column ascending">
+                                        Documento
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="cidade" rowspan="1" colspan="1"
+                                        aria-label="Cidade: activate to sort column ascending">Cidade
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="email" rowspan="1" colspan="1"
+                                        aria-label="E-mail: activate to sort column ascending">
+                                        E-mail
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="contato" rowspan="1" colspan="1"
+                                        aria-label="Contato: activate to sort column ascending">
+                                        Contato
+                                    </th>
+                                    <th>
+                                        Ação
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($registros as $registro)
+                                @foreach($registros as $registro)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">{{$registro->id}}</td>
                                         <td>{{$registro->nome}}</td>
+                                        <td>{{$registro->dataNascimento}}</td>
+                                        <td>{{$registro->documento}}</td>
                                         <td>{{$registro->cidade}}</td>
-                                        <td>{{$registro->estado}}</td>
                                         <td>{{$registro->email}}</td>
                                         <td>{{$registro->contato}}</td>
-                                        <td >
-                                            <button type="button" class="btn btn-flat btn-warning"><i class="fa fa-fw fa-edit"></i></button>
-                                            <button type="button" class="btn btn-flat btn-danger"><i class="fa fa-fw fa-trash"></i></button>
+                                        <td>
+                                            <a class="btn btn-flat btn-warning" href="{{route('sistema.main.hospedes.editar', $registro->id)}}">
+                                                <i class="fa fa-fw fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-flat btn-primary"><i
+                                                        class="fa fa-fw fa-book"></i></a>
                                         </td>
                                     </tr>
-                                    @endforeach
-                               </tbody>
+                                @endforeach
+
+                                </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">ID</th>
-                                        <th rowspan="1" colspan="1">Nome</th>
-                                        <th rowspan="1" colspan="1">Cidade</th>
-                                        <th rowspan="1" colspan="1">Estado</th>
-                                        <th rowspan="1" colspan="1">E-mail</th>
-                                        <th rowspan="1" colspan="1">Contato</th>
-                                        <th rowspan="1" colspan="1">Ação</th>
-                                    </tr>
+                                <tr>
+                                    <th rowspan="1" colspan="1">ID</th>
+                                    <th rowspan="1" colspan="1">Nome</th>
+                                    <th rowspan="1" colspan="1">Data Nascimento</th>
+                                    <th rowspan="1" colspan="1">Documento</th>
+                                    <th rowspan="1" colspan="1">Cidade</th>
+                                    <th rowspan="1" colspan="1">E-mail</th>
+                                    <th rowspan="1" colspan="1">Contato</th>
+                                    <th rowspan="1" colspan="1">Ação</th>
+                                </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -135,7 +152,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /.box-body -->
         </div>
+
+
     </section>
 @endsection

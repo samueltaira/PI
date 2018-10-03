@@ -17,7 +17,6 @@ class CreateHospedesTable extends Migration
             $table->increments('id')->unique();
             $table->string('nome');
             $table->string('cidade');
-            $table->string('estado', 2);
             $table->string('email')->unique();
             $table->string('contato');
             $table->string('documento');

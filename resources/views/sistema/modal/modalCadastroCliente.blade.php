@@ -1,10 +1,11 @@
+
 <!-- Modal de registro de Cliente -->
 
 <div class="modal fade" id="registroClienteModal" tabindex="-1" aria-hidden="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Cadastrar Cliente</h4>
+                <h4 class="modal-title">Editar Cliente</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,11 +23,11 @@
 
                             <div class="col-md-6">
                                 <label for="documento" class="col-form-label">Documento:</label>
-                                <input type="text" maxlength="11" placeholder="Ex.: xxxxxxxxxxx" class="form-control" id="documento" name="documento">
+                                <input type="text" maxlength="11" placeholder="Ex.: xxxxxxxxxxx"
+                                       class="form-control" id="documento" name="documento">
                             </div>
                         </div>
                     </div>
-
 
 
                     <div class="row">
@@ -52,7 +53,8 @@
 
                             <div class="col-md-4">
                                 <label for="estado" class="col-form-label">Estado:</label>
-                                <input type="text" maxlength="11" class="form-control" id="estado" name="estado">
+                                <input type="text" maxlength="11" class="form-control" id="estado"
+                                       name="estado">
                             </div>
                         </div>
                     </div>
@@ -60,9 +62,10 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar alterações</button>
             </div>
         </div>
     </div>
 </div>
+

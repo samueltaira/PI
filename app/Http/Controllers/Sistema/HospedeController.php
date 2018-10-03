@@ -28,4 +28,26 @@ class HospedeController extends Controller
                          ->with('message','Hóspede cadastrado com sucesso.');
 
     }
+
+    public function editarHospede($id)
+    {
+        $registro = Hospede::find($id);
+
+        return view('sistema.editaHospede', compact('registro'));
+
+    }
+
+    public function atualizarHospede(Request $req, $id)
+    {
+        $dados = $req->all();
+        Hospede::find($id)->update($dados);
+
+        return redirect()->route('sistema.main.hospedes')
+            ->with('message1','Hóspede atualizado com sucesso.');
+
+    }
+
+
+
+
 }
