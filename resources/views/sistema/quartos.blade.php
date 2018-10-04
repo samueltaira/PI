@@ -5,6 +5,14 @@
 @section('content')
 
     <br>
+    @if(Session::has('status'))
+        <div class="alert alert-success alert-dismissible" style=" width: 97%;margin-left: 20px; margin-right: 20px;
+       font-size: 15px ">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <i class="icon fa fa-check"></i>Senha alterada com sucesso.
+        </div>
+    @endif
+
     <button type="button" class="btn btn-flat btn-info btn-sm" style=" width: 97%;margin-left: 20px; margin-right: 20px;
        font-size: 25px ">Reservar
     </button>

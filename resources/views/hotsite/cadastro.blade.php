@@ -27,7 +27,8 @@
                 </div>
 
                 <div required class="wrap-input100 validate-input">
-                    <input required class="input100" type="text" name="hotel" placeholder="Hotel" value="{{old('hotel')}}">
+                    <input required class="input100" type="text" name="hotel" placeholder="Hotel"
+                           value="{{old('hotel')}}">
                     <span class="focus-input100" data-placeholder="&#xe801;"></span>
                 </div>
 
@@ -42,17 +43,13 @@
                 </div>
 
                 <div required class="wrap-input100 validate-input">
-                    <input class="input100" type="tel" name="telefone" placeholder="Telefone" value="{{old('telefone')}}">
+                    <input class="input100" type="tel" name="telefone" placeholder="Telefone"
+                           value="{{old('telefone')}}">
                     <span class="focus-input100" data-placeholder="&#xe830;"></span>
                 </div>
 
-                <div required class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="quartos" placeholder="Nº de quartos" value="{{old('quartos')}}">
-                    <span class="focus-input100" data-placeholder="&#xe800;"></span>
-                </div>
-
-
-                <input type="hidden" name="admin" value="sim">
+                    <input type="hidden" name="quartos" value="0">
+                    <input type="hidden" name="admin" value="sim">
 
 
                 <div class="container-login100-form-btn m-t-32">
@@ -64,23 +61,19 @@
 
             </form>
         </div>
-
-
-            @if(count($errors) != 0)
-                <div style="position: absolute; top: 20%; left: 10%; width: 20% ">
-                    @foreach($errors->all() as $erro)
-                        <div class=" alert alert-danger alert-dismissible" style="text-align: center;">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <p>{{$erro}}</p></div>
-                        </div>
-                    @endforeach
+        @if(count($errors) != 0)
+            @foreach($errors->all() as $erro)
+                <div class="teste alert alert-danger alert-dismissible" role="alert"
+                     style="text-align: center; position: absolute; top: 20%; left: 10%; width: 20%">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>{{$erro}}</p>
                 </div>
-            @endif
-
+             @endforeach
+        @endif
     </div>
 </div>
-
-
 @include('hotsite.padrao.footer')
 
 </body>

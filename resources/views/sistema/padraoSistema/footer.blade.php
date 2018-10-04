@@ -70,8 +70,8 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('/assets/js/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-{{--<script src="{{asset('/assets/js/demo.js')}}"></script>--}}
-    {{--<script>--}}
+<script src="{{asset('/assets/js/demo.js')}}"></script>
+    <script>
        {{--$(function() {--}}
            {{--getaMenu();--}}
         {{--});--}}
@@ -84,5 +84,6 @@
        {{--function getaMenu() {--}}
            {{--$('#{{$Menu}}').addClass('active');--}}
        {{--}--}}
-    {{--</script>--}}
+
+    </script>
 </footer>

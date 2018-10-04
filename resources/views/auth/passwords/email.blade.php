@@ -35,7 +35,7 @@
 
                 <div align="center" class="wrap-input100 validate-input">
 
-                    <label for="email">{{ __('E-Mail para recuperação de conta') }}</label>
+                    <label for="email">{{ __('E-mail para recuperação de conta') }}</label>
                     <input id="email" type="email"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
                            value="{{ old('email') }}" required>

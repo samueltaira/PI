@@ -18,7 +18,7 @@ class UsuarioSeeder extends Seeder
             'email'=> "samueltaira@hotmail.com",
             'password' => bcrypt("teste123"),
             'telefone'=> "47999999999",
-            'quartos' => "20",
+            'quartos' => "0",
             'admin' => "sim",
 
         ];

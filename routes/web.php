@@ -29,13 +29,29 @@ Route::post('/cadastro/registrar', ['as' => 'hotsite.cadastro.registrar', 'uses'
 
 Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/core', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
-Route::get('/cadastraHospede', ['as' => 'sistema.cadastra.hospedes', 'uses' => 'Sistema\HospedeController@cadastrarHospede']);
-Route::get('/mainHospede', ['as' => 'sistema.main.hospedes', 'uses' => 'Sistema\HospedeController@mainHospede']);
+    Route::group(['prefix'=>'core'], function(){
+
+        Route::get('/quartos', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
+
+    });
+
+    Route::group(['prefix'=>'hospede'], function(){
+
+        Route::get('/cadastraHospede', ['as' => 'sistema.cadastra.hospedes', 'uses' => 'Sistema\HospedeController@cadastrarHospede']);
+        Route::get('/mainHospede', ['as' => 'sistema.main.hospedes', 'uses' => 'Sistema\HospedeController@mainHospede']);
+        Route::get('/cadastraHospede/editar/{id}', ['as' => 'sistema.main.hospedes.editar', 'uses' => 'Sistema\HospedeController@editarHospede']);
+
+    });
 
 Route::post('/cadastraHospede/salvar', ['as' => 'sistema.main.hospedes.salvar', 'uses' => 'Sistema\HospedeController@salvarHospede']);
-Route::get('/cadastraHospede/editar/{id}', ['as' => 'sistema.main.hospedes.editar', 'uses' => 'Sistema\HospedeController@editarHospede']);
 Route::put('/cadastraHospede/atualizar/{id}', ['as' => 'sistema.main.hospedes.atualizar', 'uses' => 'Sistema\HospedeController@atualizarHospede']);
+
+Route::group(['prefix' => 'perfil'], function(){
+
+    Route::get('/perfil', ['as' => 'sistema.main.perfil', 'uses' => 'Sistema\PerfilController@index']);
+
+
+});
 
 });
 

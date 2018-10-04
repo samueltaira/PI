@@ -4,14 +4,12 @@
 
 @section('content')
 
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Hóspede
         </h1>
     </section>
 
-    <!-- Main content -->
     <section class="content">
 
         <div class="box box-primary">
@@ -53,8 +51,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
-
     </section>
 @endsection

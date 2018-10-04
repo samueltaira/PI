@@ -139,7 +139,7 @@
             </form>
 
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="treeview" id="Mapa">
+                <li class="treeview {{ Request()->is('core/*') ? 'active' : '' }}" id="Mapa">
                     <a href="">
                         <i class="fa fa-map-o"></i>
                         <span>
@@ -163,7 +163,7 @@
                     </ul>
                 </li>
 
-                <li class="treeview" id="Hospede">
+                <li class="treeview {{ Request()->is('hospede/*') ? 'active' : '' }}" id="Hospede">
                     <a href="">
                         <i class="fa fa-address-book-o"></i>
                         <span>Clientes</span>
@@ -202,7 +202,7 @@
                     </ul>
                 </li>
 
-                <li class="treeview">
+                <li class="treeview {{ Request()->is('perfil/*') ? 'active' : '' }}">
                     <a href="">
                         <i class="fa fa-user-o"></i>
                         <span>Perfil</span>
@@ -213,15 +213,18 @@
 
                     <ul class="treeview-menu">
                         <li>
-                            <a href="">
+                            <a href="{{route('sistema.main.perfil')}}">
                                 <i class="fa fa-cogs"></i> Configurações
                             </a>
                         </li>
+
+                        @if( auth()->user()->admin == "sim" )
                         <li>
                             <a href="">
                                 <i class="fa fa-user-plus"></i> Adicionar mais atendentes
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
             </ul>
