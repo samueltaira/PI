@@ -15,6 +15,9 @@ class CreateHospedesTable extends Migration
     {
         Schema::create('hospedes', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->integer('user_id')->unsigned;
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->string('nome');
             $table->string('cidade');
             $table->string('email')->unique();
@@ -22,6 +25,7 @@ class CreateHospedesTable extends Migration
             $table->string('documento');
             $table->date('dataNascimento');
             $table->timestamps();
+
         });
     }
 

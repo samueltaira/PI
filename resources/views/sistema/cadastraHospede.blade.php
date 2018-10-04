@@ -43,6 +43,7 @@
                         <label for="dataNascimento">Data Nascimento</label>
                         <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" placeholder="00/00/0000">
                     </div>
+                    <input type="hidden" name="user_id" id="user_id" value="{{auth()->user()->id}}">
 
 
                     <div class="box-footer">

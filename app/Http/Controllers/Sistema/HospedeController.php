@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\User;
 use App\Hospede;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,8 +11,17 @@ class HospedeController extends Controller
 {
     public function mainHospede()
     {
-        $registros = Hospede::all();
-        return view('sistema.mainHospede',['Menu'=>'Hospede'], compact('registros'));
+
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        return view('sistema.mainHospede')->with('hospedes', $user->hospedes);
+
+
+//        $registros = Hospede::all();
+
+//        return view('sistema.mainHospede',['Menu'=>'Hospede'], compact('registros'));
+
     }
 
     public function cadastrarHospede()

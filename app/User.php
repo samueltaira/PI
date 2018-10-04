@@ -27,5 +27,9 @@ class User extends Authenticatable
         $this->notify(new ResetPassword($token));
     }
 
+    public function hospedes(){
+        return $this->hasMany(Hospede::class);
+    }
+
 
 }

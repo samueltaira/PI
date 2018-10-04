@@ -92,17 +92,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($registros as $registro)
+                                @foreach($hospedes as $hospede)
                                     <tr role="row" class="odd">
-                                        <td class="sorting_1">{{$registro->id}}</td>
-                                        <td>{{$registro->nome}}</td>
-                                        <td>{{$registro->dataNascimento}}</td>
-                                        <td>{{$registro->documento}}</td>
-                                        <td>{{$registro->cidade}}</td>
-                                        <td>{{$registro->email}}</td>
-                                        <td>{{$registro->contato}}</td>
+                                        <td class="sorting_1">{{$hospede->id}}</td>
+                                        <td>{{$hospede->nome}}</td>
+                                        <td>{{$hospede->dataNascimento}}</td>
+                                        <td>{{$hospede->documento}}</td>
+                                        <td>{{$hospede->cidade}}</td>
+                                        <td>{{$hospede->email}}</td>
+                                        <td>{{$hospede->contato}}</td>
                                         <td>
-                                            <a class="btn btn-flat btn-warning" href="{{route('sistema.main.hospedes.editar', $registro->id)}}">
+                                            <a class="btn btn-flat btn-warning" href="{{route('sistema.main.hospedes.editar', $hospede->id)}}">
                                                 <i class="fa fa-fw fa-edit"></i>
                                             </a>
                                             <a class="btn btn-flat btn-primary"><i
