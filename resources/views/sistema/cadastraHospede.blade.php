@@ -5,9 +5,23 @@
 @section('content')
 
     <section class="content-header">
-        <h1>
-            Hóspede
-        </h1>
+        <div>
+            <h1>
+                Hóspede
+            </h1>
+        </div>
+
+        @if(count($errors) != 0)
+            @foreach($errors->all() as $erro)
+                <div class="teste alert alert-danger alert-dismissible" role="alert"
+                     style="text-align: center; position: absolute; top: 37%; left: 15%; width: 84%">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>{{$erro}}</p>
+                </div>
+            @endforeach
+        @endif
     </section>
 
     <section class="content">
@@ -21,27 +35,27 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nomeHospede">Nome</label>
-                        <input type="text" class="form-control" name="nome" id="nomeHospede" placeholder="Nome">
+                        <input type="text" class="form-control" name="nome" id="nomeHospede" placeholder="Nome" value="{{old('nome')}}">
                     </div>
                     <div class="form-group">
                         <label for="cidadeHospede">Cidade</label>
-                        <input type="text" class="form-control" name="cidade" id="cidadeHospede" placeholder="Cidade">
+                        <input type="text" class="form-control" name="cidade" id="cidadeHospede" placeholder="Cidade" value="{{old('cidade')}}">
                     </div>
                     <div class="form-group">
                         <label for="emailHospede">Email</label>
-                        <input type="email" class="form-control" id="emailHospede" name="email" placeholder="Insira o e-mail">
+                        <input type="email" class="form-control" id="emailHospede" name="email" placeholder="Insira o e-mail" value="{{old('email')}}">
                     </div>
                     <div class="form-group">
                         <label for="contatoHospede">Contato</label>
-                        <input type="text" class="form-control" id="contatoHospede" name="contato" placeholder="Telefone Contato">
+                        <input type="text" class="form-control" id="contatoHospede" name="contato" placeholder="Telefone Contato" value="{{old('contato')}}">
                     </div>
                     <div class="form-group">
                         <label for="cpfHospede">CPF</label>
-                        <input type="text" class="form-control" id="cpfHospede" name="documento" placeholder="CPF">
+                        <input type="text" class="form-control" id="cpfHospede" name="documento" placeholder="CPF" value="{{old('documento')}}">
                     </div>
                     <div class="form-group">
                         <label for="dataNascimento">Data Nascimento</label>
-                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" placeholder="00/00/0000">
+                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" placeholder="00/00/0000" value="{{old('dataNascimento')}}">
                     </div>
                     <input type="hidden" name="user_id" id="user_id" value="{{auth()->user()->id}}">
 

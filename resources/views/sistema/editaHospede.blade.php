@@ -5,9 +5,23 @@
 @section('content')
 
     <section class="content-header">
-        <h1>
-            Hóspede
-        </h1>
+        <div>
+            <h1>
+                Hóspede
+            </h1>
+        </div>
+
+        @if(count($errors) != 0)
+            @foreach($errors->all() as $erro)
+                <div class="teste alert alert-danger alert-dismissible" role="alert"
+                     style="text-align: center; position: absolute; top: 37%; left: 15%; width: 84%">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>{{$erro}}</p>
+                </div>
+            @endforeach
+        @endif
     </section>
 
     <section class="content">
