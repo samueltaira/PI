@@ -6,18 +6,32 @@ use App\User;
 use App\Hospede;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class HospedeController extends Controller
 {
     public function mainHospede()
     {
-//     Paginação OK com 30 hospedes por página - funcionando
+//     Paginação OK com 20 hospedes por página - funcionando
 
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-
-        return view('sistema.mainHospede')->with('hospedes', $user->hospedes()->paginate(30));
+        return view('sistema.mainHospede')->with('hospedes', $user->hospedes()->orderBy('nome')->paginate(20));
+    }
+    public function pesquisaHospede(Request $req)
+    {
+        $user_id = auth()->user()->id;
+        $search = $req->get('valorPesquisado');
+        $hospedes = DB::table('hospedes') -> where('nome', 'like', '%'. $search . '%')
+                                                -> where('user_id', '=', $user_id)
+                                                ->orderBy('nome')
+                                                ->orWhere('documento', 'like', '%' . $search . '%')
+                                                -> where('user_id', '=', $user_id )
+                                                ->orderBy('nome')
+                                                ->paginate(20);
+        return view('sistema.mainHospede', ['hospedes' => $hospedes]);
     }
 
     public function cadastrarHospede()

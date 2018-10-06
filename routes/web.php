@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/cadastraHospede', ['as' => 'sistema.cadastra.hospedes', 'uses' => 'Sistema\HospedeController@cadastrarHospede']);
         Route::get('/mainHospede', ['as' => 'sistema.main.hospedes', 'uses' => 'Sistema\HospedeController@mainHospede']);
+        Route::get('/mainHospede/search', ['as' => 'sistema.main.hospedes.pesquisar', 'uses' => 'Sistema\HospedeController@pesquisaHospede']);
         Route::get('/cadastraHospede/editar/{id}', ['as' => 'sistema.main.hospedes.editar', 'uses' => 'Sistema\HospedeController@editarHospede']);
 
     });

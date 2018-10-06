@@ -32,20 +32,28 @@
             <div class="box-header">
                 <h3 class="box-title">Hóspedes cadastrados</h3>
             </div>
-            <!-- /.box-header -->
+
+
             <div class="box-body">
-                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div id="filtro" class="dataTables_filter">
-                                <label>Procurar:
-                                    <input type="search" class="form-control input-sm" placeholder="Procure pelo nome ou documento"
-                                           size="25%" aria-controls="filtro">
-                                </label>
+                        <form action="{{route('sistema.main.hospedes.pesquisar')}}" method="GET">
+                            <div class="col-sm-3">
+                                <div id="filtro" class="dataTables_filter">
+                                    <label>Procurar:
+                                        <input type="search" class="form-control input-sm"
+                                               placeholder="Procure pelo nome ou documento"
+                                               size="25%" name="valorPesquisado">
+                                    </label>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-sm-1">
+                                <button class="btn btn-success" type="submit">Pesquisar</button>
+                            </div>
+                        </form>
                     </div>
                     <br>
+
                     <div class="row">
                         <div class="col-sm-12">
                             <table id="Hospedes" class="table table-bordered table-striped dataTable" role="grid"
@@ -60,7 +68,8 @@
                                         aria-label="Nome: activate to sort column ascending">
                                         Nome
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataNascimento" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="dataNascimento" rowspan="1"
+                                        colspan="1"
                                         aria-label="dataNascimento: activate to sort column ascending">
                                         Data Nascimento
                                     </th>
@@ -95,7 +104,8 @@
                                         <td>{{$hospede->email}}</td>
                                         <td>{{$hospede->contato}}</td>
                                         <td>
-                                            <a class="btn btn-flat btn-warning" href="{{route('sistema.main.hospedes.editar', $hospede->id)}}">
+                                            <a class="btn btn-flat btn-warning"
+                                               href="{{route('sistema.main.hospedes.editar', $hospede->id)}}">
                                                 <i class="fa fa-fw fa-edit"></i>
                                             </a>
                                             <a class="btn btn-flat btn-primary"><i
