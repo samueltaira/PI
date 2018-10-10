@@ -19,7 +19,7 @@ class CreateHospedesTable extends Migration
             $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->string('nome');
             $table->string('cidade');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('contato');
             $table->string('documento');
             $table->date('dataNascimento');

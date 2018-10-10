@@ -20,7 +20,7 @@ class HospedeController extends Controller
         $hospedes = DB::table('hospedes')
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('nome')
-            ->paginate(12);
+            ->paginate(10);
 
         return view('sistema.mainHospede', ['hospedes' => $hospedes]);
     }
@@ -29,14 +29,15 @@ class HospedeController extends Controller
     {
         $hotel_id = auth()->user()->getHotelId();
         $search = $req->get('valorPesquisado');
+
         $hospedes = DB::table('hospedes')
             ->where('nome', 'like', '%' . $search . '%')
-            ->where('user_id', '=', $hotel_id)
+            ->where('hotel_id', '=', $hotel_id)
             ->orderBy('nome')
             ->orWhere('documento', 'like', '%' . $search . '%')
-            ->where('user_id', '=', $hotel_id)
+            ->where('hotel_id', '=', $hotel_id)
             ->orderBy('nome')
-            ->paginate(12);
+            ->paginate(10);
         return view('sistema.mainHospede', ['hospedes' => $hospedes]);
     }
 
