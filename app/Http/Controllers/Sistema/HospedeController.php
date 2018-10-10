@@ -20,23 +20,23 @@ class HospedeController extends Controller
         $hospedes = DB::table('hospedes')
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('nome')
-            ->paginate(20);
+            ->paginate(12);
 
         return view('sistema.mainHospede', ['hospedes' => $hospedes]);
     }
 
     public function pesquisaHospede(Request $req)
     {
-        $user_id = auth()->user()->id;
+        $hotel_id = auth()->user()->getHotelId();
         $search = $req->get('valorPesquisado');
         $hospedes = DB::table('hospedes')
             ->where('nome', 'like', '%' . $search . '%')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', $hotel_id)
             ->orderBy('nome')
             ->orWhere('documento', 'like', '%' . $search . '%')
-            ->where('user_id', '=', $user_id)
+            ->where('user_id', '=', $hotel_id)
             ->orderBy('nome')
-            ->paginate(20);
+            ->paginate(12);
         return view('sistema.mainHospede', ['hospedes' => $hospedes]);
     }
 
