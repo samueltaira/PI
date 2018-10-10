@@ -11,17 +11,20 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+
+
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->string('nome');
-            $table->string('hotel');
+            $table->integer('hotel_id')->unsigned;
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('telefone');
             $table->string('quartos');
-            $table->enum('admin',['sim', 'não']);
+            $table->enum('admin', ['sim', 'não']);
             $table->rememberToken();
             $table->timestamps();
         });

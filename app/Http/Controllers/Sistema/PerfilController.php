@@ -15,4 +15,9 @@ class PerfilController
     {
         return view('sistema.profile');
     }
+
+    public function listar()
+    {
+        return view('sistema.profile_lista');
+    }
 }

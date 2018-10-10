@@ -96,7 +96,7 @@
                                 <tbody>
                                 @foreach($hospedes as $hospede)
                                     <tr role="row" class="odd">
-                                        <td class="sorting_1">{{$hospede->id}}</td>
+                                        <td>{{$hospede->id}}</td>
                                         <td>{{$hospede->nome}}</td>
                                         <td>{{$hospede->dataNascimento}}</td>
                                         <td>{{$hospede->documento}}</td>

@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="nomeProfile">Nome</label>
                         <input readonly="true" type="text" class="form-control" name="nome" id="nomeProfile"
-                        value="{{auth()->user()->nome}}">
+                               value="{{auth()->user()->nome}}">
                     </div>
                     <div class="form-group">
                         <label for="emailProfile">Email</label>
@@ -46,7 +46,6 @@
                     </div>
 
 
-
                     <div class="box-footer">
                         {{--<button type="submit" formaction="" class="btn btn-primary">Salvar</button>--}}
                         <a class="btn btn-dark" href="">Voltar</a>
@@ -54,5 +53,5 @@
                 </div>
             </form>
         </div>
-        </section>
+    </section>
 @endsection

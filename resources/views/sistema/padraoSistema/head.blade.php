@@ -101,7 +101,7 @@
                                 <img src="{!! asset('/images/teste.jpg') !!}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{Auth::user()->hotel}}
+                                    {{Auth::user()->getHotel()}}
                                     <small>{{Auth::user()->email}}</small>
                                 </p>
                             </li>
@@ -219,11 +219,16 @@
                         </li>
 
                         @if( auth()->user()->admin == "sim" )
-                        <li>
-                            <a href="">
-                                <i class="fa fa-user-plus"></i> Adicionar mais atendentes
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{route('sistema.main.lista.perfil')}}">
+                                    <i class="fa fa-users"></i> Lista de atendentes
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-user-plus"></i> Adicionar mais atendentes
+                                </a>
+                            </li>
                         @endif
                     </ul>
                 </li>

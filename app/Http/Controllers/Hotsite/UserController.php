@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
+use App\Hotel;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -42,15 +44,25 @@ class UserController extends Controller
 
         $d = $req->all();
 
+
+        $dados2 = [
+            'hotel' => $d['hotel']
+        ];
+
+        Hotel::create($dados2);
+
+        $lastdata = DB::table('hotels')->select('id')->latest()->first();
+//        var_dump($lastdata->id);die();
         $dados = [
             'nome' => $d['nome'],
-            'hotel' => $d['hotel'],
             'email' => $d['email'],
+            'hotel_id' => $lastdata->id,
             'password' => bcrypt($d['password']),
             'telefone' => $d['telefone'],
             'quartos' => $d['quartos'],
             'admin' => $d['admin'],
         ];
+
 
         User::create($dados);
 

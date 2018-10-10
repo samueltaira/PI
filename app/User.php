@@ -5,7 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Requests;
-use App\Notifications\ResetPassword;;
+use App\Notifications\ResetPassword;
+
+;
+
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -13,7 +17,7 @@ class User extends Authenticatable
 
 
     protected $fillable = [
-        'nome',  'hotel', 'email', 'password', 'telefone', 'quartos', 'admin',
+        'nome', 'hotel_id', 'email', 'password', 'telefone', 'quartos', 'admin',
     ];
 
 
@@ -21,15 +25,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getHotel()
+    {
+        $lastdata = DB::table('hotels')->where('id', $this->hotel_id)->select('hotel')->first();
+        return $lastdata->hotel;
+    }
+
+    public function getHotelId()
+    {
+        $lastdata = DB::table('hotels')->where('id', $this->hotel_id)->select('id')->first();
+        return $lastdata->id;
+    }
+
     public function sendPasswordResetNotification($token)
     {
-        // Não esquece: use App\Notifications\ResetPassword;
         $this->notify(new ResetPassword($token));
     }
 
-    public function hospedes(){
-        return $this->hasMany(Hospede::class);
-    }
 
+    public function hotels()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
 
 }

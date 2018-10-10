@@ -16,21 +16,27 @@ class HospedeController extends Controller
     {
 //     Paginação OK com 20 hospedes por página - funcionando
 
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('sistema.mainHospede')->with('hospedes', $user->hospedes()->orderBy('nome')->paginate(20));
+        $hotel_id = auth()->user()->getHotelId();
+        $hospedes = DB::table('hospedes')
+            ->where('hotel_id', '=', $hotel_id)
+            ->orderBy('nome')
+            ->paginate(20);
+
+        return view('sistema.mainHospede', ['hospedes' => $hospedes]);
     }
+
     public function pesquisaHospede(Request $req)
     {
         $user_id = auth()->user()->id;
         $search = $req->get('valorPesquisado');
-        $hospedes = DB::table('hospedes') -> where('nome', 'like', '%'. $search . '%')
-                                                -> where('user_id', '=', $user_id)
-                                                ->orderBy('nome')
-                                                ->orWhere('documento', 'like', '%' . $search . '%')
-                                                -> where('user_id', '=', $user_id )
-                                                ->orderBy('nome')
-                                                ->paginate(20);
+        $hospedes = DB::table('hospedes')
+            ->where('nome', 'like', '%' . $search . '%')
+            ->where('user_id', '=', $user_id)
+            ->orderBy('nome')
+            ->orWhere('documento', 'like', '%' . $search . '%')
+            ->where('user_id', '=', $user_id)
+            ->orderBy('nome')
+            ->paginate(20);
         return view('sistema.mainHospede', ['hospedes' => $hospedes]);
     }
 

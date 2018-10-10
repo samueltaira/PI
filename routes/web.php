@@ -49,7 +49,8 @@ Route::put('/cadastraHospede/atualizar/{id}', ['as' => 'sistema.main.hospedes.at
 
 Route::group(['prefix' => 'perfil'], function(){
 
-    Route::get('/perfil', ['as' => 'sistema.main.perfil', 'uses' => 'Sistema\PerfilController@index']);
+    Route::get('/l', ['as' => 'sistema.main.perfil', 'uses' => 'Sistema\PerfilController@index']);
+    Route::get('/lista', ['as' => 'sistema.main.lista.perfil', 'uses' => 'Sistema\PerfilController@listar']);
 
 
 });

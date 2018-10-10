@@ -9,11 +9,12 @@ class Hospede extends Model
 {
 
     protected $fillable = [
-        'id',  'nome', 'cidade', 'email', 'contato', 'documento', 'dataNascimento', 'user_id'
+        'id', 'nome', 'cidade', 'email', 'contato', 'documento', 'dataNascimento', 'hotel_id'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function hotels()
+    {
+        return $this->belongsTo(Hotel::class);
     }
 
 }
