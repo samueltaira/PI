@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Sistema;
 
-use App\User;
 use App\Hospede;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +19,7 @@ class HospedeController extends Controller
             ->orderBy('nome')
             ->paginate(10);
 
-        return view('sistema.mainHospede', ['hospedes' => $hospedes]);
+        return view('sistema.hospede.mainHospede', ['hospedes' => $hospedes]);
     }
 
     public function pesquisaHospede(Request $req)
@@ -38,12 +35,12 @@ class HospedeController extends Controller
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('nome')
             ->paginate(10);
-        return view('sistema.mainHospede', ['hospedes' => $hospedes]);
+        return view('sistema.hospede.mainHospede', ['hospedes' => $hospedes]);
     }
 
     public function cadastrarHospede()
     {
-        return view('sistema.cadastraHospede', ['Menu' => 'Hospede']);
+        return view('sistema.hospede.cadastraHospede', ['Menu' => 'Hospede']);
     }
 
     public function salvarHospede(Request $req)
@@ -91,7 +88,7 @@ class HospedeController extends Controller
     {
         $registro = Hospede::find($id);
 
-        return view('sistema.editaHospede', compact('registro'));
+        return view('sistema.hospede.editaHospede', compact('registro'));
 
     }
 

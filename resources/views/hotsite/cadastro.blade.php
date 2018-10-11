@@ -38,7 +38,7 @@
                 </div>
 
                 <div required class="wrap-input100 validate-input">
-                    <input class="input100" type="password" name="password" placeholder="Password">
+                    <input class="input100" type="password" name="password" placeholder="Senha">
                     <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                 </div>
 

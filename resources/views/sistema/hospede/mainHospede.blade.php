@@ -94,7 +94,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($hospedes as $hospede)
+
+                                @forelse($hospedes as $hospede)
                                     <tr role="row" class="odd">
                                         <td>{{$hospede->id}}</td>
                                         <td>{{$hospede->nome}}</td>
@@ -112,8 +113,11 @@
                                                         class="fa fa-fw fa-book"></i></a>
                                         </td>
                                     </tr>
-                                @endforeach
-
+                                @empty
+                                    <tr role="row" class="odd">
+                                        <td colspan="8" align="center"><b>Nenhum hóspede cadastrado no sistema ainda</b></td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                                 <tfoot>
                                 <tr>

@@ -225,7 +225,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{route('sistema.main.cadastra.perfil')}}">
                                     <i class="fa fa-user-plus"></i> Adicionar mais atendentes
                                 </a>
                             </li>

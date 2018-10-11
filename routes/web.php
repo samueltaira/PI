@@ -51,7 +51,10 @@ Route::group(['prefix' => 'perfil'], function(){
 
     Route::get('/l', ['as' => 'sistema.main.perfil', 'uses' => 'Sistema\PerfilController@index']);
     Route::get('/lista', ['as' => 'sistema.main.lista.perfil', 'uses' => 'Sistema\PerfilController@listar']);
-
+    Route::get('/cadastra', ['as' => 'sistema.main.cadastra.perfil', 'uses' => 'Sistema\PerfilController@cadastrar']);
+    Route::post('/salvar', ['as' => 'sistema.main.salva.perfil', 'uses' => 'Sistema\PerfilController@registrar']);
+    Route::post('/alterar', ['as' => 'sistema.main.altera.senha', 'uses' => 'Sistema\PerfilController@alteraSenha']);
+    Route::get('/indexAlterar', ['as' => 'sistema.main.alterar.senha', 'uses' => 'Sistema\PerfilController@indexAlterarSenha']);
 
 });
 

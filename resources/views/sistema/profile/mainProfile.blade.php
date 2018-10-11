@@ -8,6 +8,26 @@
         <h1>
             Perfil
         </h1>
+        @if(count($errors) != 0)
+            @foreach($errors->all() as $erro)
+                <div class="teste alert alert-danger alert-dismissible" role="alert"
+                     style="text-align: center; position: absolute; top: 37%; left: 15%; width: 84%">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p>{{$erro}}</p>
+                </div>
+            @endforeach
+        @endif
+
+
+        @if(Session::has('message_ok'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-check"></i>Senha alterada com sucesso.
+            </div>
+        @endif
+
     </section>
 
     <section class="content">
@@ -36,8 +56,10 @@
                                value="**********">
                         <input type="hidden" id="senhaProfile" name="senha"
                                value="{{auth()->user()->password}}">
-                        {{--<br>--}}
-                        {{--<button type="button" class="btn btn-flat btn-primary btn-sm">Alterar senha</button>--}}
+                        <br>
+                        <a  href="{{route('sistema.main.alterar.senha')}}"
+                            class="btn btn-success">Alterar Senha
+                        </a>
                     </div>
                     <div class="form-group">
                         <label for="adminProfile">Administrador</label>
@@ -47,7 +69,6 @@
 
 
                     <div class="box-footer">
-                        {{--<button type="submit" formaction="" class="btn btn-primary">Salvar</button>--}}
                         <a class="btn btn-dark" href="">Voltar</a>
                     </div>
                 </div>
