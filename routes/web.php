@@ -28,36 +28,29 @@ Route::post('/cadastro/registrar', ['as' => 'hotsite.cadastro.registrar', 'uses'
 //grupo para restringir acesso ao sistema
 
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::group(['prefix'=>'core'], function(){
-
+    Route::group(['prefix' => 'core'], function () {
         Route::get('/quartos', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
-
     });
-
-    Route::group(['prefix'=>'hospede'], function(){
-
+    Route::group(['prefix' => 'hospede'], function () {
         Route::get('/cadastraHospede', ['as' => 'sistema.cadastra.hospedes', 'uses' => 'Sistema\HospedeController@cadastrarHospede']);
         Route::get('/mainHospede', ['as' => 'sistema.main.hospedes', 'uses' => 'Sistema\HospedeController@mainHospede']);
         Route::get('/mainHospede/search', ['as' => 'sistema.main.hospedes.pesquisar', 'uses' => 'Sistema\HospedeController@pesquisaHospede']);
         Route::get('/cadastraHospede/editar/{id}', ['as' => 'sistema.main.hospedes.editar', 'uses' => 'Sistema\HospedeController@editarHospede']);
-
+        Route::post('/cadastraHospede/salvar', ['as' => 'sistema.main.hospedes.salvar', 'uses' => 'Sistema\HospedeController@salvarHospede']);
+        Route::put('/cadastraHospede/atualizar/{id}', ['as' => 'sistema.main.hospedes.atualizar', 'uses' => 'Sistema\HospedeController@atualizarHospede']);
     });
 
-Route::post('/cadastraHospede/salvar', ['as' => 'sistema.main.hospedes.salvar', 'uses' => 'Sistema\HospedeController@salvarHospede']);
-Route::put('/cadastraHospede/atualizar/{id}', ['as' => 'sistema.main.hospedes.atualizar', 'uses' => 'Sistema\HospedeController@atualizarHospede']);
+    Route::group(['prefix' => 'perfil'], function () {
+        Route::get('/l', ['as' => 'sistema.main.perfil', 'uses' => 'Sistema\PerfilController@index']);
+        Route::post('/alterar', ['as' => 'sistema.main.altera.senha', 'uses' => 'Sistema\PerfilController@alteraSenha']);
+        Route::get('/indexAlterar', ['as' => 'sistema.main.alterar.senha', 'uses' => 'Sistema\PerfilController@indexAlterarSenha']);
 
-Route::group(['prefix' => 'perfil'], function(){
+        Route::get('/lista', ['as' => 'sistema.main.lista.perfil', 'uses' => 'Sistema\PerfilController@listar'])->middleware(\App\Http\Middleware\isAdmin::class);
+        Route::get('/cadastra', ['as' => 'sistema.main.cadastra.perfil', 'uses' => 'Sistema\PerfilController@cadastrar'])->middleware(\App\Http\Middleware\isAdmin::class);;
+        Route::post('/salvar', ['as' => 'sistema.main.salva.perfil', 'uses' => 'Sistema\PerfilController@registrar'])->middleware(\App\Http\Middleware\isAdmin::class);
+        Route::get('/deletar/{id}', ['as' => 'sistema.main.deleta.perfil', 'uses' => 'Sistema\PerfilController@deletar'])->middleware(\App\Http\Middleware\isAdmin::class);
 
-    Route::get('/l', ['as' => 'sistema.main.perfil', 'uses' => 'Sistema\PerfilController@index']);
-    Route::get('/lista', ['as' => 'sistema.main.lista.perfil', 'uses' => 'Sistema\PerfilController@listar']);
-    Route::get('/cadastra', ['as' => 'sistema.main.cadastra.perfil', 'uses' => 'Sistema\PerfilController@cadastrar']);
-    Route::post('/salvar', ['as' => 'sistema.main.salva.perfil', 'uses' => 'Sistema\PerfilController@registrar']);
-    Route::post('/alterar', ['as' => 'sistema.main.altera.senha', 'uses' => 'Sistema\PerfilController@alteraSenha']);
-    Route::get('/indexAlterar', ['as' => 'sistema.main.alterar.senha', 'uses' => 'Sistema\PerfilController@indexAlterarSenha']);
-
-});
-
+    });
 });
 
 

@@ -36,6 +36,16 @@ class PerfilController extends Controller
 
     }
 
+    public function deletar($id)
+    {
+        $usuario= User::find($id);
+        $usuario->delete();
+
+        return redirect()
+            ->route('sistema.main.lista.perfil')
+            ->with('message_delete', 'Usuário excluído com sucesso');
+    }
+
     public function cadastrar()
     {
         return view('sistema.profile.cadastraAtendente');

@@ -17,6 +17,12 @@
                 <i class="icon fa fa-check"></i>Atendente cadastrado com sucesso.
             </div>
         @endif
+        @if(Session::has('message_delete'))
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-check"></i>Usuário excluído com sucesso.
+            </div>
+        @endif
 
     </section>
 
@@ -59,7 +65,8 @@
                                 <td>{{$atendente->telefone}}</td>
                                 <td>
                                     <a class="btn btn-flat btn-danger"
-                                       href="">
+                                       onclick="return confirm('Atenção!!!!!\n\nVocê tem certeza que quer excluir este usuário?\n\nEsta ação é irreversível!!!!!')"
+                                       href="{{route('sistema.main.deleta.perfil', $atendente->id)}}">
                                         <i class="fa fa-fw fa-window-close"></i>
                                     </a>
                                 </td>
