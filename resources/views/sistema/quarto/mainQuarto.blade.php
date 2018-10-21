@@ -1,7 +1,23 @@
 @extends('sistema.padraoSistema.head')
 
 @section('titulo', 'Mapa de Reserva')
+<head>
+    <style type="text/css">
+        .flex-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
+        .flex-colum-7 {
+            width: 70%;
+        }
+
+        .flex-colum-3 {
+            width: 30%;
+        }
+    </style>
+</head>
 @section('content')
 
     <br>
@@ -23,160 +39,142 @@
         <h1>
             Mapa dos Quartos
         </h1>
-        <h4><a href=""><i class="fa fa-filter"></i> Filtrar quartos </a></h4>
+        <h4>
+            <a href="">
+                <i class="fa fa-filter">
+                </i> Filtrar quartos
+            </a>
+        </h4>
     </section>
 
-    <!-- Main content -->
     <section class="content">
-
-        <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>Room 101</h3>
-
-                        <p>Quarto 101</p>
+            <div class="col-sm-4">
+                <div class="small-box bg-green-active">
+                    <div style="justify-content: space-around; display: flex;" class="small-box-footer">
+                            <div>
+                                <span style="width: 50%">
+                                    <a href="#" style="color: inherit">
+                                        <b>
+                                            <i class="fa fa-pencil-square-o"></i> Quarto 101
+                                        </b>
+                                    </a>
+                                </span>
+                            </div>
+                            <div>
+                                <span style="width: 25%">
+                                       <b>
+                                           <i class="fa fa-users"></i> Individual
+                                       </b>
+                                </span>
+                            </div>
+                        <div>
+                                <span style="width: 25%">
+                                       <b>
+                                           Status: Reserva ativa
+                                       </b>
+                                </span>
+                            </div>
                     </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
+                        <div>
+                            <div class="flex-row-7">
+                                <span>
+                                    <h5 style="margin-left: 3%; margin-bottom: 0;">
+                                        Hóspede atual:
+                                    </h5>
+                                </span>
+                            </div>
+                            <div class="flex-row">
+                                <div class="flex-colum-7">
+                                    <span>
+                                        <h4 style="margin-left: 5%;">Samuel Taira da Costa</h4>
+                                    </span>
+                                </div>
+                                <div class="flex-colum-3">
+                                    {{--<a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >--}}
+                                        {{--<i class="fa fa-play-circle"></i>--}}
+                                        {{--Iniciar reserva--}}
+                                    {{--</a>--}}
+                                    <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >
+                                        <i class="fa fa-play-circle"></i>
+                                        Fechar reserva
+                                    </a>
+                                </div>
+                            </div>
+                        <div class="row" style="margin-bottom: 10px">
+                            <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 7%" >
+                                <i class="fa fa-cutlery"></i>
+                                Consumo
+                            </a>
+                        </div>
                     </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="" class="small-box-footer">
+                        <i class="fa fa-calendar"></i> Calendário - Quarto 101
+                    </a>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>Room 102</h3>
-
-                        <p>Quarto 102</p>
+            <div class="col-sm-4">
+                <div class="small-box bg-red-active">
+                    <div style="justify-content: space-around; display: flex;" class="small-box-footer">
+                        <div>
+                            <span style="width: 50%">
+                                <a href="#" style="color: inherit">
+                                    <b>
+                                        <i class="fa fa-pencil-square-o"></i> Quarto 102
+                                    </b>
+                                </a>
+                            </span>
+                        </div>
+                        <div>
+                                <span style="width: 25%">
+                                       <b>
+                                           <i class="fa fa-users"></i> Triplo
+                                       </b>
+                                </span>
+                        </div>
+                        <div>
+                                <span style="width: 25%">
+                                       <b>
+                                           Status: Vago
+                                       </b>
+                                </span>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
+                    <div>
+                        <div class="flex-row-7">
+                                <span>
+                                    <h5 style="margin-left: 3%; margin-bottom: 0;">
+                                        Hóspede atual:
+                                    </h5>
+                                </span>
+                        </div>
+                        <div class="flex-row">
+                            <div class="flex-colum-7">
+                                    <span>
+                                        <h4 style="margin-left: 5%;">Vago</h4>
+                                    </span>
+                            </div>
+                            <div class="flex-colum-3">
+                                <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >
+                                    <i class="fa fa-play-circle"></i>
+                                    Iniciar reserva
+                                </a>
+                                {{--<a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >--}}
+                                {{--<i class="fa fa-play-circle"></i>--}}
+                                {{--Fechar reserva--}}
+                                {{--</a>--}}
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px">
+                            <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 7%" >
+                                <i class="fa fa-cutlery"></i>
+                                Consumo
+                            </a>
+                        </div>
                     </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>Room 103</h3>
-
-                        <p>Quarto 103</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>Room 104</h3>
-
-                        <p>Quarto 104</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>Room 201</h3>
-
-                        <p>Quarto 201</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>Room 202</h3>
-
-                        <p>Quarto 202</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>Room 203</h3>
-
-                        <p>Quarto 203</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>Room 204</h3>
-
-                        <p>Quarto 204</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>Room 301</h3>
-
-                        <p>Quarto 301</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>Room 302</h3>
-
-                        <p>Quarto 302</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-bed"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="" class="small-box-footer">
+                        <i class="fa fa-calendar"></i> Calendário - Quarto 102
+                    </a>
                 </div>
             </div>
         </div>
