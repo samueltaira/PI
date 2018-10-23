@@ -49,134 +49,75 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="small-box bg-green-active">
-                    <div style="justify-content: space-around; display: flex;" class="small-box-footer">
-                            <div>
-                                <span style="width: 50%">
-                                    <a href="#" style="color: inherit">
-                                        <b>
-                                            <i class="fa fa-pencil-square-o"></i> Quarto 101
-                                        </b>
-                                    </a>
-                                </span>
-                            </div>
-                            <div>
-                                <span style="width: 25%">
-                                       <b>
-                                           <i class="fa fa-users"></i> Individual
-                                       </b>
-                                </span>
-                            </div>
-                        <div>
-                                <span style="width: 25%">
-                                       <b>
-                                           Status: Reserva ativa
-                                       </b>
-                                </span>
-                            </div>
-                    </div>
-                        <div>
-                            <div class="flex-row-7">
-                                <span>
-                                    <h5 style="margin-left: 3%; margin-bottom: 0;">
-                                        Hóspede atual:
-                                    </h5>
-                                </span>
-                            </div>
-                            <div class="flex-row">
-                                <div class="flex-colum-7">
-                                    <span>
-                                        <h4 style="margin-left: 5%;">Samuel Taira da Costa</h4>
+            @foreach($quartos as $quarto)
+                <div class="col-sm-4">
+                    <div class="small-box {{$quarto->status_reserva == 'vago' ? 'bg-green-active' : 'bg-red-active'}}">
+                        <div style="justify-content: space-around; display: flex;" class="small-box-footer">
+                                <div>
+                                    <span style="width: 50%">
+                                        <a href="#" style="color: inherit">
+                                            <b>
+                                                <i class="fa fa-pencil-square-o"></i> {{$quarto->nome}}
+                                            </b>
+                                        </a>
                                     </span>
                                 </div>
-                                <div class="flex-colum-3">
-                                    {{--<a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >--}}
-                                        {{--<i class="fa fa-play-circle"></i>--}}
-                                        {{--Iniciar reserva--}}
-                                    {{--</a>--}}
-                                    <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >
-                                        <i class="fa fa-play-circle"></i>
-                                        Fechar reserva
-                                    </a>
-                                </div>
-                            </div>
-                        <div class="row" style="margin-bottom: 10px">
-                            <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 7%" >
-                                <i class="fa fa-cutlery"></i>
-                                Consumo
-                            </a>
-                        </div>
-                    </div>
-                    <a href="" class="small-box-footer">
-                        <i class="fa fa-calendar"></i> Calendário - Quarto 101
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="small-box bg-red-active">
-                    <div style="justify-content: space-around; display: flex;" class="small-box-footer">
-                        <div>
-                            <span style="width: 50%">
-                                <a href="#" style="color: inherit">
-                                    <b>
-                                        <i class="fa fa-pencil-square-o"></i> Quarto 102
-                                    </b>
-                                </a>
-                            </span>
-                        </div>
-                        <div>
-                                <span style="width: 25%">
-                                       <b>
-                                           <i class="fa fa-users"></i> Triplo
-                                       </b>
-                                </span>
-                        </div>
-                        <div>
-                                <span style="width: 25%">
-                                       <b>
-                                           Status: Vago
-                                       </b>
-                                </span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex-row-7">
-                                <span>
-                                    <h5 style="margin-left: 3%; margin-bottom: 0;">
-                                        Hóspede atual:
-                                    </h5>
-                                </span>
-                        </div>
-                        <div class="flex-row">
-                            <div class="flex-colum-7">
-                                    <span>
-                                        <h4 style="margin-left: 5%;">Vago</h4>
+                                <div>
+                                    <span style="width: 25%">
+                                           <b>
+                                               <i class="fa fa-users"></i> {{$quarto->capacidade}}
+                                           </b>
                                     </span>
-                            </div>
-                            <div class="flex-colum-3">
-                                <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >
-                                    <i class="fa fa-play-circle"></i>
-                                    Iniciar reserva
+                                </div>
+                            <div>
+                                    <span style="width: 25%">
+                                           <b>
+                                               Status: {{$quarto->status_reserva}}
+                                           </b>
+                                    </span>
+                                </div>
+                        </div>
+                            <div>
+                                <div class="flex-row-7">
+                                    <span>
+                                        <h5 style="margin-left: 3%; margin-bottom: 0;">
+                                            Hóspede atual:
+                                        </h5>
+                                    </span>
+                                </div>
+                                <div class="flex-row">
+                                    <div class="flex-colum-7">
+                                        <span>
+                                            <h4 style="margin-left: 5%;">Sem reserva ativa</h4>
+                                        </span>
+                                    </div>
+                                    <div class="flex-colum-3">
+                                        @if($quarto->status_reserva != "Reserva ativa")
+                                            <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >
+                                                <i class="fa fa-play-circle"></i>
+                                                Iniciar reserva
+                                            </a>
+                                        @else
+                                            <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >
+                                                <i class="fa fa-play-circle"></i>
+                                                Fechar reserva
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                            <div class="row" style="margin-bottom: 10px">
+                                <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 7%" >
+                                    <i class="fa fa-cutlery"></i>
+                                    Consumo
                                 </a>
-                                {{--<a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;" >--}}
-                                {{--<i class="fa fa-play-circle"></i>--}}
-                                {{--Fechar reserva--}}
-                                {{--</a>--}}
                             </div>
                         </div>
-                        <div class="row" style="margin-bottom: 10px">
-                            <a href="#" class="btn-sm" style="background: lightgray; color: black; margin-left: 7%" >
-                                <i class="fa fa-cutlery"></i>
-                                Consumo
-                            </a>
-                        </div>
+                        <a href="" class="small-box-footer">
+                            <i class="fa fa-calendar"></i> Calendário - {{$quarto->nome}}
+                        </a>
                     </div>
-                    <a href="" class="small-box-footer">
-                        <i class="fa fa-calendar"></i> Calendário - Quarto 102
-                    </a>
                 </div>
-            </div>
+            @endforeach
         </div>
     </section>
     <!-- jQuery 3 -->
