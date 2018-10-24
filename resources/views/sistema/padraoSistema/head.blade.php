@@ -42,11 +42,11 @@
         }
 
         .flex-colum-7 {
-            width: 70%;
+            width: 80%;
         }
 
         .flex-colum-3 {
-            width: 30%;
+            width: 40%;
         }
     </style>
 </head>
@@ -56,13 +56,10 @@
 <div class="wrapper">
 
     <header class="main-header">
-        <!-- Logo -->
-
         <a href="" class="logo" style="padding-right: 20px">
             C o n t r o lH o t e l
         </a>
 
-        <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
             <a href="" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -125,7 +122,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="{{route('sistema.main.perfil')}}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{route('sistema.login.sair')}}" class="btn btn-default btn-flat">Sair</a>
@@ -140,20 +137,18 @@
     </header>
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Procurar clientes.">
-                    <span class="input-group-btn">
-                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
+            <div class="user-panel">
+                <div class="logo">
+                    <a href="" class="logo" style="padding-right: 20px">
+                        Usuário: {{Auth::user()->nome}}
+                    </a>
                 </div>
-            </form>
 
+                <a href="" class="logo" style="padding-right: 20px">
+                    Hotel: {{Auth::user()->getHotel()}}
+                </a>
+            </div>
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview {{ Request()->is('core/*') ? 'active' : '' }}" id="Mapa">
                     <a href="">
