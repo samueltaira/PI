@@ -71,7 +71,7 @@
 
                     <div class="box-footer">
                         <button type="submit" formaction="{{route('sistema.main.hospedes.atualizar', $registro->id)}}"
-                                class="btn btn-primary">Editar
+                                class="btn btn-primary">Salvar alteração
                         </button>
                         <a class="btn btn-dark" href="{{route('sistema.main.hospedes')}}">Voltar</a>
                     </div>

@@ -58,6 +58,7 @@ class HospedeController extends Controller
             'documento.required' => "Favor preencher o campo documento",
             'documento.numeric' => "Favor preencher o campo documento, somente com números",
             'documento.digits_between' => "O campo documento deve conter entre 11 e 15 dígitos",
+            'documento.unique' => "Já existe um cadastro com este documento",
             'dataNascimento.before' => "O hóspede cadastrado deve ser maior de 18 anos",
             'dataNascimento.required' => "Favor preencher o campo de data nascimento!",
             'dataNascimento.date_format' => "Favor preencher o campo de data de nascimento de maneira correta (Dia-Mês-Ano)"
@@ -70,7 +71,7 @@ class HospedeController extends Controller
                 'cidade' => 'required|min:3',
                 'email' => 'required|email',
                 'contato' => 'required|numeric|digits_between:10,15',
-                'documento' => 'required|numeric|digits_between:11,15',
+                'documento' => 'required|numeric|digits_between:11,15|unique:hospedes',
                 'dataNascimento' => 'required|before:-18 years' . date('Y-m-d') . '|date_format:Y-m-d'
 
             ], $mensagens);

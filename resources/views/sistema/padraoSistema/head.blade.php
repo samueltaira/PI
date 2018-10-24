@@ -33,6 +33,22 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!-- jQuery 3 -->
     <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
+
+    <style type="text/css">
+        .flex-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .flex-colum-7 {
+            width: 70%;
+        }
+
+        .flex-colum-3 {
+            width: 30%;
+        }
+    </style>
 </head>
 
 
@@ -156,8 +172,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{route('sistema.main.cadastra.quarto')}}">
                                 <i class="fa fa-plus"></i> Adicionar Quarto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('sistema.lista.quartos')}}">
+                                <i class="fa  fa-list-alt"></i> Gerenciamento dos quartos
                             </a>
                         </li>
                     </ul>

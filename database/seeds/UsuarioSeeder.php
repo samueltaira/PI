@@ -32,8 +32,9 @@ class UsuarioSeeder extends Seeder
         $dados3=[
             'nome' => 'Quarto 101',
             'capacidade' => 'Duplo',
-            'status_reserva' => 'vago',
+            'status_reserva' => 'Inativo',
             'hotel_id' => "1",
+            'status_quarto' => 'Ativo',
         ];
 
         if(User::where('email', '=', $dados['email']) -> count()){

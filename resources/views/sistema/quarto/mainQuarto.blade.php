@@ -1,23 +1,7 @@
 @extends('sistema.padraoSistema.head')
 
 @section('titulo', 'Mapa de Reserva')
-<head>
-    <style type="text/css">
-        .flex-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
 
-        .flex-colum-7 {
-            width: 70%;
-        }
-
-        .flex-colum-3 {
-            width: 30%;
-        }
-    </style>
-</head>
 @section('content')
 
     <br>
@@ -55,11 +39,9 @@
                         <div style="justify-content: space-around; display: flex;" class="small-box-footer">
                                 <div>
                                     <span style="width: 50%">
-                                        <a href="#" style="color: inherit">
                                             <b>
-                                                <i class="fa fa-pencil-square-o"></i> {{$quarto->nome}}
+                                                <i class="fa fa-bed"></i> {{$quarto->nome}}
                                             </b>
-                                        </a>
                                     </span>
                                 </div>
                                 <div>
@@ -72,7 +54,7 @@
                             <div>
                                     <span style="width: 25%">
                                            <b>
-                                               Status: {{$quarto->status_reserva}}
+                                               Status da Reserva: {{$quarto->status_reserva}}
                                            </b>
                                     </span>
                                 </div>
@@ -88,7 +70,7 @@
                                 <div class="flex-row">
                                     <div class="flex-colum-7">
                                         <span>
-                                            <h4 style="margin-left: 5%;">Sem reserva ativa</h4>
+                                            <h4 style="margin-left: 5%;">Vago</h4>
                                         </span>
                                     </div>
                                     <div class="flex-colum-3">
