@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Sistema;
 
-use App\Http\Controllers\Controller;
 use App\Quarto;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
@@ -23,9 +23,13 @@ class HomeController extends Controller
         return view('sistema.quarto.mainQuarto', ['quartos' => $quartos]);
     }
 
-    public function index2()
+
+    public function indexLista()
     {
+//     Paginação OK com 10 hospedes por página - funcionando
+
         $hotel_id = auth()->user()->getHotelId();
+
         $quartos = DB::table('quartos')
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('id')
@@ -42,7 +46,7 @@ class HomeController extends Controller
         $quartos = DB::table('quartos')
             ->where('nome', 'like', '%' . $search . '%')
             ->where('hotel_id', '=', $hotel_id)
-            ->orderBy('nome')
+            ->orderBy('id')
             ->paginate(10);
         return view('sistema.quarto.listaQuartos', ['quartos' => $quartos]);
     }

@@ -1,16 +1,12 @@
 @extends('sistema.padraoSistema.head')
-
 @section('titulo', 'Hóspedes')
-
 @section('content')
-
     <section class="content-header">
         <div>
             <h1>
                 Hóspede
             </h1>
         </div>
-
         @if(count($errors) != 0)
             @foreach($errors->all() as $erro)
                 <div class="teste alert alert-danger alert-dismissible" role="alert"
@@ -23,9 +19,7 @@
             @endforeach
         @endif
     </section>
-
     <section class="content">
-
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Cadastar novo Hóspede</h3>
@@ -35,42 +29,36 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nomeHospede">Nome</label>
-                        <input type="text" class="form-control" name="nome" id="nomeHospede" placeholder="Nome"
-                               value="{{old('nome')}}">
+                        <input type="text" class="form-control" name="nome" placeholder="Nome" value="{{old('nome')}}">
                     </div>
                     <div class="form-group">
                         <label for="cidadeHospede">Cidade</label>
-                        <input type="text" class="form-control" name="cidade" id="cidadeHospede" placeholder="Cidade"
-                               value="{{old('cidade')}}">
+                        <input type="text" class="form-control" name="cidade" placeholder="Cidade" value="{{old('cidade')}}">
                     </div>
                     <div class="form-group">
                         <label for="emailHospede">Email</label>
-                        <input type="email" class="form-control" id="emailHospede" name="email"
-                               placeholder="Insira o e-mail" value="{{old('email')}}">
+                        <input type="email" class="form-control" name="email" placeholder="Insira o e-mail" value="{{old('email')}}">
                     </div>
                     <div class="form-group">
                         <label for="contatoHospede">Contato</label>
-                        <input type="text" class="form-control" id="contatoHospede" name="contato"
-                               placeholder="Telefone Contato" value="{{old('contato')}}">
+                        <input type="text" class="form-control" name="contato" placeholder="Telefone Contato" value="{{old('contato')}}">
                     </div>
                     <div class="form-group">
                         <label for="cpfHospede">CPF</label>
-                        <input type="text" class="form-control" id="cpfHospede" name="documento" placeholder="CPF"
-                               value="{{old('documento')}}">
+                        <input type="text" class="form-control" name="documento" placeholder="CPF" value="{{old('documento')}}">
                     </div>
                     <div class="form-group">
                         <label for="dataNascimento">Data Nascimento</label>
-                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-                               placeholder="00/00/0000" value="{{old('dataNascimento')}}">
+                        <input type="date" class="form-control" name="dataNascimento" placeholder="00/00/0000" value="{{old('dataNascimento')}}">
                     </div>
                     <input type="hidden" name="hotel_id" id="hotel_id" value="{{auth()->user()->getHotelId()}}">
-
-
                     <div class="box-footer">
-                        <button type="submit" formaction="{{route('sistema.main.hospedes.salvar')}}"
-                                class="btn btn-primary">Cadastrar
+                        <button type="submit" formaction="{{route('sistema.main.hospedes.salvar')}}" class="btn btn-primary">
+                            Cadastrar
                         </button>
-                        <a class="btn btn-dark" href="{{route('sistema.main.hospedes')}}">Voltar</a>
+                        <a class="btn btn-dark" href="{{route('sistema.main.hospedes')}}">
+                            Voltar
+                        </a>
                     </div>
                 </div>
             </form>

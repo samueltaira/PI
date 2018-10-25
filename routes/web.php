@@ -30,7 +30,7 @@ Route::post('/cadastro/registrar', ['as' => 'hotsite.cadastro.registrar', 'uses'
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'core'], function () {
         Route::get('/quartos', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
-        Route::get('/listaQuartos', ['as' => 'sistema.lista.quartos', 'uses' => 'Sistema\HomeController@index2']);
+        Route::get('/listaQuartos', ['as' => 'sistema.lista.quartos', 'uses' => 'Sistema\HomeController@indexLista']);
         Route::get('/listaQuartos/search', ['as' => 'sistema.main.quartos.pesquisar', 'uses' => 'Sistema\HomeController@pesquisaQuarto']);
         Route::get('/cadastraQuarto', ['as' => 'sistema.main.cadastra.quarto', 'uses' => 'Sistema\HomeController@cadastrarQuarto']);
         Route::post('/cadastraQuarto/salvar', ['as' => 'sistema.main.quarto.salvar', 'uses' => 'Sistema\HomeController@salvarQuarto']);

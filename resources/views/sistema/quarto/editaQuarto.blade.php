@@ -1,16 +1,12 @@
 @extends('sistema.padraoSistema.head')
-
 @section('titulo', 'Quartos')
-
 @section('content')
-
     <section class="content-header">
         <div>
             <h1>
                 Quarto
             </h1>
         </div>
-
         @if(count($errors) != 0)
             @foreach($errors->all() as $erro)
                 <div class="teste alert alert-danger alert-dismissible" role="alert"
@@ -23,9 +19,7 @@
             @endforeach
         @endif
     </section>
-
     <section class="content">
-
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Cadastar novo Quarto</h3>
@@ -35,25 +29,27 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nomeQuarto">Nome:</label>
-                        <input type="text" class="form-control" name="nome"  placeholder="Nome"
+                        <input type="text" class="form-control" name="nome" placeholder="Nome"
                                value="{{isset($registro->nome) ? $registro->nome : ''}}">
                     </div>
                     <div class="form-group">
                         <label for="capacidade">Capacidade do quarto:</label><br>
                         <select name="capacidade">
-                            <option {{$registro->capacidade == 'Individual' ? 'selected' : ''}} value="Individual"> Individual<br>
+                            <option {{$registro->capacidade == 'Individual' ? 'selected' : ''}} value="Individual">
+                                Individual<br>
                             <option {{$registro->capacidade == 'Duplo' ? 'selected' : ''}} value="Duplo"> Duplo<br>
                             <option {{$registro->capacidade == 'Triplo' ? 'selected' : ''}} value="Triplo"> Triplo<br>
-                            <option {{$registro->capacidade == 'Quadruplo' ? 'selected' : ''}} value="Quadruplo"> Quadruplo<br>
-                            <option {{$registro->capacidade == 'Quintuplo' ? 'selected' : ''}} value="Quintuplo"> Quintuplo<br>
+                            <option {{$registro->capacidade == 'Quadruplo' ? 'selected' : ''}} value="Quadruplo">
+                                Quadruplo<br>
+                            <option {{$registro->capacidade == 'Quintuplo' ? 'selected' : ''}} value="Quintuplo">
+                                Quintuplo<br>
                             <option {{$registro->capacidade == 'Sextuplo' ? 'selected' : ''}} value="Sextuplo"> Sextuplo<br>
                             <option {{$registro->capacidade == '7+' ? 'selected' : ''}} value="7+"> 7+
                         </select>
                     </div>
-
                     <div class="box-footer">
                         <button type="submit" formaction="{{route('sistema.main.quartos.atualizar', $registro->id)}}"
-                                    class="btn btn-primary">Salvar alteração
+                                class="btn btn-primary">Salvar alteração
                         </button>
                         <a class="btn btn-dark" href="{{route('sistema.lista.quartos')}}">Voltar</a>
                     </div>

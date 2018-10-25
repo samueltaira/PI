@@ -1,16 +1,12 @@
 @extends('sistema.padraoSistema.head')
-
 @section('titulo', 'Quartos')
-
 @section('content')
-
     <section class="content-header">
         <div>
             <h1>
                 Quarto
             </h1>
         </div>
-
         @if(count($errors) != 0)
             @foreach($errors->all() as $erro)
                 <div class="teste alert alert-danger alert-dismissible" role="alert"
@@ -25,7 +21,6 @@
     </section>
 
     <section class="content">
-
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Cadastar novo Quarto</h3>
@@ -35,8 +30,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nomeQuarto">Nome:</label>
-                        <input type="text" class="form-control" name="nome" id="nomeHospede" placeholder="Nome"
-                               value="{{old('nome')}}">
+                        <input type="text" class="form-control" name="nome" placeholder="Nome" value="{{old('nome')}}">
                     </div>
                     <div class="form-group">
                         <label for="capacidade">Capacidade do quarto:</label><br>

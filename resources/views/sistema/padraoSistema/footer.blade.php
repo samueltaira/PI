@@ -1,39 +1,42 @@
 <footer class="footer-distributed">
-
     <div class="container-fluid">
-
-        <div class="row"><div class="col-md-12"><br></div> </div>
-
         <div class="row">
-
+            <div class="col-md-12">
+                <br>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 <p style=" color: black; font-family: Ubuntu-Regular, sans-serif; font-size: 20px;">C o n t r o l
-                    <span style="color: #5383d3; font-family: Ubuntu-Regular, sans-serif; font-size: 20px;">H o t e l</span></p>
+                    <span style="color: #5383d3; font-family: Ubuntu-Regular, sans-serif; font-size: 20px;">
+                        H o t e l
+                    </span>
+                </p>
                 <p class="footer-company-name">&copy; 2018</p>
             </div>
         <div class="col-md-4">
-
             <i class="fa fa-map-marker"></i>
-            <p><span>Univali</span> Itajaí, Santa Catarina</p>
-
-
+            <p>
+                <span>
+                    Univali
+                </span>
+                Itajaí, Santa Catarina
+            </p>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:adm@controlhotel.com.br">samueltaira@gmail.com</a></p>
+            <p>
+                <a href="mailto:adm@controlhotel.com.br">
+                    samueltaira@gmail.com
+                </a>
+            </p>
         </div>
-
             <div class="col-md-4">
                 <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
                 <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
                 <a href="#"><i class="fa fa-linkedin fa-2x"></i></a>
                 <a href="#"><i class="fa fa-github fa-2x"></i></a>
             </div>
-
         </div>
-
     </div>
-
-
-
 
 <!-- jQuery 3 -->
 <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
@@ -71,19 +74,5 @@
 <script src="{{asset('/assets/js/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/assets/js/demo.js')}}"></script>
-    <script>
-       {{--$(function() {--}}
-           {{--getaMenu();--}}
-        {{--});--}}
 
-       {{--function nomeMenu(pagina) {--}}
-           {{--localStorage['menu'] = pagina;--}}
-       {{--}--}}
-
-
-       {{--function getaMenu() {--}}
-           {{--$('#{{$Menu}}').addClass('active');--}}
-       {{--}--}}
-
-    </script>
 </footer>

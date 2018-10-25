@@ -11,7 +11,7 @@ class HospedeController extends Controller
 {
     public function mainHospede()
     {
-//     Paginação OK com 20 hospedes por página - funcionando
+//     Paginação OK com 10 hospedes por página - funcionando
 
         $hotel_id = auth()->user()->getHotelId();
         $hospedes = DB::table('hospedes')

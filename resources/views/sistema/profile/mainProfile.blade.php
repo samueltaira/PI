@@ -1,9 +1,6 @@
 @extends('sistema.padraoSistema.head')
-
 @section('titulo', 'Profile')
-
 @section('content')
-
     <section class="content-header">
         <h1>
             Perfil
@@ -19,19 +16,14 @@
                 </div>
             @endforeach
         @endif
-
-
         @if(Session::has('message_ok'))
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <i class="icon fa fa-check"></i>Senha alterada com sucesso.
             </div>
         @endif
-
     </section>
-
     <section class="content">
-
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Configurações</h3>
@@ -42,32 +34,25 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nomeProfile">Nome</label>
-                        <input readonly="true" type="text" class="form-control" name="nome" id="nomeProfile"
-                               value="{{auth()->user()->nome}}">
+                        <input readonly="true" type="text" class="form-control" name="nome" value="{{auth()->user()->nome}}">
                     </div>
                     <div class="form-group">
                         <label for="emailProfile">Email</label>
-                        <input readonly="true" type="email" class="form-control" id="emailProfile" name="email"
-                               value="{{auth()->user()->email}}">
+                        <input readonly="true" type="email" class="form-control" name="email" value="{{auth()->user()->email}}">
                     </div>
                     <div class="form-group">
                         <label for="senhaProfile">Senha</label>
-                        <input readonly="true" type="text" class="form-control" name="capa_senha"
-                               value="**********">
-                        <input type="hidden" id="senhaProfile" name="senha"
-                               value="{{auth()->user()->password}}">
+                        <input readonly="true" type="text" class="form-control" name="capa_senha" value="**********">
+                        <input type="hidden" id="senhaProfile" name="senha" value="{{auth()->user()->password}}">
                         <br>
-                        <a  href="{{route('sistema.main.alterar.senha')}}"
-                            class="btn btn-success">Alterar Senha
+                        <a  href="{{route('sistema.main.alterar.senha')}}" class="btn btn-success">
+                            Alterar Senha
                         </a>
                     </div>
                     <div class="form-group">
                         <label for="adminProfile">Administrador</label>
-                        <input readonly="true" type="text" class="form-control" id="adminProfile" name="admin"
-                               value="{{auth()->user()->admin}}">
+                        <input readonly="true" type="text" class="form-control" name="admin" value="{{auth()->user()->admin}}">
                     </div>
-
-
                     <div class="box-footer">
                         <a class="btn btn-dark" href="">Voltar</a>
                     </div>
