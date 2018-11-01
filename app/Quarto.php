@@ -15,6 +15,11 @@ class Quarto extends Model
         return $this->belongsTo(Hotel::class);
     }
 
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
+    }
+
     public function getNome()
     {
         return $this->nome;

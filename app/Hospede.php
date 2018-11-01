@@ -17,4 +17,8 @@ class Hospede extends Model
         return $this->belongsTo(Hotel::class);
     }
 
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
+    }
 }

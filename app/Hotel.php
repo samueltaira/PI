@@ -18,6 +18,11 @@ class Hotel extends Model
         return $this->hasMany(User::class);
     }
 
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
+    }
+
     public function hospedes()
     {
         return $this->hasMany(Hospede::class);

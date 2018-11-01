@@ -170,6 +170,23 @@
                     </ul>
                 </li>
 
+                <li class="treeview {{ Request()->is('reserva/*') ? 'active' : '' }}" id="Reserva">
+                    <a href="">
+                        <i class="fa fa-book"></i>
+                        <span>Reservas</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="{{route('core.reserva')}}">
+                                <i class="fa fa-list"></i> Gerenciamento das reservas
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="treeview {{ Request()->is('hospede/*') ? 'active' : '' }}" id="Hospede">
                     <a href="">
                         <i class="fa fa-address-book-o"></i>

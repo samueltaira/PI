@@ -80,7 +80,7 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr role="row"">
+                                    <tr role="row">
                                         <td colspan="8" align="center"><b>Nenhum hóspede cadastrado no sistema ainda</b>
                                         </td>
                                     </tr>
