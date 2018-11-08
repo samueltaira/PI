@@ -30,10 +30,9 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="dataInicio">Data Início:</label>
-                        <input required type="date" name="inicioReserva">
-
+                        <input required type="date" name="inicioReserva" value="{{@$inicioReserva}}">
                         <label for="dataFim">Data Fim:</label>
-                        <input  required type="date" name="fimReserva">
+                        <input  required type="date" name="fimReserva" value="{{@$fimReserva}}">
 
                     </div>
 

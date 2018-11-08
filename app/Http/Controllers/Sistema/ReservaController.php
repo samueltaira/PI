@@ -54,7 +54,8 @@ class ReservaController extends Controller
             ->whereNotIn('id', $teste)
             ->get();
 
-        return view('sistema.reserva.cadastraReserva', ['quartosId' => $quartosId]);
+        return view('sistema.reserva.cadastraReserva',
+            ['quartosId' => $quartosId, 'inicioReserva'=>$inicioReserva, 'fimReserva'=>$fimReserva]);
 
     }
 
