@@ -30,11 +30,11 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="dataInicio">Data Início:</label>
-                        <input type="date" name="inicioReserva">
-                        {{--required--}}
+                        <input required type="date" name="inicioReserva">
+
                         <label for="dataFim">Data Fim:</label>
-                        <input  type="date" name="fimReserva">
-                        {{--required--}}
+                        <input  required type="date" name="fimReserva">
+
                     </div>
 
                     <div class="form-group">
