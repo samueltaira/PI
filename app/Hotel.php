@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Hotel extends Model
 {
@@ -12,6 +13,7 @@ class Hotel extends Model
     {
         return $this->id;
     }
+
 
     public function users()
     {

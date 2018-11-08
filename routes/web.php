@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['prefix'=>'reserva'], function(){
         Route::get('/main', ['as'=>'core.reserva', 'uses'=> 'Sistema\ReservaController@mainReserva']);
+        Route::get('/main/reserva', ['as'=>'core.nova.reserva', 'uses'=> 'Sistema\ReservaController@mainNovaReserva']);
+        Route::post('/main/checkReserva', ['as'=>'core.check.reserva', 'uses'=> 'Sistema\ReservaController@checkReserva']);
+        Route::post('/main/realizaReserva', ['as'=>'core.realiza.reserva', 'uses'=> 'Sistema\ReservaController@realizaReserva']);
     });
 
     Route::group(['prefix' => 'hospede'], function () {

@@ -44,14 +44,38 @@
                                 <thead>
                                     <tr role="row">
                                         <th>ID</th>
+                                        <th>Check In</th>
+                                        <th>Check Out</th>
+                                        <th>Hospede</th>
+                                        <th>Quarto</th>
                                       </tr>
                                 </thead>
                                 <tbody>
+                                @forelse($reservas as $reserva)
                                     <tr role="row">
                                         <td>
-                                            x
+                                            {{$reserva->id}}
+                                        </td>
+                                        <td>
+                                            {{$reserva->inicioReserva}}
+                                        </td>
+                                        <td>
+                                            {{$reserva->fimReserva}}
+                                        </td>
+                                        <td>
+                                            {{$reserva->nome}}
+                                        </td>
+                                        <td>
+                                            {{$reserva->quarto_id}}
                                         </td>
                                     </tr>
+                                @empty
+                                    <tr role="row">
+                                        <td>
+                                            Nenhuma reserva no momento.
+                                        </td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                                 <tfoot>
                                     <tr>

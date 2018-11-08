@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <a href="" class="small-box-footer">
-                            <i class="fa fa-calendar"></i> Calendário - {{$quarto->nome}}
+                            {{--<i class="fa fa-calendar"></i> Calendário - {{$quarto->nome}}--}}
                         </a>
                     </div>
                 </div>

@@ -64,7 +64,6 @@ class PerfilController extends Controller
 
         $this->validate($req,
             [
-
                 'nome' => 'required|min:3',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:5|max:25',
@@ -73,8 +72,6 @@ class PerfilController extends Controller
             ], $mensagens);
 
         $d = $req->all();
-
-
 
         $dados = [
             'nome' => $d['nome'],

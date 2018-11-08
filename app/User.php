@@ -37,6 +37,8 @@ class User extends Authenticatable
         return $lastdata->id;
     }
 
+
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));

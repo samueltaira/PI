@@ -180,6 +180,11 @@
                     </a>
                     <ul class="treeview-menu">
                         <li>
+                            <a href="{{route('core.nova.reserva')}}">
+                                <i class="fa fa-calendar-plus-o"></i> Realizar nova reserva
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{route('core.reserva')}}">
                                 <i class="fa fa-list"></i> Gerenciamento das reservas
                             </a>
