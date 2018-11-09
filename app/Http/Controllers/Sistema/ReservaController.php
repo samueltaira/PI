@@ -51,7 +51,7 @@ class ReservaController extends Controller
 
             $quartosId = DB::table('quartos')
                 ->select('quartos.*', 'reservas.*')
-                ->join('reservas', 'reservas.quarto_id', '=', 'quartos.id')
+                ->leftJoin('reservas', 'reservas.quarto_id', '=', 'quartos.id')
                 ->where('quartos.hotel_id', '=', $hotel_id)
                 ->where('capacidade', '=', $capacidade)
                 ->get();
