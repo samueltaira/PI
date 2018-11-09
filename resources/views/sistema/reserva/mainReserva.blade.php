@@ -66,7 +66,7 @@
                                             {{$reserva->nome}}
                                         </td>
                                         <td>
-                                            {{$reserva->quarto_id}}
+                                            {{$reserva->nomeQuarto}}
                                         </td>
                                     </tr>
                                 @empty

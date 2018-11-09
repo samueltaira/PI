@@ -17,7 +17,7 @@ class CreateQuartosTable extends Migration
             $table->increments('id')->unique();
             $table->integer('hotel_id')->unsigned;
             $table->foreign('hotel_id')->references('id')->on('hotels');
-            $table->string('nome');
+            $table->string('nomeQuarto');
             $table->string('capacidade');
             $table->string('status_reserva');
             $table->string('status_quarto');

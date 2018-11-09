@@ -33,7 +33,7 @@
                             <div>
                             <span title="Nome do Quarto" style="width: 50%">
                                 <b>
-                                    <i class="fa fa-bed"></i> {{$quarto->nome}}
+                                    <i class="fa fa-bed"></i> {{$quarto->nomeQuarto}}
                                 </b>
                             </span>
                             </div>

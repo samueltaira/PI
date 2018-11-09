@@ -30,7 +30,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nomeQuarto">Nome:</label>
-                        <input type="text" class="form-control" name="nome" placeholder="Nome" value="{{old('nome')}}">
+                        <input type="text" class="form-control" name="nomeQuarto" placeholder="Nome" value="{{old('nomeQuarto')}}">
                     </div>
                     <div class="form-group">
                         <label for="capacidade">Capacidade do quarto:</label><br>

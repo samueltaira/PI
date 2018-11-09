@@ -29,8 +29,8 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="nomeQuarto">Nome:</label>
-                        <input type="text" class="form-control" name="nome" placeholder="Nome"
-                               value="{{isset($registro->nome) ? $registro->nome : ''}}">
+                        <input type="text" class="form-control" name="nomeQuarto" placeholder="Nome"
+                               value="{{isset($registro->nomeQuarto) ? $registro->nomeQuarto : ''}}">
                     </div>
                     <div class="form-group">
                         <label for="capacidade">Capacidade do quarto:</label><br>

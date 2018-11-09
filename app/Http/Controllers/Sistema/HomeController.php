@@ -17,7 +17,7 @@ class HomeController extends Controller
         $quartos = DB::table('quartos')
             ->where('hotel_id', '=', $hotel_id)
             ->where('status_quarto', '=', 'Ativo' )
-            ->orderBy('nome')
+            ->orderBy('nomeQuarto')
             ->get();
 
         return view('sistema.quarto.mainQuarto', ['quartos' => $quartos]);
@@ -44,7 +44,7 @@ class HomeController extends Controller
         $search = $req->get('valorPesquisado');
 
         $quartos = DB::table('quartos')
-            ->where('nome', 'like', '%' . $search . '%')
+            ->where('nomeQuarto', 'like', '%' . $search . '%')
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('id')
             ->paginate(10);
@@ -59,8 +59,8 @@ class HomeController extends Controller
     public function salvarQuarto(Request $req)
     {
         $mensagens = [
-            'nome.required' => "Favor preencher o campo nome corretamente",
-            'nome.unique' => "Já existe um quarto registrado com este nome",
+            'nomeQuarto.required' => "Favor preencher o campo nome corretamente",
+            'nomeQuarto.unique' => "Já existe um quarto registrado com este nome",
             'capacidade.required' => "Favor selecionar um tipo de quarto"
         ];
 
@@ -68,7 +68,7 @@ class HomeController extends Controller
         $this->validate($req,
             [
                 'capacidade' => 'required',
-                'nome' => [
+                'nomeQuarto' => [
                     'required',
                     Rule::unique('quartos')->where(function ($query) {
                         $query->where('hotel_id', auth()->user()->getHotelId());
@@ -116,14 +116,14 @@ class HomeController extends Controller
     public function atualizarQuarto(Request $req, $id)
     {
         $mensagens = [
-            'nome.required' => "Favor preencher o campo nome corretamente",
+            'nomeQuarto.required' => "Favor preencher o campo nome corretamente",
             'capacidade.required' => "Favor selecionar um tipo de quarto"
         ];
 
         $this->validate($req,
             [
                 'capacidade' => 'required',
-                'nome' => 'required',
+                'nomeQuarto' => 'required',
             ], $mensagens);
 
         $dados = $req->all();

@@ -6,6 +6,7 @@ use App\Reserva;
 use App\Quarto;
 use App\Hospede;
 use DB;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,8 +17,9 @@ class ReservaController extends Controller
     {
         $hotel_id = auth()->user()->getHotelId();
         $reservas = DB::table('reservas')
-            ->select('reservas.*', 'hospedes.*')
+            ->select('reservas.*', 'hospedes.*', 'quartos.*')
             ->join('hospedes', 'hospedes.id', '=', 'reservas.hospede_id')
+            ->join('quartos', 'quartos.id', '=', 'reservas.quarto_id')
             ->where('reservas.hotel_id', '=', $hotel_id)
             ->get();
         return view('sistema.reserva.mainReserva', ['reservas' => $reservas]);
@@ -30,32 +32,33 @@ class ReservaController extends Controller
 
     public function checkReserva(Request $req)
     {
-        $d = $req->all();
 
         $inicioReserva = $req->inicioReserva;
         $fimReserva = $req->fimReserva;
         $capacidade = $req->capacidade;
         $hotel_id = auth()->user()->getHotelId();
 
-        $reservas = DB::table('reservas')
-            ->where('hotel_id', '=', $hotel_id)
-            ->where('inicioReserva', '!=', $inicioReserva)
-            ->get();
+        if ($inicioReserva < Carbon::now()->toDateString()) {
+            return view('sistema.reserva.cadastraReserva',
+                ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
+                    'mensagem' => 'Favor verificar a data de início da reserva']);
 
-        $teste[] = 0;
+        } else if ($fimReserva <= $inicioReserva) {
+            return view('sistema.reserva.cadastraReserva',
+                ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
+                    'mensagem' => 'Favor verificar a data final da reserva']);
+        } else {
 
-            foreach($reservas as $reserva){
-            $teste[] = $reserva->quarto_id;
+            $quartosId = DB::table('quartos')
+                ->select('quartos.*', 'reservas.*')
+                ->join('reservas', 'reservas.quarto_id', '=', 'quartos.id')
+                ->where('quartos.hotel_id', '=', $hotel_id)
+                ->where('capacidade', '=', $capacidade)
+                ->get();
+
+            return view('sistema.reserva.cadastraReserva',
+                ['quartosId' => $quartosId, 'inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva]);
         }
-
-        $quartosId = DB::table('quartos')
-            ->where('hotel_id', '=', $hotel_id)
-            ->where('capacidade', '=', $capacidade)
-            ->whereNotIn('id', $teste)
-            ->get();
-
-        return view('sistema.reserva.cadastraReserva',
-            ['quartosId' => $quartosId, 'inicioReserva'=>$inicioReserva, 'fimReserva'=>$fimReserva]);
 
     }
 

@@ -24,6 +24,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Realizar nova reserva </h3>
+{{--                <br>{{$teste}}--}}
             </div>
             <form method="POST" role="form">
                 {{csrf_field()}}
@@ -33,8 +34,14 @@
                         <input required type="date" name="inicioReserva" value="{{@$inicioReserva}}">
                         <label for="dataFim">Data Fim:</label>
                         <input  required type="date" name="fimReserva" value="{{@$fimReserva}}">
-
                     </div>
+                        @if(isset($mensagem))
+                            <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="icon fa fa-check"></i>{{$mensagem}}
+                            </div>
+                        @endif
+
 
                     <div class="form-group">
                         <label for="capacidade">Capacidade do quarto:</label><br>
@@ -62,7 +69,7 @@
                         <label for="quarto">Quarto:</label><br>
                         @forelse($quartosId as $teste)
                             <select name="quarto">
-                                <option value="Quarto 101">{{$teste->nome}}<br>
+                                <option value="{{$teste->id}}">{{$teste->nomeQuarto}}<br>
                             </select>
                     </div>
                     <div class="box-footer">

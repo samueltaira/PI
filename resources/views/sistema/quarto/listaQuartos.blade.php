@@ -76,7 +76,7 @@
                                 @forelse($quartos as $quarto)
                                     <tr role="row" class="odd">
                                         <td>{{$quarto->id}}</td>
-                                        <td>{{$quarto->nome}}</td>
+                                        <td>{{$quarto->nomeQuarto}}</td>
                                         <td>{{$quarto->capacidade}}</td>
                                         <td>{{$quarto->status_quarto}}</td>
                                         <td>

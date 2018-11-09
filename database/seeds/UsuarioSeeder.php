@@ -30,7 +30,7 @@ class UsuarioSeeder extends Seeder
         ];
 
         $dados3=[
-            'nome' => 'Quarto 101',
+            'nomeQuarto' => 'Quarto 101',
             'capacidade' => 'Duplo',
             'status_reserva' => 'Inativo',
             'hotel_id' => "1",
