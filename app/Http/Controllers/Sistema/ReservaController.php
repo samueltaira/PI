@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use Input;
 use App\Hotel;
 use App\Reserva;
 use App\Quarto;

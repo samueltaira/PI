@@ -1,6 +1,12 @@
 @extends('sistema.padraoSistema.head')
 @section('titulo', 'Quartos')
 @section('content')
+
+    <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+    <script src="http://demo.expertphp.in/js/jquery.js"></script>
+    <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script>
+
+
     <section class="content-header">
         <div>
             <h1>
@@ -64,8 +70,9 @@
                         {{--{{dd($hotel->quartos)}}--}}
                             <div class="form-group">
                                 <label for="hospede">Hóspede:</label>
-                                <input type="text" class="form-control" name="nome" placeholder="Hóspede"
-                                       value="{{old('nome')}}">
+                                <input type="text" class="form-control" name="nome" id="listaNomes" placeholder="Hóspede"
+                                       value="{{old('nome')}}"><div id="listaNomes"></div>
+                                {{ csrf_field() }}
                             </div>
                             <div class="form-group">
                                 @if($hotel->quartos->count()>0)
@@ -100,4 +107,32 @@
             </form>
         </div>
     </section>
+
+    <script>$(document).ready(function(){
+
+            $('#nome').keyup(function(){
+                var query = $(this).val();
+                if(query != '')
+                {
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url:"{{ route('autocomplete.fetch') }}",
+                        method:"POST",
+                        data:{query:query, _token:_token},
+                        success:function(data){
+                            $('#listaNomes').fadeIn();
+                            $('#listaNomes').html(data);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', 'li', function(){
+                $('#nome').val($(this).text());
+                $('#listaNomes').fadeOut();
+            });
+
+        });
+    </script>
+
 @endsection
