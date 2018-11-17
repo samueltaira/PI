@@ -68,35 +68,37 @@
 
                     @if(isset($hotel))
                         {{--{{dd($hotel->quartos)}}--}}
-                            <div class="form-group">
-                                <label for="hospede">Hóspede:</label>
-                                <input type="text" autocomplete="off" class="form-control" name="nome" id="nome" placeholder="Hóspede"
-                                       value="{{old('nome')}}"><div id="listaNomes"></div>
-                                {{ csrf_field() }}
-                            </div>
-                            <div class="form-group">
-                                @if($hotel->quartos->count()>0)
-                                    <label for="quarto">Quarto:</label><br>
-                                    <select name="quarto_id">
-                                            @foreach($hotel->quartos as $t10)
-                                                <option value="{{$t10->id}}">{{$t10->nomeQuarto}}<br>
-                                            @endforeach
-                                    </select>
-                                    <div class="box-footer">
-                                        <button type="submit" formaction="{{route('core.realiza.reserva')}}"
-                                                class="btn btn-success">
-                                            Efetuar nova reserva
-                                        </button>
+                        <div class="form-group">
+                            <label for="hospede">Hóspede:</label>
+                            <input type="text" autocomplete="off" class="form-control" name="nome" id="nome"
+                                   placeholder="Hóspede"
+                                   value="{{old('nome')}}">
+                            <div id="listaNomes"></div>
+                            {{ csrf_field() }}
+                        </div>
+                        <div class="form-group">
+                            @if($hotel->quartos->count()>0)
+                                <label for="quarto">Quarto:</label><br>
+                                <select name="quarto_id">
+                                    @foreach($hotel->quartos as $t10)
+                                        <option value="{{$t10->id}}">{{$t10->nomeQuarto}}<br>
+                                    @endforeach
+                                </select>
+                                <div class="box-footer">
+                                    <button type="submit" formaction="{{route('core.realiza.reserva')}}"
+                                            class="btn btn-success">
+                                        Efetuar nova reserva
+                                    </button>
+                                </div>
+                            @else
+                                <tr role="row">
+                                    <div class="callout callout-warning">
+                                        <h4>Alerta!</h4>
+                                        <p>Nenhum quarto disponível para esta data ou capacidade.</p>
                                     </div>
-                                @else
-                                    <tr role="row">
-                                        <div class="callout callout-warning">
-                                            <h4>Alerta!</h4>
-                                            <p>Nenhum quarto disponível para esta data ou capacidade.</p>
-                                        </div>
-                                    </tr>
-                                @endif
-                            </div>
+                                </tr>
+                            @endif
+                        </div>
                     @endif
                 </div>
 
@@ -108,18 +110,17 @@
         </div>
     </section>
 
-    <script>$(document).ready(function(){
+    <script>$(document).ready(function () {
 
-            $('#nome').keyup(function(){
+            $('#nome').keyup(function () {
                 var query = $(this).val();
-                if(query != '')
-                {
+                if (query != '') {
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
-                        url:"{{ route('autocomplete.fetch') }}",
-                        method:"POST",
-                        data:{query:query, _token:_token},
-                        success:function(data){
+                        url: "{{ route('autocomplete.fetch') }}",
+                        method: "POST",
+                        data: {query: query, _token: _token},
+                        success: function (data) {
                             $('#listaNomes').fadeIn();
                             $('#listaNomes').html(data);
                         }
@@ -127,7 +128,7 @@
                 }
             });
 
-            $(document).on('click', 'li', function(){
+            $(document).on('click', 'li', function () {
                 $('#nome').val($(this).text());
                 $('#listaNomes').fadeOut();
             });
