@@ -6,6 +6,7 @@ use Input;
 use App\Hotel;
 use App\Reserva;
 use App\Quarto;
+
 use App\Hospede;
 use DB;
 use Carbon\Carbon;
@@ -36,13 +37,10 @@ class ReservaController extends Controller
     public function checkReserva(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
-
         $t1 = Hotel::with(['quartos.reservas'])
             ->where('id', $hotel_id)->first();
 
-
         if ($t1) {
-
             $inicioReserva = $req->inicioReserva;
             $fimReserva = $req->fimReserva;
             $capacidade = $req->capacidade;
@@ -51,19 +49,16 @@ class ReservaController extends Controller
                 return view('sistema.reserva.cadastraReserva',
                     ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
                         'mensagem' => 'Favor verificar a data de início da reserva']);
-
             } else if ($fimReserva <= $inicioReserva) {
                 return view('sistema.reserva.cadastraReserva',
                     ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
                         'mensagem' => 'Favor verificar a data final da reserva']);
             }
-
             foreach ($t1->quartos as $k => $quarto) {
 
                 if ($quarto->capacidade != $capacidade) {
                     $t1->quartos->forget($k);
                 }
-
 
                 foreach ($quarto->reservas as $reserva) {
                     if ($inicioReserva == $reserva->fimReserva && $quarto->status == 'aberto') {

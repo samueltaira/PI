@@ -1,41 +1,4 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-
-
-<script>
-
-    $(document).ready(function(){
-
-        var showHeaderAt = -1;
-
-        var win = $(window),
-            body = $('body');
-        body.addClass('fixed');
-
-        // Show the fixed header only on larger screen devices
-
-        if(win.width() > 400){
-
-            // When we scroll more than 150px down, we set the
-            // "fixed" class on the body element.
-
-            win.on('scroll', function(){
-
-                if(win.scrollTop() > showHeaderAt) {
-                    body.addClass('fixed');
-                }
-                else {
-                    body.removeClass('fixed');
-                }
-            });
-
-        }
-
-    });
-
-</script>
-
-
 <footer class="footer-distributed main-footer">
 
     <div class="footer-left">
