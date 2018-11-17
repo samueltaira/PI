@@ -27,8 +27,8 @@
                                 <div id="filtro" class="dataTables_filter">
                                     <label>Procurar:
                                         <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pelo nome ou documento"
-                                               size="25%" name="valorPesquisado">
+                                               placeholder="Procure pelo nome"
+                                               size="20%" name="valorPesquisado">
                                     </label>
                                 </div>
                             </div>
@@ -48,6 +48,7 @@
                                         <th>Check Out</th>
                                         <th>Hospede</th>
                                         <th>Quarto</th>
+                                        <th>Ação</th>
                                       </tr>
                                 </thead>
                                 <tbody>
@@ -57,16 +58,25 @@
                                             {{$reserva->id}}
                                         </td>
                                         <td>
-                                            {{$reserva->inicioReserva}}
+                                            {{date('d-m-Y', strtotime($reserva->inicioReserva))}}
                                         </td>
                                         <td>
-                                            {{$reserva->fimReserva}}
+                                            {{date('d-m-Y', strtotime($reserva->fimReserva))}}
                                         </td>
                                         <td>
                                             {{$reserva->nome}}
                                         </td>
                                         <td>
                                             {{$reserva->nomeQuarto}}
+                                        </td>
+                                        <td>
+                                            <a title="Editar Reserva" class="btn btn-flat btn-warning"
+                                               href="">
+                                                <i class="fa fa-fw fa-edit"></i>
+                                            </a>
+                                            <a title="Excluir Reserva" class="btn btn-flat btn-danger">
+                                                <i class="fa fa-w fa-window-close"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty

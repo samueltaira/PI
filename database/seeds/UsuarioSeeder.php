@@ -4,6 +4,7 @@ use App\Quarto;
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Hotel;
+use App\Hospede;
 
 class UsuarioSeeder extends Seeder
 {
@@ -37,6 +38,16 @@ class UsuarioSeeder extends Seeder
             'status_quarto' => 'Ativo',
         ];
 
+        $dados4=[
+          'nome' => 'Samuel Taira da Costa',
+          'cidade'  => 'Penha-SC',
+          'email' => 'samueltaira@hotmail.com',
+          'contato'  => '47991616054',
+          'documento'  => '09089702938',
+          'dataNascimento'  => '03/11/1993',
+          'hotel_id'  => '1'
+        ];
+
         if(User::where('email', '=', $dados['email']) -> count()){
 
             $usuario = User::where('email', '=', $dados['email'])->first();
@@ -48,6 +59,7 @@ class UsuarioSeeder extends Seeder
             Hotel::create($dados2);
             User::create($dados);
             Quarto::create($dados3);
+            Hospede::create($dados4);
 
             echo "Hotel, usuário e quarto criado!";
 

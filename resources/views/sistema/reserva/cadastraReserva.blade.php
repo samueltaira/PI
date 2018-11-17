@@ -24,7 +24,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Realizar nova reserva </h3>
-{{--                <br>{{$teste}}--}}
+                {{--                <br>{{$teste}}--}}
             </div>
             <form method="POST" role="form">
                 {{csrf_field()}}
@@ -33,16 +33,14 @@
                         <label for="dataInicio">Data Início:</label>
                         <input required type="date" name="inicioReserva" value="{{@$inicioReserva}}">
                         <label for="dataFim">Data Fim:</label>
-                        <input  required type="date" name="fimReserva" value="{{@$fimReserva}}">
+                        <input required type="date" name="fimReserva" value="{{@$fimReserva}}">
                     </div>
-                        @if(isset($mensagem))
-                            <div class="alert alert-warning alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <i class="icon fa fa-check"></i>{{$mensagem}}
-                            </div>
-                        @endif
-
-
+                    @if(isset($mensagem))
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="icon fa fa-check"></i>{{$mensagem}}
+                        </div>
+                    @endif
                     <div class="form-group">
                         <label for="capacidade">Capacidade do quarto:</label><br>
                         <select name="capacidade">
@@ -55,43 +53,50 @@
                             <option value="7+"> 7+
                         </select>
                     </div>
-                    <button type="submit" formaction="{{route('core.check.reserva')}}" class="btn btn-primary">Checar quartos disponíveis</button>
+                    <button type="submit" formaction="{{route('core.check.reserva')}}" class="btn btn-primary">Checar
+                        quartos disponíveis
+                    </button>
                     <a class="btn btn-default" href="{{route('core.reserva')}}">Voltar</a>
                     <br><br>
                     <hr>
 
-                @if(isset($quartosId))
-                    <div class="form-group">
-                        <label for="hospede">Hóspede:</label>
-                        <input type="text" class="form-control" name="nome" placeholder="Hóspede" value="{{old('nome')}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="quarto">Quarto:</label><br>
-                        @forelse($quartosId as $teste)
-                            <select name="quarto">
-                                <option value="{{$teste->id}}">{{$teste->nomeQuarto}}<br>
-                            </select>
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit" formaction="{{route('core.realiza.reserva')}}" class="btn btn-success">Efetuar nova reserva
-                        </button>
-                    </div>
-                        @empty
-                            <tr role="row">
-                                <div class="callout callout-warning">
-                                    <h4>Alerta!</h4>
-                                    <p>Nenhum quarto disponível para esta data ou capacidade.</p>
-                                </div>
-                            </tr>
-                        @endforelse
-                @endif
+                    @if(isset($hotel))
+                        {{--{{dd($hotel->quartos)}}--}}
+                            <div class="form-group">
+                                <label for="hospede">Hóspede:</label>
+                                <input type="text" class="form-control" name="nome" placeholder="Hóspede"
+                                       value="{{old('nome')}}">
+                            </div>
+                            <div class="form-group">
+                                @if($hotel->quartos->count()>0)
+                                    <label for="quarto">Quarto:</label><br>
+                                    <select name="quarto_id">
+                                            @foreach($hotel->quartos as $t10)
+                                                <option value="{{$t10->id}}">{{$t10->nomeQuarto}}<br>
+                                            @endforeach
+                                    </select>
+                                    <div class="box-footer">
+                                        <button type="submit" formaction="{{route('core.realiza.reserva')}}"
+                                                class="btn btn-success">
+                                            Efetuar nova reserva
+                                        </button>
+                                    </div>
+                                @else
+                                    <tr role="row">
+                                        <div class="callout callout-warning">
+                                            <h4>Alerta!</h4>
+                                            <p>Nenhum quarto disponível para esta data ou capacidade.</p>
+                                        </div>
+                                    </tr>
+                                @endif
+                            </div>
+                    @endif
                 </div>
 
                 <input type="hidden" name="hotel_id" value="{{auth()->user()->getHotelId()}}">
                 <input type="hidden" name="hospede_id" value="1">
-                <input type="hidden" name="quarto_id" value="1">
                 <input type="hidden" name="consumo" value="x">
-                <input type="hidden" name="efetuouReserva" value="x">
+                <input type="hidden" name="efetuouReserva" value="{{auth()->user()->nome}}">
             </form>
         </div>
     </section>

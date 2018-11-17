@@ -26,6 +26,7 @@ class CreateReservasTable extends Migration
             $table->foreign('quarto_id')->references('id')->on('quartos');
             $table->String('consumo');
             $table->String('efetuouReserva');
+            $table->String('status')->default('aberto');
             $table->timestamps();
         });
     }

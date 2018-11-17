@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Hotel;
 use App\Reserva;
 use App\Quarto;
 use App\Hospede;
@@ -21,6 +22,7 @@ class ReservaController extends Controller
             ->join('hospedes', 'hospedes.id', '=', 'reservas.hospede_id')
             ->join('quartos', 'quartos.id', '=', 'reservas.quarto_id')
             ->where('reservas.hotel_id', '=', $hotel_id)
+            ->where('reservas.status', '=', 'aberto')
             ->get();
         return view('sistema.reserva.mainReserva', ['reservas' => $reservas]);
     }
@@ -32,35 +34,61 @@ class ReservaController extends Controller
 
     public function checkReserva(Request $req)
     {
-
-        $inicioReserva = $req->inicioReserva;
-        $fimReserva = $req->fimReserva;
-        $capacidade = $req->capacidade;
         $hotel_id = auth()->user()->getHotelId();
 
-        if ($inicioReserva < Carbon::now()->toDateString()) {
-            return view('sistema.reserva.cadastraReserva',
-                ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
-                    'mensagem' => 'Favor verificar a data de início da reserva']);
+        $t1 = Hotel::with(['quartos.reservas'])
+                    ->where('id', $hotel_id)->first();
 
-        } else if ($fimReserva <= $inicioReserva) {
-            return view('sistema.reserva.cadastraReserva',
-                ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
-                    'mensagem' => 'Favor verificar a data final da reserva']);
-        } else {
 
-            $quartosId = DB::table('quartos')
-                ->select('quartos.*', 'reservas.*')
-                ->leftJoin('reservas', 'reservas.quarto_id', '=', 'quartos.id')
-                ->where('quartos.hotel_id', '=', $hotel_id)
-                ->where('capacidade', '=', $capacidade)
-                ->get();
+            if($t1) {
 
-            return view('sistema.reserva.cadastraReserva',
-                ['quartosId' => $quartosId, 'inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva]);
+                $inicioReserva = $req->inicioReserva;
+                $fimReserva = $req->fimReserva;
+                $capacidade = $req->capacidade;
+
+                if ($inicioReserva < Carbon::now()->toDateString()) {
+                    return view('sistema.reserva.cadastraReserva',
+                        ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
+                            'mensagem' => 'Favor verificar a data de início da reserva']);
+
+                } else if ($fimReserva <= $inicioReserva) {
+                    return view('sistema.reserva.cadastraReserva',
+                        ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
+                            'mensagem' => 'Favor verificar a data final da reserva']);
+                }
+
+                foreach($t1->quartos as $k=>$quarto){
+
+                    if($quarto->capacidade != $capacidade)
+                    {
+                        $t1->quartos->forget($k);
+                    }
+
+
+                    foreach($quarto->reservas as $reserva)
+                    {
+                        if($inicioReserva == $reserva->fimReserva && $quarto->status == 'aberto')
+                        {
+                            $t1->quartos->forget($k);
+                        }
+                        if( $inicioReserva >= $reserva->inicioReserva &&  $inicioReserva < $reserva->fimReserva)
+                        {
+                            $t1->quartos->forget($k);
+                        }
+                        elseif( $fimReserva>= $reserva->inicioReserva &&  $fimReserva <= $reserva->fimReserva)
+                        {
+                            $t1->quartos->forget($k);
+                        }
+                        elseif( $inicioReserva <= $reserva->inicioReserva && $fimReserva >= $reserva->fimReserva)
+                        {
+                            $t1->quartos->forget($k);
+                        }
+                    }
+                }
+                return view('sistema.reserva.cadastraReserva',
+        ['hotel' => $t1, 'inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva]);
+            }
         }
-
-    }
 
     public function realizaReserva(Request $req)
     {
@@ -85,3 +113,28 @@ class ReservaController extends Controller
 //                    'dataInicio' => 'required',
 //                    'dataFim' => 'required'
 //                ], $mensagens);
+
+//
+//if ($inicioReserva < Carbon::now()->toDateString()) {
+//    return view('sistema.reserva.cadastraReserva',
+//        ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
+//            'mensagem' => 'Favor verificar a data de início da reserva']);
+//
+//} else if ($fimReserva <= $inicioReserva) {
+//    return view('sistema.reserva.cadastraReserva',
+//        ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
+//            'mensagem' => 'Favor verificar a data final da reserva']);
+//} else {
+//
+//    $quartosId = DB::table('quartos')
+//        ->select('quartos.*', 'reservas.*')
+//        ->leftJoin('reservas', 'reservas.quarto_id', '=', 'quartos.id')
+//        ->where('quartos.hotel_id', '=', $hotel_id)
+//        ->where('capacidade', '=', $capacidade)
+//        ->where('reservas.inicioReserva', '!=', $inicioReserva)
+//        ->where('reservas.inicioReserva', '=', NULL)
+//        ->get();
+//
+//    return view('sistema.reserva.cadastraReserva',
+//        ['quartosId' => $quartosId, 'inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva]);
+//}
