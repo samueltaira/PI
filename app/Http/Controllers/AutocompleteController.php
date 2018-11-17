@@ -23,7 +23,7 @@ class AutocompleteController extends Controller
             $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
             foreach($data as $row)
             {
-                $output .= '<li><a href="#">'.$row->nome.'</a></li>';
+                $output .= '<li><a href="#">'.$row->nome .' ('.$row->documento .') </a></li>';
             }
             $output .= '</ul>';
             echo $output;

@@ -70,7 +70,7 @@
                         {{--{{dd($hotel->quartos)}}--}}
                             <div class="form-group">
                                 <label for="hospede">Hóspede:</label>
-                                <input type="text" class="form-control" name="nome" id="listaNomes" placeholder="Hóspede"
+                                <input type="text" autocomplete="off" class="form-control" name="nome" id="nome" placeholder="Hóspede"
                                        value="{{old('nome')}}"><div id="listaNomes"></div>
                                 {{ csrf_field() }}
                             </div>
