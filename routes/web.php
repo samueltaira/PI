@@ -44,6 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/main/reserva', ['as'=>'core.nova.reserva', 'uses'=> 'Sistema\ReservaController@mainNovaReserva']);
         Route::post('/main/checkReserva', ['as'=>'core.check.reserva', 'uses'=> 'Sistema\ReservaController@checkReserva']);
         Route::post('/main/realizaReserva', ['as'=>'core.realiza.reserva', 'uses'=> 'Sistema\ReservaController@realizaReserva']);
+        Route::get('/main/cancela/{id}', ['as' => 'core.cancela.reserva', 'uses' => 'Sistema\ReservaController@cancelarReserva']);
+        Route::get('/main/search', ['as' => 'core.pesquisa.reserva', 'uses' => 'Sistema\ReservaController@pesquisaReserva']);
+        Route::get('/main/searchAlterada', ['as' => 'core.pesquisa.reservaAlterada', 'uses' => 'Sistema\ReservaController@pesquisaReservaAlterada']);
         Route::get('/autocomplete', 'AutocompleteController@index');
         Route::post('/autocomplete/fetch', 'AutocompleteController@fetch')->name('autocomplete.fetch');
     });

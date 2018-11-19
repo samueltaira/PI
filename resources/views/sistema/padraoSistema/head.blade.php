@@ -48,7 +48,9 @@
         .flex-colum-3 {
             width: 40%;
         }
+
     </style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -62,12 +64,17 @@
                     Toggle navigation
                 </span>
             </a>
+            <span class="navbar-text" style="margin: 5px; margin-left: 40%">
+                <h4 style="color: white;font-weight: lighter">
+                    Olá, {{Auth::user()->nome }}! Hoje é: {{ date('d-m-Y') }}
+                </h4>
+            </span>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown notifications-menu">
-                        <a href="{{route('sistema.login.sair')}}" class="dropdown-toggle" data-toggle="dropdown">
+                    <li title="Check-in" class="dropdown notifications-menu">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-sign-in"></i>
-                            <span class="label label-danger">1</span>
+                            <span class="label label-success">1</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">Check-in hoje: 1</li>
@@ -79,7 +86,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown notifications-menu">
+                    <li title="Check-out" class="dropdown notifications-menu">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-sign-out"></i>
                             <span class="label label-danger">1</span>
@@ -94,34 +101,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown user user-menu">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{!! asset('/images/teste.jpg') !!}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">
-                                {{Auth::user()->nome}}
-                            </span>
+                    <li title="Sair do Sistema" class="dropdown notifications-menu">
+                        <a onclick="return confirm('Você quer mesmo sair do sistema?')" href="{{route('sistema.login.sair')}}" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-power-off"></i>
+                            <span class="label label-danger"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li class="user-header">
-                                <img src="{!! asset('/images/teste.jpg') !!}" class="img-circle" alt="User Image">
-                                <p>
-                                    {{Auth::user()->getHotel()}}
-                                    <small>{{Auth::user()->email}}</small>
-                                </p>
-                            </li>
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="{{route('sistema.main.perfil')}}" class="btn btn-default btn-flat">
-                                        Perfil
-                                    </a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="{{route('sistema.login.sair')}}" class="btn btn-default btn-flat">
-                                        Sair
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -138,7 +122,7 @@
                 </div>
                 <a href="" class="logo" style="padding-right: 20px">
                     Hotel: {{Auth::user()->getHotel()}}
-                </a>
+                </a><br>
             </div>
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview {{ Request()->is('core/*') ? 'active' : '' }}" id="Mapa">

@@ -19,14 +19,53 @@ class ReservaController extends Controller
     public function mainReserva()
     {
         $hotel_id = auth()->user()->getHotelId();
-        $reservas = DB::table('reservas')
-            ->select('reservas.*', 'hospedes.*', 'quartos.*')
-            ->join('hospedes', 'hospedes.id', '=', 'reservas.hospede_id')
-            ->join('quartos', 'quartos.id', '=', 'reservas.quarto_id')
-            ->where('reservas.hotel_id', '=', $hotel_id)
-            ->where('reservas.status', '=', 'aberto')
-            ->get();
-        return view('sistema.reserva.mainReserva', ['reservas' => $reservas]);
+        $reservas = Reserva::with(['hospede', 'quarto'])
+            ->where('reservas.hotel_id', $hotel_id)
+            ->where('reservas.status', 'aberto')
+            ->paginate(10);
+        $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
+            ->where('reservas.hotel_id', $hotel_id)
+            ->where('reservas.status', '<>', 'aberto')
+            ->paginate(10);
+
+        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas'=>$reservasAlteradas]);
+    }
+
+    public function pesquisaReserva(Request $req)
+    {
+        $hotel_id = auth()->user()->getHotelId();
+        $search = $req->get('valorPesquisado');
+
+        $reservas = Reserva::with(['hospede', 'quarto'])
+            ->where('reservas.hotel_id', $hotel_id)
+            ->where('reservas.status', 'aberto')
+            ->where('reservas.nome', 'like', '%' . $search . '%')
+            ->orderBy('reservas.nome')
+            ->paginate(10);
+        $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
+            ->where('reservas.hotel_id', $hotel_id)
+            ->where('reservas.status', '<>', 'aberto')
+            ->paginate(10);
+
+        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas'=>$reservasAlteradas]);
+    }
+    public function pesquisaReservaAlterada(Request $req)
+    {
+        $hotel_id = auth()->user()->getHotelId();
+        $search = $req->get('valorPesquisado');
+
+        $reservas = Reserva::with(['hospede', 'quarto'])
+            ->where('reservas.hotel_id', $hotel_id)
+            ->where('reservas.status', 'aberto')
+            ->paginate(10);
+        $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
+            ->where('reservas.hotel_id', $hotel_id)
+            ->where('reservas.status', '<>', 'aberto')
+            ->where('reservas.nome', 'like', '%' . $search . '%')
+            ->orderBy('reservas.nome')
+            ->paginate(10);
+
+        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas'=>$reservasAlteradas]);
     }
 
     public function mainNovaReserva()
@@ -37,7 +76,7 @@ class ReservaController extends Controller
     public function checkReserva(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
-        $t1 = Hotel::with(['quartos.reservas'])
+        $t1 = Hotel::with(['quartos.reservas', 'hospedes'])
             ->where('id', $hotel_id)->first();
 
         if ($t1) {
@@ -80,11 +119,34 @@ class ReservaController extends Controller
 
     public function realizaReserva(Request $req)
     {
-        $dados = $req->all();
-        Reserva::create($dados);
+
+//        dd($req->all());
+
+        $reserva = new Reserva;
+
+        $reserva->inicioReserva=Carbon::parse($req->input('inicioReserva'));
+        $reserva->fimReserva=Carbon::parse($req->input('fimReserva'));
+        $reserva->hotel_id=$req->input('hotel_id');
+        $reserva->hospede_id=substr($req->input('hospede'), 1, 1);
+        $reserva->quarto_id=$req->input('quarto_id');
+        $reserva->consumo=$req->input('consumo');
+        $reserva->efetuouReserva=$req->input('efetuouReserva');
+        $reserva->save();
 
         return redirect()->route('core.reserva')
             ->with('message', 'Reserva efetuada com sucesso.');
+    }
+
+    public function cancelarReserva($id)
+    {
+        $reserva = Reserva::find($id);
+        $reserva->status='Cancelado';
+        $reserva->save();
+
+        return redirect()
+            ->route('core.reserva')
+            ->with('message_cancelado', 'Reserva cancelada com sucesso');
+
     }
 }
 

@@ -74,9 +74,6 @@
                                                href="{{route('sistema.main.hospedes.editar', $hospede->id)}}">
                                                 <i class="fa fa-fw fa-edit"></i>
                                             </a>
-                                            <a title="Efetuar nova reserva" class="btn btn-flat btn-primary">
-                                                <i class="fa fa-fw fa-book"></i>
-                                            </a>
                                         </td>
                                     </tr>
                                 @empty

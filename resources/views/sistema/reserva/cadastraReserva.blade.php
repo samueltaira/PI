@@ -70,7 +70,7 @@
                         {{--{{dd($hotel->quartos)}}--}}
                         <div class="form-group">
                             <label for="hospede">Hóspede:</label>
-                            <input type="text" autocomplete="off" class="form-control" name="nome" id="nome"
+                            <input type="text" autocomplete="off" class="form-control" name="hospede" id="nome"
                                    placeholder="Hóspede"
                                    value="{{old('nome')}}">
                             <div id="listaNomes"></div>
@@ -103,7 +103,6 @@
                 </div>
 
                 <input type="hidden" name="hotel_id" value="{{auth()->user()->getHotelId()}}">
-                <input type="hidden" name="hospede_id" value="1">
                 <input type="hidden" name="consumo" value="x">
                 <input type="hidden" name="efetuouReserva" value="{{auth()->user()->nome}}">
             </form>

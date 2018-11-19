@@ -14,14 +14,17 @@ class AutocompleteController extends Controller
 
     function fetch(Request $request)
     {
+        $hotel_id = auth()->user()->getHotelId();
+
         if ($request->get('query')) {
             $query = $request->get('query');
             $data = DB::table('hospedes')
+                ->where('hotel_id', '=', $hotel_id)
                 ->where('nome', 'LIKE', "%{$query}%")
                 ->get();
             $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
             foreach ($data as $row) {
-                $output .= '<li><a href="#">' . $row->nome . ' (' . $row->documento . ') </a></li>';
+                $output .= '<li><a href="#">('.$row->id.') Nome: ' . $row->nome . ' (Doc: ' . $row->documento . ') </a></li>';
             }
             $output .= '</ul>';
             echo $output;

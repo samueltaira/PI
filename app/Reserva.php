@@ -10,17 +10,17 @@ class Reserva extends Model
         'id', 'inicioReserva', 'fimReserva', 'hotel_id', 'hospede_id', 'quarto_id', 'consumo', 'efetuouReserva', 'status'
     ];
 
-    public function hotels()
+    public function hotel()
     {
         return $this->belongsTo(Hotel::class);
     }
 
-    public function quartos()
+    public function quarto()
     {
         return $this->belongsTo(Quarto::class);
     }
 
-    public function hospedes()
+    public function hospede()
     {
         return $this->belongsTo(Hospede::class);
     }
