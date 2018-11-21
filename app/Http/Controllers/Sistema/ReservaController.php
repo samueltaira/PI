@@ -28,44 +28,67 @@ class ReservaController extends Controller
             ->where('reservas.status', '<>', 'aberto')
             ->paginate(10);
 
-        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas'=>$reservasAlteradas]);
+        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
     }
 
     public function pesquisaReserva(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
-        $search = $req->get('valorPesquisado');
+        $search = $req->get('valorPesquisadoReserva');
 
-        $reservas = Reserva::with(['hospede', 'quarto'])
-            ->where('reservas.hotel_id', $hotel_id)
-            ->where('reservas.status', 'aberto')
-            ->where('reservas.nome', 'like', '%' . $search . '%')
-            ->orderBy('reservas.nome')
-            ->paginate(10);
+
         $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', '<>', 'aberto')
             ->paginate(10);
 
-        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas'=>$reservasAlteradas]);
+        if($search){
+            $reservas = Reserva::with(['hospede', 'quarto'])
+            ->where('reservas.hotel_id', $hotel_id)
+            ->where('reservas.status', 'aberto')
+            ->where('inicioReserva', '=', '%' . $search . '%')
+            ->orderBy('inicioReserva')
+            ->paginate(10);
+        } else{
+
+            $reservas = Reserva::with(['hospede', 'quarto'])
+                ->where('reservas.hotel_id', $hotel_id)
+                ->where('reservas.status', 'aberto')
+                ->paginate(10);
+            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+        }
+
+
+        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
     }
+
     public function pesquisaReservaAlterada(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
-        $search = $req->get('valorPesquisado');
+        $search = $req->get('valorPesquisadoReservaAlterada');
 
         $reservas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', 'aberto')
             ->paginate(10);
-        $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
+
+        if($search){
+             $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', '<>', 'aberto')
-            ->where('reservas.nome', 'like', '%' . $search . '%')
-            ->orderBy('reservas.nome')
+            ->where('inicioReserva', '=', '%' . $search . '%')
+            ->orderBy('inicioReserva')
             ->paginate(10);
+            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+        }else{
+            $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
+                ->where('reservas.hotel_id', $hotel_id)
+                ->where('reservas.status', '<>', 'aberto')
+                ->paginate(10);
 
-        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas'=>$reservasAlteradas]);
+            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+        }
+
     }
 
     public function mainNovaReserva()
@@ -76,8 +99,10 @@ class ReservaController extends Controller
     public function checkReserva(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
+
         $t1 = Hotel::with(['quartos.reservas', 'hospedes'])
-            ->where('id', $hotel_id)->first();
+            ->where('id', $hotel_id)
+            ->first();
 
         if ($t1) {
             $inicioReserva = $req->inicioReserva;
@@ -99,15 +124,30 @@ class ReservaController extends Controller
                     $t1->quartos->forget($k);
                 }
 
-                foreach ($quarto->reservas as $reserva) {
-                    if ($inicioReserva == $reserva->fimReserva && $quarto->status == 'aberto') {
+                foreach ($quarto->reservas as $reserva)
+                {
+                    if ($inicioReserva == $reserva->fimReserva && $reserva->status == 'aberto')
+                    {
                         $t1->quartos->forget($k);
                     }
-                    if ($inicioReserva >= $reserva->inicioReserva && $inicioReserva < $reserva->fimReserva) {
+                    else if(($inicioReserva >= $reserva->inicioReserva && $fimReserva >= $reserva->fimReserva)&&
+                        ($reserva->status == 'Cancelado' || $reserva->status == 'Fechado')
+                        ||
+                        ($inicioReserva >= $reserva->inicioReserva && $fimReserva <= $reserva->fimReserva) &&
+                        ($reserva->status == 'Cancelado' || $reserva->status == 'Fechado'))
+                    {
+
+                    }
+                    else if ($inicioReserva >= $reserva->inicioReserva && $inicioReserva < $reserva->fimReserva)
+                    {
                         $t1->quartos->forget($k);
-                    } elseif ($fimReserva >= $reserva->inicioReserva && $fimReserva <= $reserva->fimReserva) {
+                    }
+                    elseif ($fimReserva >= $reserva->inicioReserva && $fimReserva <= $reserva->fimReserva)
+                    {
                         $t1->quartos->forget($k);
-                    } elseif ($inicioReserva <= $reserva->inicioReserva && $fimReserva >= $reserva->fimReserva) {
+                    }
+                    elseif ($inicioReserva <= $reserva->inicioReserva && $fimReserva >= $reserva->fimReserva)
+                    {
                         $t1->quartos->forget($k);
                     }
                 }
@@ -124,13 +164,13 @@ class ReservaController extends Controller
 
         $reserva = new Reserva;
 
-        $reserva->inicioReserva=Carbon::parse($req->input('inicioReserva'));
-        $reserva->fimReserva=Carbon::parse($req->input('fimReserva'));
-        $reserva->hotel_id=$req->input('hotel_id');
-        $reserva->hospede_id=substr($req->input('hospede'), 1, 1);
-        $reserva->quarto_id=$req->input('quarto_id');
-        $reserva->consumo=$req->input('consumo');
-        $reserva->efetuouReserva=$req->input('efetuouReserva');
+        $reserva->inicioReserva = Carbon::parse($req->input('inicioReserva'));
+        $reserva->fimReserva = Carbon::parse($req->input('fimReserva'));
+        $reserva->hotel_id = $req->input('hotel_id');
+        $reserva->hospede_id = substr($req->input('hospede'), 1, 1);
+        $reserva->quarto_id = $req->input('quarto_id');
+        $reserva->consumo = $req->input('consumo');
+        $reserva->efetuouReserva = $req->input('efetuouReserva');
         $reserva->save();
 
         return redirect()->route('core.reserva')
@@ -140,7 +180,7 @@ class ReservaController extends Controller
     public function cancelarReserva($id)
     {
         $reserva = Reserva::find($id);
-        $reserva->status='Cancelado';
+        $reserva->status = 'Cancelado';
         $reserva->save();
 
         return redirect()

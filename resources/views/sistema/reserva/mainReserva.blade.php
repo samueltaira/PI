@@ -22,13 +22,13 @@
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        <form action="" method="GET">
+                        <form action="{{route('core.pesquisa.reserva')}}" method="GET">
                             <div class="col-sm-3">
                                 <div id="filtro" class="dataTables_filter">
                                     <label>Procurar:
                                         <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pelo nome"
-                                               size="20%" name="valorPesquisado">
+                                               placeholder="Procure pela data"
+                                               size="20%" name="valorPesquisadoReserva">
                                     </label>
                                 </div>
                             </div>
@@ -110,20 +110,20 @@
 
         {{--Canceladas--}}
 
-        <div class="box">
+        <div class="box">valorPesquisado
             <div class="box-header">
                 <h3 class="box-title">Reservas canceladas e fechadas</h3>
             </div>
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        <form action="" method="GET">
+                        <form action="{{route('core.pesquisa.reservaAlterada')}}">
                             <div class="col-sm-3">
                                 <div id="filtro" class="dataTables_filter">
                                     <label>Procurar:
                                         <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pelo nome"
-                                               size="20%" name="valorPesquisado">
+                                               placeholder="Procure pela data"
+                                               size="20%" name="valorPesquisadoReservaAlterada">
                                     </label>
                                 </div>
                             </div>
