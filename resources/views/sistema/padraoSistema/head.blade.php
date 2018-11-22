@@ -105,8 +105,9 @@
                                 @endforeach
                         </ul>
                     </li>
-                    <li title="Sair do Sistema" class="dropdown notifications-menu">
-                        <a onclick="return confirm('Você quer mesmo sair do sistema?')" href="{{route('sistema.login.sair')}}" class="dropdown-toggle" data-toggle="dropdown">
+                    <li title="Sair do Sistema">
+                        <a onclick="return confirm('Você quer mesmo sair do sistema?')"
+                           href="{{route('sistema.login.sair')}}">
                             <i class="fa fa-power-off"></i>
                             <span class="label label-danger"></span>
                         </a>

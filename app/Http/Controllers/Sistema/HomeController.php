@@ -23,6 +23,7 @@ class HomeController extends Controller
                     ['reservas.status', '<>', 'Fechada'],
                     ['reservas.inicioReserva', '=', Carbon::now()]
                 ])
+            ->orderBy('fimReserva')
             ->get();
 
         $checkin = Reserva::with(['hospede', 'quarto'])
