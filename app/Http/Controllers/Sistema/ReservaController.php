@@ -22,25 +22,54 @@ class ReservaController extends Controller
         $reservas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', 'aberto')
-            ->paginate(10);
+            ->paginate(20);
         $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', '<>', 'aberto')
-            ->paginate(10);
+            ->paginate(20);
 
-        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.reserva.mainReserva', ['reservas' => $reservas,
+            'reservasAlteradas' => $reservasAlteradas, 'checkin'=>$checkin, 'checkout'=>$checkout]);
     }
 
     public function pesquisaReserva(Request $req)
     {
-        $hotel_id = auth()->user()->getHotelId();
         $search = $req->get('valorPesquisadoReserva');
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
 
         $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', '<>', 'aberto')
-            ->paginate(10);
+            ->paginate(20);
 
         if($search){
             $reservas = Reserva::with(['hospede', 'quarto'])
@@ -48,29 +77,40 @@ class ReservaController extends Controller
             ->where('reservas.status', 'aberto')
             ->where('inicioReserva', '=', '%' . $search . '%')
             ->orderBy('inicioReserva')
-            ->paginate(10);
+            ->paginate(20);
         } else{
-
             $reservas = Reserva::with(['hospede', 'quarto'])
                 ->where('reservas.hotel_id', $hotel_id)
                 ->where('reservas.status', 'aberto')
-                ->paginate(10);
-            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+                ->paginate(20);
+            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas,
+                'checkin'=>$checkin, 'checkout'=>$checkout]);
         }
-
-
-        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+        return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas,
+            'checkout'=>$checkout, 'checkin'=>$checkin]);
     }
 
     public function pesquisaReservaAlterada(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
         $search = $req->get('valorPesquisadoReservaAlterada');
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
         $reservas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', 'aberto')
-            ->paginate(10);
+            ->paginate(20);
 
         if($search){
              $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
@@ -78,27 +118,58 @@ class ReservaController extends Controller
             ->where('reservas.status', '<>', 'aberto')
             ->where('inicioReserva', '=', '%' . $search . '%')
             ->orderBy('inicioReserva')
-            ->paginate(10);
-            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+            ->paginate(20);
+            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas,
+                'checkin'=>$checkin, 'checkout'=>$checkout]);
         }else{
             $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
                 ->where('reservas.hotel_id', $hotel_id)
                 ->where('reservas.status', '<>', 'aberto')
-                ->paginate(10);
+                ->paginate(20);
 
-            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas]);
+            return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas,
+                'checkin'=>$checkin, 'checkout'=>$checkout]);
         }
 
     }
 
     public function mainNovaReserva()
     {
-        return view('sistema.reserva.cadastraReserva');
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.reserva.cadastraReserva', ['checkin'=>$checkin, 'checkout'=>$checkout]);
     }
 
     public function checkReserva(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
+       $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
         $t1 = Hotel::with(['quartos.reservas', 'hospedes'])
             ->where('id', $hotel_id)
@@ -112,11 +183,13 @@ class ReservaController extends Controller
             if ($inicioReserva < Carbon::now()->toDateString()) {
                 return view('sistema.reserva.cadastraReserva',
                     ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
-                        'mensagem' => 'Favor verificar a data de início da reserva']);
+                        'mensagem' => 'Favor verificar a data de início da reserva',
+                        'checkin'=>$checkin, 'checkout'=>$checkout]);
             } else if ($fimReserva <= $inicioReserva) {
                 return view('sistema.reserva.cadastraReserva',
                     ['inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
-                        'mensagem' => 'Favor verificar a data final da reserva']);
+                        'mensagem' => 'Favor verificar a data final da reserva',
+                        'checkin'=>$checkin, 'checkout'=>$checkout]);
             }
             foreach ($t1->quartos as $k => $quarto) {
 
@@ -131,10 +204,10 @@ class ReservaController extends Controller
                         $t1->quartos->forget($k);
                     }
                     else if(($inicioReserva >= $reserva->inicioReserva && $fimReserva >= $reserva->fimReserva)&&
-                        ($reserva->status == 'Cancelado' || $reserva->status == 'Fechado')
+                        ($reserva->status == 'Cancelado' || $reserva->status == 'Fechada')
                         ||
                         ($inicioReserva >= $reserva->inicioReserva && $fimReserva <= $reserva->fimReserva) &&
-                        ($reserva->status == 'Cancelado' || $reserva->status == 'Fechado'))
+                        ($reserva->status == 'Cancelado' || $reserva->status == 'Fechada'))
                     {
 
                     }
@@ -153,14 +226,28 @@ class ReservaController extends Controller
                 }
             }
             return view('sistema.reserva.cadastraReserva',
-                ['hotel' => $t1, 'inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva]);
+                ['hotel' => $t1, 'inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
+                    'checkin'=>$checkin, 'checkout'=>$checkout]);
         }
     }
 
     public function realizaReserva(Request $req)
     {
+        $hotel_id = auth()->user()->getHotelId();
 
-//        dd($req->all());
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
         $reserva = new Reserva;
 
@@ -174,18 +261,90 @@ class ReservaController extends Controller
         $reserva->save();
 
         return redirect()->route('core.reserva')
-            ->with('message', 'Reserva efetuada com sucesso.');
+            ->with('message', 'Reserva efetuada com sucesso.')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
     }
 
     public function cancelarReserva($id)
     {
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
         $reserva = Reserva::find($id);
         $reserva->status = 'Cancelado';
         $reserva->save();
 
         return redirect()
             ->route('core.reserva')
-            ->with('message_cancelado', 'Reserva cancelada com sucesso');
+            ->with('message_cancelado', 'Reserva cancelada com sucesso')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
+
+    }
+
+    public function iniciarReserva($id){
+        $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $reserva = Reserva::find($id);
+        $reserva->status="Iniciada";
+        $reserva->save();
+
+        return redirect()
+            ->route('sistema.home')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
+
+    }
+    public function fecharReserva($id){
+        $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $reserva = Reserva::find($id);
+        $reserva->status="Fechada";
+        $reserva->save();
+
+        return redirect()->route('sistema.home')
+        ->with('checkin', $checkin)
+        ->with('checkout', $checkout);;
 
     }
 }

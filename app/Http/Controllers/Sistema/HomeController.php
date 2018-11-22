@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Reserva;
 use App\Quarto;
+use App\Hospede;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -14,13 +17,29 @@ class HomeController extends Controller
     public function index()
     {
         $hotel_id = auth()->user()->getHotelId();
-        $quartos = DB::table('quartos')
-            ->where('hotel_id', '=', $hotel_id)
-            ->where('status_quarto', '=', 'Ativo' )
-            ->orderBy('nomeQuarto')
+        $tudo = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                    ['reservas.status', '<>' ,'Cancelado'],
+                    ['reservas.status', '<>', 'Fechada'],
+                    ['reservas.inicioReserva', '=', Carbon::now()]
+                ])
             ->get();
 
-        return view('sistema.quarto.mainQuarto', ['quartos' => $quartos]);
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.quarto.mainQuarto', ['tudo'=>$tudo, 'checkin'=>$checkin, 'checkout'=>$checkout]);
     }
 
 
@@ -30,12 +49,29 @@ class HomeController extends Controller
 
         $hotel_id = auth()->user()->getHotelId();
 
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+
+        $hotel_id = auth()->user()->getHotelId();
+
         $quartos = DB::table('quartos')
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('id')
             ->paginate(10);
 
-        return view('sistema.quarto.listaQuartos', ['quartos' => $quartos]);
+        return view('sistema.quarto.listaQuartos', ['quartos' => $quartos, 'checkin'=>$checkin, 'checkout'=>$checkout]);
     }
 
     public function pesquisaQuarto(Request $req)
@@ -48,12 +84,45 @@ class HomeController extends Controller
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('id')
             ->paginate(10);
-        return view('sistema.quarto.listaQuartos', ['quartos' => $quartos]);
+
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.quarto.listaQuartos', ['quartos' => $quartos, 'checkin'=>$checkin, 'checkout'=>$checkout]);
     }
 
     public function cadastrarQuarto()
     {
-        return view('sistema.quarto.cadastraQuarto', ['Menu' => 'Core']);
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.quarto.cadastraQuarto', ['Menu' => 'Core', 'checkin'=>$checkin, 'checkout'=>$checkout]);
     }
 
     public function salvarQuarto(Request $req)
@@ -79,8 +148,27 @@ class HomeController extends Controller
         $dados = $req->all();
         Quarto::create($dados);
 
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+
         return redirect()->route('sistema.lista.quartos')
-            ->with('message', 'Quarto cadastrado com sucesso.');
+            ->with('message', 'Quarto cadastrado com sucesso.')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
 
     }
 
@@ -90,26 +178,78 @@ class HomeController extends Controller
         $quarto->status_quarto='Inativo';
         $quarto->save();
 
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+
         return redirect()
             ->route('sistema.lista.quartos')
-            ->with('message_inative', 'Quarto inativado com sucesso');
+            ->with('message_inative', 'Quarto inativado com sucesso')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
     }
     public function ativar($id)
     {
         $quarto = Quarto::find($id);
         $quarto->status_quarto='Ativo';
         $quarto->save();
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
         return redirect()
             ->route('sistema.lista.quartos')
-            ->with('message_active', 'Quarto Ativado com sucesso');
+            ->with('message_active', 'Quarto Ativado com sucesso')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
     }
 
     public function editarQuarto($id)
     {
         $registro = Quarto::find($id);
+        $hotel_id = auth()->user()->getHotelId();
 
-        return view('sistema.quarto.editaQuarto', compact('registro'));
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.quarto.editaQuarto', compact('registro'),
+            ['checkin'=>$checkin, 'checkout'=>$checkout]);
 
     }
 
@@ -128,9 +268,26 @@ class HomeController extends Controller
 
         $dados = $req->all();
         Quarto::find($id)->update($dados);
+        $hotel_id = auth()->user()->getHotelId();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
         return redirect()->route('sistema.lista.quartos')
-            ->with('message5', 'Quarto atualizado com sucesso.');
+            ->with('message5', 'Quarto atualizado com sucesso.')
+            ->with('checkout', $checkout)
+            ->with('checkin', $checkin);
 
     }
 }

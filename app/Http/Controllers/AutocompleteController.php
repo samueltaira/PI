@@ -19,8 +19,9 @@ class AutocompleteController extends Controller
         if ($request->get('query')) {
             $query = $request->get('query');
             $data = DB::table('hospedes')
-                ->where('hotel_id', '=', $hotel_id)
-                ->where('nome', 'LIKE', "%{$query}%")
+                ->where([
+                    ['hotel_id', '=', $hotel_id],
+                    ['nome', 'LIKE', "%{$query}%"]])
                 ->get();
             $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
             foreach ($data as $row) {

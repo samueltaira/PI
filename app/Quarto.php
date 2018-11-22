@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Quarto extends Model
 {
     protected $fillable = [
-        'id', 'nomeQuarto', 'capacidade', 'status_reserva', 'hotel_id', 'status_quarto'
+        'id', 'nomeQuarto', 'capacidade', 'status_reserva', 'hotel_id'
     ];
 
     public function hotels()
@@ -19,6 +19,8 @@ class Quarto extends Model
     {
         return $this->hasMany(Reserva::class);
     }
+
+
 
     public function getNome()
     {

@@ -20,7 +20,6 @@ class CreateQuartosTable extends Migration
             $table->string('nomeQuarto');
             $table->string('capacidade');
             $table->string('status_reserva');
-            $table->string('status_quarto');
             $table->timestamps();
         });
     }

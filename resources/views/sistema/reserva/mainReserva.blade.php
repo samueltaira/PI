@@ -27,7 +27,7 @@
                                 <div id="filtro" class="dataTables_filter">
                                     <label>Procurar:
                                         <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pela data"
+                                               placeholder="Procure pela data de inicio"
                                                size="20%" name="valorPesquisadoReserva">
                                     </label>
                                 </div>
@@ -122,7 +122,7 @@
                                 <div id="filtro" class="dataTables_filter">
                                     <label>Procurar:
                                         <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pela data"
+                                               placeholder="Procure pela data de inicio"
                                                size="20%" name="valorPesquisadoReservaAlterada">
                                     </label>
                                 </div>

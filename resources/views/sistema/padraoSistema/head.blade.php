@@ -74,31 +74,35 @@
                     <li title="Check-in" class="dropdown notifications-menu">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-sign-in"></i>
-                            <span class="label label-success">1</span>
+                            <span class="label label-success">{{count($checkin)}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">Check-in hoje: 1</li>
-                            <li>
-                                <a>
-                                    <i class="fa fa-bed text-green"></i>
-                                    Quarto 102 - Check-in: 14:00
-                                </a>
-                            </li>
+                            <li class="header">Check-in hoje: {{count($checkin)}}</li>
+                            @foreach($checkin as $reserva)
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bed text-green"></i>
+                                        {{$reserva->quarto->nomeQuarto}} - Check-in
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li title="Check-out" class="dropdown notifications-menu">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-sign-out"></i>
-                            <span class="label label-danger">1</span>
+                            <span class="label label-danger">{{count($checkout)}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">Check-out hoje: 1</li>
-                            <li>
-                                <a>
-                                    <i class="fa fa-bed text-red"></i>
-                                    Quarto 101 - Check-out: 12:00
-                                </a>
-                            </li>
+                            <li class="header">Check-out hoje: {{count($checkout)}}</li>
+                            @foreach($checkout as $reserva)
+                                <li>
+                                    <a>
+                                        <i class="fa fa-bed text-red"></i>
+                                         {{$reserva->quarto->nomeQuarto}} - Check-out
+                                    </a>
+                                </li>
+                                @endforeach
                         </ul>
                     </li>
                     <li title="Sair do Sistema" class="dropdown notifications-menu">
@@ -197,22 +201,22 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                        <span class="pull-right-container">
-                            <span class="label label-primary pull-right"></span>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="">
-                                <i class="fa fa-line-chart"></i> Gráficos
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                {{--<li class="treeview">--}}
+                    {{--<a href="">--}}
+                        {{--<i class="fa fa-dashboard"></i>--}}
+                        {{--<span>Dashboard</span>--}}
+                        {{--<span class="pull-right-container">--}}
+                            {{--<span class="label label-primary pull-right"></span>--}}
+                        {{--</span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="treeview-menu">--}}
+                        {{--<li>--}}
+                            {{--<a href="">--}}
+                                {{--<i class="fa fa-line-chart"></i> Gráficos--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li class="treeview {{ Request()->is('perfil/*') ? 'active' : '' }}">
                     <a href="">
                         <i class="fa fa-user-o"></i>

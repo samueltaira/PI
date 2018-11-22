@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Sistema;
 
     use App\Hospede;
+    use App\Reserva;
+    use Carbon\Carbon;
     use Illuminate\Http\Request;
     use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\DB;
@@ -11,21 +13,47 @@ class HospedeController extends Controller
 {
     public function mainHospede()
     {
-//     Paginação OK com 10 hospedes por página - funcionando
-
         $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
         $hospedes = DB::table('hospedes')
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('nome')
             ->paginate(10);
 
-        return view('sistema.hospede.mainHospede', ['hospedes' => $hospedes]);
+        return view('sistema.hospede.mainHospede', ['hospedes' => $hospedes, 'checkin'=>$checkin,
+            'checkout'=>$checkout]);
     }
 
     public function pesquisaHospede(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
         $search = $req->get('valorPesquisado');
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
         $hospedes = DB::table('hospedes')
             ->where('nome', 'like', '%' . $search . '%')
@@ -35,12 +63,29 @@ class HospedeController extends Controller
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('nome')
             ->paginate(10);
-        return view('sistema.hospede.mainHospede', ['hospedes' => $hospedes]);
+        return view('sistema.hospede.mainHospede', ['hospedes' => $hospedes, 'checkin'=>$checkin,
+            'checkout'=>$checkout]);
     }
 
     public function cadastrarHospede()
     {
-        return view('sistema.hospede.cadastraHospede', ['Menu' => 'Hospede']);
+        $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.hospede.cadastraHospede', ['Menu' => 'Hospede', 'checkin'=>$checkin,
+            'checkout'=>$checkout]);
     }
 
     public function salvarHospede(Request $req)
@@ -76,20 +121,53 @@ class HospedeController extends Controller
 
             ], $mensagens);
 
+        $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
 
         $dados = $req->all();
         Hospede::create($dados);
 
         return redirect()->route('sistema.main.hospedes')
-            ->with('message', 'Hóspede cadastrado com sucesso.');
+            ->with('message', 'Hóspede cadastrado com sucesso.')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
 
     }
 
     public function editarHospede($id)
     {
+        $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
         $registro = Hospede::find($id);
 
-        return view('sistema.hospede.editaHospede', compact('registro'));
+        return view('sistema.hospede.editaHospede', compact('registro'), ['checkin'=>$checkin,
+            'checkout'=>$checkout]);
 
     }
 
@@ -127,9 +205,25 @@ class HospedeController extends Controller
 
         $dados = $req->all();
         Hospede::find($id)->update($dados);
+        $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
 
         return redirect()->route('sistema.main.hospedes')
-            ->with('message1', 'Hóspede atualizado com sucesso.');
+            ->with('message1', 'Hóspede atualizado com sucesso.')
+            ->with('checkin', $checkin)
+            ->with('checkout', $checkout);
 
     }
 

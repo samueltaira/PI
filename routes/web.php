@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/cadastraQuarto/ativar/{id}', ['as' => 'sistema.main.quarto.ativar', 'uses' => 'Sistema\HomeController@ativar']);
         Route::get('/cadastraQuarto/editar/{id}', ['as' => 'sistema.main.quartos.editar', 'uses' => 'Sistema\HomeController@editarQuarto']);
         Route::post('/cadastraQuarto/atualiza/{id}', ['as' => 'sistema.main.quartos.atualizar', 'uses' => 'Sistema\HomeController@atualizarQuarto']);
+        Route::get('/ativar/{id}', ['as' => 'ativa.reserva', 'uses' => 'Sistema\ReservaController@iniciarReserva']);
+        Route::get('/fechar/{id}', ['as' => 'fecha.reserva', 'uses' => 'Sistema\ReservaController@fecharReserva']);
     });
     Route::group(['prefix'=>'reserva'], function(){
         Route::get('/main', ['as'=>'core.reserva', 'uses'=> 'Sistema\ReservaController@mainReserva']);
