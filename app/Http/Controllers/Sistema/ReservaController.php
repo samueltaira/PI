@@ -259,7 +259,7 @@ class ReservaController extends Controller
 
         $hospedes = DB::table('hospedes')
             ->where('hotel_id', $hotel_id)
-            ->where('id', $teste2)
+            ->where('id', substr($req->input('hospede'), 1, 1))
             ->count();
 
         if(!$hospedes > 0){
