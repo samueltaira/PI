@@ -6,7 +6,6 @@ use Input;
 use App\Hotel;
 use App\Reserva;
 use App\Quarto;
-
 use App\Hospede;
 use DB;
 use Carbon\Carbon;
@@ -157,13 +156,12 @@ class ReservaController extends Controller
     public function checkReserva(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
-       $checkin = Reserva::with(['hospede', 'quarto'])
+        $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -174,6 +172,10 @@ class ReservaController extends Controller
         $t1 = Hotel::with(['quartos.reservas', 'hospedes'])
             ->where('id', $hotel_id)
             ->first();
+
+        $hospedes = DB::table('hospedes')
+            ->where('hotel_id', '=', $hotel_id)
+            ->get();
 
         if ($t1) {
             $inicioReserva = $req->inicioReserva;
@@ -227,7 +229,7 @@ class ReservaController extends Controller
             }
             return view('sistema.reserva.cadastraReserva',
                 ['hotel' => $t1, 'inicioReserva' => $inicioReserva, 'fimReserva' => $fimReserva,
-                    'checkin'=>$checkin, 'checkout'=>$checkout]);
+                    'checkin'=>$checkin, 'checkout'=>$checkout, 'hospedes' => $hospedes]);
         }
     }
 

@@ -7,6 +7,12 @@
                 Gerenciamento de Reservas
             </h1>
         </div>
+        <a href="{{route('core.nova.reserva')}}">
+            <button type="button" class="btn btn-flat btn-warning btn-sm"
+                    style="font-size: 25px ">
+                Realizar uma Reserva
+            </button>
+        </a>
         @if(Session::has('message_cancelado'))
             <div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

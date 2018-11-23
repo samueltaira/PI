@@ -67,36 +67,41 @@
                     <hr>
 
                     @if(isset($hotel))
-                        {{--{{dd($hotel->quartos)}}--}}
                         <div class="form-group">
                             <label for="hospede">Hóspede:</label>
-                            <input type="text" autocomplete="off" class="form-control" name="hospede" id="nome"
-                                   placeholder="Hóspede"
-                                   value="{{old('nome')}}">
-                            <div id="listaNomes"></div>
-                            {{ csrf_field() }}
+                                @if($hospedes ->count() > 0)
+                                    <input type="text" autocomplete="off" class="form-control" name="hospede" id="nome"
+                                           placeholder="Pesquisar por um hóspede cadastrado, não esqueça de diferenciar letras maísculas de minúsculas"
+                                           value="{{old('nome')}}">
+                                    <div id="listaNomes"></div>
+                                    {{ csrf_field() }}
+                                @else
+                                    <div>Você deve ter pelo menos 1 hóspede cadastrado</div>
+                                @endif
                         </div>
                         <div class="form-group">
-                            @if($hotel->quartos->count()>0)
-                                <label for="quarto">Quarto:</label><br>
-                                <select name="quarto_id">
-                                    @foreach($hotel->quartos as $t10)
-                                        <option value="{{$t10->id}}">{{$t10->nomeQuarto}}<br>
-                                    @endforeach
-                                </select>
-                                <div class="box-footer">
-                                    <button type="submit" formaction="{{route('core.realiza.reserva')}}"
-                                            class="btn btn-success">
-                                        Efetuar nova reserva
-                                    </button>
-                                </div>
-                            @else
-                                <tr role="row">
-                                    <div class="callout callout-warning">
-                                        <h4>Alerta!</h4>
-                                        <p>Nenhum quarto disponível para esta data ou capacidade.</p>
+                            @if($hospedes ->count() > 0)
+                                @if($hotel->quartos->count()>0)
+                                    <label for="quarto">Quarto:</label><br>
+                                    <select name="quarto_id">
+                                        @foreach($hotel->quartos as $t10)
+                                            <option value="{{$t10->id}}">{{$t10->nomeQuarto}}<br>
+                                        @endforeach
+                                    </select>
+                                    <div class="box-footer">
+                                        <button type="submit" formaction="{{route('core.realiza.reserva')}}"
+                                                class="btn btn-success">
+                                            Reservar
+                                        </button>
                                     </div>
-                                </tr>
+                                @else
+                                    <tr role="row">
+                                        <div class="callout callout-warning">
+                                            <h4>Alerta!</h4>
+                                            <p>Nenhum quarto disponível para esta data ou capacidade.</p>
+                                        </div>
+                                    </tr>
+                                @endif
                             @endif
                         </div>
                     @endif

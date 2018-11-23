@@ -159,6 +159,28 @@
                     </ul>
                 </li>
 
+                <li class="treeview {{ Request()->is('hospede/*') ? 'active' : '' }}" id="Hospede">
+                    <a href="">
+                        <i class="fa fa-address-book-o"></i>
+                        <span>Clientes</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="{{route('sistema.main.hospedes')}}">
+                                <i class="fa fa-group"></i> Hóspedes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('sistema.cadastra.hospedes')}}">
+                                <i class="fa fa-plus"></i> Registrar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="treeview {{ Request()->is('reserva/*') ? 'active' : '' }}" id="Reserva">
                     <a href="">
                         <i class="fa fa-book"></i>
@@ -181,27 +203,6 @@
                     </ul>
                 </li>
 
-                <li class="treeview {{ Request()->is('hospede/*') ? 'active' : '' }}" id="Hospede">
-                    <a href="">
-                        <i class="fa fa-address-book-o"></i>
-                        <span>Clientes</span>
-                        <span class="pull-right-container">
-                            <span class="label label-primary pull-right"></span>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="{{route('sistema.main.hospedes')}}">
-                                <i class="fa fa-group"></i> Hóspedes
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('sistema.cadastra.hospedes')}}">
-                                <i class="fa fa-plus"></i> Registrar
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 {{--<li class="treeview">--}}
                     {{--<a href="">--}}
                         {{--<i class="fa fa-dashboard"></i>--}}
