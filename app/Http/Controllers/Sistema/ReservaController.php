@@ -250,24 +250,14 @@ class ReservaController extends Controller
             ->get();
 
         $teste2 = (int)substr($req->input('hospede'), 1, 1);
-        if(is_numeric($teste2)){
+
+        if($teste2 <= 0){
             return redirect()->route('core.nova.reserva')
                 ->with('message_erro', 'deu ruim.')
                 ->with('checkin', $checkin)
                 ->with('checkout', $checkout);
         }
-
-        $hospedes = DB::table('hospedes')
-            ->where('hotel_id', $hotel_id)
-            ->where('id', substr($req->input('hospede'), 1, 1))
-            ->count();
-
-        if(!$hospedes > 0){
-            return redirect()->route('core.nova.reserva')
-                ->with('message_erro', 'deu ruim.')
-                ->with('checkin', $checkin)
-                ->with('checkout', $checkout);
-        }else{
+            else{
             $reserva = new Reserva;
             $reserva->inicioReserva = Carbon::parse($req->input('inicioReserva'));
             $reserva->fimReserva = Carbon::parse($req->input('fimReserva'));
