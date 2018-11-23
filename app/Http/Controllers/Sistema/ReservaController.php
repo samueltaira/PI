@@ -236,14 +236,12 @@ class ReservaController extends Controller
     public function realizaReserva(Request $req)
     {
         $hotel_id = auth()->user()->getHotelId();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -251,21 +249,41 @@ class ReservaController extends Controller
             ])
             ->get();
 
-        $reserva = new Reserva;
+        $teste2 = (int)substr($req->input('hospede'), 1, 1);
+        if(is_numeric($teste2)){
+            return redirect()->route('core.nova.reserva')
+                ->with('message_erro', 'deu ruim.')
+                ->with('checkin', $checkin)
+                ->with('checkout', $checkout);
+        }
 
-        $reserva->inicioReserva = Carbon::parse($req->input('inicioReserva'));
-        $reserva->fimReserva = Carbon::parse($req->input('fimReserva'));
-        $reserva->hotel_id = $req->input('hotel_id');
-        $reserva->hospede_id = substr($req->input('hospede'), 1, 1);
-        $reserva->quarto_id = $req->input('quarto_id');
-        $reserva->consumo = $req->input('consumo');
-        $reserva->efetuouReserva = $req->input('efetuouReserva');
-        $reserva->save();
+        $hospedes = DB::table('hospedes')
+            ->where('hotel_id', $hotel_id)
+            ->where('id', $teste2)
+            ->count();
 
-        return redirect()->route('core.reserva')
-            ->with('message', 'Reserva efetuada com sucesso.')
-            ->with('checkin', $checkin)
-            ->with('checkout', $checkout);
+        if(!$hospedes > 0){
+            return redirect()->route('core.nova.reserva')
+                ->with('message_erro', 'deu ruim.')
+                ->with('checkin', $checkin)
+                ->with('checkout', $checkout);
+        }else{
+            $reserva = new Reserva;
+            $reserva->inicioReserva = Carbon::parse($req->input('inicioReserva'));
+            $reserva->fimReserva = Carbon::parse($req->input('fimReserva'));
+            $reserva->hotel_id = $req->input('hotel_id');
+            $reserva->hospede_id = substr($req->input('hospede'), 1, 1);
+            $reserva->quarto_id = $req->input('quarto_id');
+            $reserva->consumo = $req->input('consumo');
+            $reserva->efetuouReserva = $req->input('efetuouReserva');
+            $reserva->save();
+
+            return redirect()->route('core.reserva')
+                ->with('message', 'Reserva efetuada com sucesso.')
+                ->with('checkin', $checkin)
+                ->with('checkout', $checkout);
+        }
+
     }
 
     public function cancelarReserva($id)

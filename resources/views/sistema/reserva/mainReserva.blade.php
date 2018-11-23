@@ -7,16 +7,24 @@
                 Gerenciamento de Reservas
             </h1>
         </div>
+        <div>
         <a href="{{route('core.nova.reserva')}}">
             <button type="button" class="btn btn-flat btn-warning btn-sm"
                     style="font-size: 25px ">
                 Realizar uma Reserva
             </button>
         </a>
-        @if(Session::has('message_cancelado'))
-            <div class="alert alert-warning alert-dismissible">
+        </div><br>
+        @if(Session::has('container message_cancelado'))
+            <div class="container alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <i class="icon fa fa-check"></i>Reserva cancelada com sucesso
+            </div>
+        @endif
+        @if(Session::has('message'))
+            <div class="container alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-check"></i>Reserva efetuada com sucesso
             </div>
         @endif
     </section>
@@ -116,7 +124,7 @@
 
         {{--Canceladas--}}
 
-        <div class="box">valorPesquisado
+        <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Reservas canceladas e fechadas</h3>
             </div>

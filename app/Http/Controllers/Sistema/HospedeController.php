@@ -20,7 +20,6 @@ class HospedeController extends Controller
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -47,7 +46,6 @@ class HospedeController extends Controller
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -76,7 +74,6 @@ class HospedeController extends Controller
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -111,7 +108,6 @@ class HospedeController extends Controller
 
         $this->validate($req,
             [
-
                 'nome' => 'required|min:3',
                 'cidade' => 'required|min:3',
                 'email' => 'required|email',

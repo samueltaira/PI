@@ -12,7 +12,7 @@
     <a href="{{route('core.nova.reserva')}}">
         <button type="button" class="btn btn-flat btn-info btn-sm"
             style=" width: 97%;margin-left: 20px; margin-right: 20px;font-size: 25px ">
-        Realizar um Reserva
+        Realizar uma Reserva
         </button>
     </a>
     <section class="content-header">

@@ -63,7 +63,7 @@
                 <span class="sr-only">
                     Toggle navigation
                 </span>
-            </a>
+            </a><?php date_default_timezone_set('America/Sao_Paulo') ;?>
             <span class="navbar-text" style="margin: 5px; margin-left: 40%">
                 <h4 style="color: white;font-weight: lighter">
                     Olá, {{Auth::user()->nome }}! Hoje é: {{ date('d-m-Y') }}

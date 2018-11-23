@@ -32,7 +32,6 @@ class HomeController extends Controller
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -49,23 +48,18 @@ class HomeController extends Controller
 //     Paginação OK com 10 hospedes por página - funcionando
 
         $hotel_id = auth()->user()->getHotelId();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
                 ['reservas.fimReserva', '=', Carbon::now()]
             ])
             ->get();
-
-
-        $hotel_id = auth()->user()->getHotelId();
 
         $quartos = DB::table('quartos')
             ->where('hotel_id', '=', $hotel_id)
@@ -87,14 +81,12 @@ class HomeController extends Controller
             ->paginate(10);
 
         $hotel_id = auth()->user()->getHotelId();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -108,14 +100,12 @@ class HomeController extends Controller
     public function cadastrarQuarto()
     {
         $hotel_id = auth()->user()->getHotelId();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -150,14 +140,12 @@ class HomeController extends Controller
         Quarto::create($dados);
 
         $hotel_id = auth()->user()->getHotelId();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -180,14 +168,12 @@ class HomeController extends Controller
         $quarto->save();
 
         $hotel_id = auth()->user()->getHotelId();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -207,15 +193,14 @@ class HomeController extends Controller
         $quarto = Quarto::find($id);
         $quarto->status_quarto='Ativo';
         $quarto->save();
-        $hotel_id = auth()->user()->getHotelId();
 
+        $hotel_id = auth()->user()->getHotelId();
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -234,14 +219,12 @@ class HomeController extends Controller
     {
         $registro = Quarto::find($id);
         $hotel_id = auth()->user()->getHotelId();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],
@@ -269,15 +252,14 @@ class HomeController extends Controller
 
         $dados = $req->all();
         Quarto::find($id)->update($dados);
-        $hotel_id = auth()->user()->getHotelId();
 
+        $hotel_id = auth()->user()->getHotelId();
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
                 ['reservas.inicioReserva', '=', Carbon::now()]
             ])
             ->get();
-
         $checkout = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'Iniciada'],

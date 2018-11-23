@@ -12,7 +12,13 @@
             <h1>
                 Reserva
             </h1>
-        </div>
+        </div><br>
+        @if(Session::has('message_erro'))
+            <div class="container alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-check"></i>Hóspede não encontrado no sistema, favor verificar
+            </div>
+        @endif
         @if(count($errors) != 0)
             @foreach($errors->all() as $erro)
                 <div class="teste alert alert-danger alert-dismissible" role="alert"
