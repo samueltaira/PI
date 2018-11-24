@@ -71,6 +71,17 @@ class ReservaController extends Controller
             ->paginate(20);
 
 
+        $mensagens = [
+            'valorPesquisadoReserva.date_format' => "Favor preencher o campo com a data corretamente, exemplo: 22/11/2018"
+        ];
+
+
+        $this->validate($req,
+            [
+                'valorPesquisadoReserva' => 'date_format:d/m/Y'
+
+            ], $mensagens);
+
 
         if($search){
             $reservas = Reserva::with(['hospede', 'quarto'])
@@ -113,11 +124,23 @@ class ReservaController extends Controller
             ->where('reservas.status', 'aberto')
             ->paginate(20);
 
+
+        $mensagens = [
+            'valorPesquisadoReservaAlterada.date_format' => "Favor preencher o campo com a data corretamente, exemplo: 22/11/2018"
+        ];
+
+
+        $this->validate($req,
+            [
+                'valorPesquisadoReservaAlterada' => 'date_format:d/m/Y'
+
+            ], $mensagens);
+
         if($search){
              $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', '<>', 'aberto')
-             ->where('inicioReserva', '=', '%' . \DateTime::createFromFormat('d/m/Y', $search)->format('Y-m-d'). '%')
+            ->where('inicioReserva', '=', '%' . \DateTime::createFromFormat('d/m/Y', $search)->format('Y-m-d'). '%')
             ->orderBy('inicioReserva')
             ->paginate(20);
             return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas,

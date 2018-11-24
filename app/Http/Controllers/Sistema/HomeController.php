@@ -121,6 +121,8 @@ class HomeController extends Controller
         $mensagens = [
             'nomeQuarto.required' => "Favor preencher o campo nome corretamente",
             'nomeQuarto.unique' => "Já existe um quarto registrado com este nome",
+            'nomeQuarto.min' => "O nome do quarto deve conter no minimo 3 characteres",
+            'nomeQuarto.max' => "O nome do quarto deve conter no máximo 200",
             'capacidade.required' => "Favor selecionar um tipo de quarto"
         ];
 
@@ -132,7 +134,9 @@ class HomeController extends Controller
                     'required',
                     Rule::unique('quartos')->where(function ($query) {
                         $query->where('hotel_id', auth()->user()->getHotelId());
-                    })],
+                    }),
+                    'min:3',
+                    'max:200'],
             ], $mensagens);
 
 
@@ -241,13 +245,23 @@ class HomeController extends Controller
     {
         $mensagens = [
             'nomeQuarto.required' => "Favor preencher o campo nome corretamente",
+            'nomeQuarto.unique' => "Já existe um quarto registrado com este nome",
+            'nomeQuarto.min' => "O nome do quarto deve conter no minimo 3 characteres",
+            'nomeQuarto.max' => "O nome do quarto deve conter no máximo 200",
             'capacidade.required' => "Favor selecionar um tipo de quarto"
         ];
+
 
         $this->validate($req,
             [
                 'capacidade' => 'required',
-                'nomeQuarto' => 'required',
+                'nomeQuarto' => [
+                    'required',
+                    Rule::unique('quartos')->where(function ($query) {
+                        $query->where('hotel_id', auth()->user()->getHotelId());
+                    }),
+                    'min:3',
+                    'max:200'],
             ], $mensagens);
 
         $dados = $req->all();

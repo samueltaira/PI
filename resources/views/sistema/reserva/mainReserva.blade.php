@@ -36,6 +36,17 @@
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
+                        @if(count($errors) != 0)
+                            @foreach($errors->all() as $erro)
+                                <div class="teste alert alert-danger alert-dismissible" role="alert"
+                                     style="text-align: center; position: absolute; top: 12%; left: 40%; width: 50%">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <p>{{$erro}}</p>
+                                </div>
+                            @endforeach
+                        @endif
                         <form action="{{route('core.pesquisa.reserva')}}" method="GET">
                             <div class="col-sm-3">
                                 <div id="filtro" class="dataTables_filter">
@@ -131,6 +142,17 @@
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
+                        @if(count($errors) != 0)
+                            @foreach($errors->all() as $erro)
+                                <div class="teste alert alert-danger alert-dismissible" role="alert"
+                                     style="text-align: center; position: absolute; top: 6%; left: 40%; width: 50%">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <p>{{$erro}}</p>
+                                </div>
+                            @endforeach
+                        @endif
                         <form action="{{route('core.pesquisa.reservaAlterada')}}">
                             <div class="col-sm-3">
                                 <div id="filtro" class="dataTables_filter">

@@ -89,8 +89,10 @@ class HospedeController extends Controller
     {
         $mensagens = [
             'nome.min' => "O nome deve conter pelo menos 3 caracteres",
+            'nome.max' => "O nome deve conter no máximo 200 caracteres",
             'nome.required' => "Favor preencher o campo nome corretamente",
             'cidade.min' => "A cidade deve conter pelo menos 3 caracteres",
+            'cidade.max' => "A cidade deve conter no máximo 200 caracteres",
             'cidade.required' => "Favor preencher o campo cidade corretamente",
             'email.email' => "O email deve ser preenchido corretamente",
             'email.required' => "Favor preencher o campo de email",
@@ -108,8 +110,8 @@ class HospedeController extends Controller
 
         $this->validate($req,
             [
-                'nome' => 'required|min:3',
-                'cidade' => 'required|min:3',
+                'nome' => 'required|min:3|max:200',
+                'cidade' => 'required|min:3|max:200',
                 'email' => 'required|email',
                 'contato' => 'required|numeric|digits_between:10,15',
                 'documento' => 'required|numeric|digits_between:11,15|unique:hospedes',
@@ -171,8 +173,10 @@ class HospedeController extends Controller
     {
         $mensagens = [
             'nome.min' => "O nome deve conter pelo menos 3 caracteres",
+            'nome.max' => "O nome deve conter no máximo 200 caracteres",
             'nome.required' => "Favor preencher o campo nome corretamente",
             'cidade.min' => "A cidade deve conter pelo menos 3 caracteres",
+            'cidade.max' => "A cidade deve conter no máximo 200 caracteres",
             'cidade.required' => "Favor preencher o campo cidade corretamente",
             'email.email' => "O email deve ser preenchido corretamente",
             'email.required' => "Favor preencher o campo de email",
@@ -190,8 +194,8 @@ class HospedeController extends Controller
         $this->validate($req,
             [
 
-                'nome' => 'required|min:3',
-                'cidade' => 'required|min:3',
+                'nome' => 'required|min:3|max:200',
+                'cidade' => 'required|min:3|max:200',
                 'email' => 'required|email',
                 'contato' => 'required|numeric|digits_between:10,15',
                 'documento' => 'required|numeric|digits_between:11,15',
