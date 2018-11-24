@@ -70,11 +70,13 @@ class ReservaController extends Controller
             ->where('reservas.status', '<>', 'aberto')
             ->paginate(20);
 
+
+
         if($search){
             $reservas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', 'aberto')
-            ->where('inicioReserva', '=', '%' . $search . '%')
+            ->where('inicioReserva', '=', '%' . \DateTime::createFromFormat('d/m/Y', $search)->format('Y-m-d'). '%')
             ->orderBy('inicioReserva')
             ->paginate(20);
         } else{
@@ -115,7 +117,7 @@ class ReservaController extends Controller
              $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', '<>', 'aberto')
-            ->where('inicioReserva', '=', '%' . $search . '%')
+             ->where('inicioReserva', '=', '%' . \DateTime::createFromFormat('d/m/Y', $search)->format('Y-m-d'). '%')
             ->orderBy('inicioReserva')
             ->paginate(20);
             return view('sistema.reserva.mainReserva', ['reservas' => $reservas, 'reservasAlteradas' => $reservasAlteradas,
