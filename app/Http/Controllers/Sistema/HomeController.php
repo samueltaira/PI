@@ -21,7 +21,7 @@ class HomeController extends Controller
             ->where([['reservas.hotel_id', $hotel_id],
                     ['reservas.status', '<>' ,'Cancelado'],
                     ['reservas.status', '<>', 'Fechada'],
-                    ['reservas.inicioReserva', '=<', Carbon::now()]
+                    ['reservas.inicioReserva', '<=', Carbon::now()]
                 ])
             ->orderBy('fimReserva')
             ->get();
