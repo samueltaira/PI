@@ -37,9 +37,10 @@
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                         @if(count($errors) != 0)
-                            @foreach($errors->all() as $erro)
+                            {{--{{dd($errors)}}--}}
+                            @foreach($errors->get('valorPesquisadoReserva') as $erro)
                                 <div class="teste alert alert-danger alert-dismissible" role="alert"
-                                     style="text-align: center; position: absolute; top: 12%; left: 40%; width: 50%">
+                                     style="text-align: center; position: absolute; top: 17%; left: 45%; width: 50%">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -57,10 +58,15 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-sm-1">
+                            <div class="" style="text-align: center; position: absolute; top: 24%; left: 20%;">
                                 <button class="btn btn-success" type="submit">Pesquisar</button>
                             </div>
                         </form>
+                            <div style="text-align: center; position: absolute; top: 24%; left: 29%;">
+                                <a href="{{route('core.reserva')}}">
+                                    <button class="btn btn-default" type="submit">Limpar pesquisa</button>
+                                </a>
+                            </div>
                     </div>
                     <br>
                     <div class="row">
@@ -143,9 +149,9 @@
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                         @if(count($errors) != 0)
-                            @foreach($errors->all() as $erro)
+                            @foreach($errors->get('valorPesquisadoReservaAlterada') as $erro)
                                 <div class="teste alert alert-danger alert-dismissible" role="alert"
-                                     style="text-align: center; position: absolute; top: 6%; left: 40%; width: 50%">
+                                     style="text-align: center; position: absolute; top: 8%; left: 45%; width: 50%">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -163,10 +169,15 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-sm-1">
+                            <div class="" style="text-align: center; position: absolute; top: 12%; left: 20%;">
                                 <button class="btn btn-success" type="submit">Pesquisar</button>
                             </div>
                         </form>
+                        <div style="text-align: center; position: absolute; top: 12%; left: 29%;">
+                            <a href="{{route('core.reserva')}}">
+                                <button class="btn btn-default" type="submit">Limpar pesquisa</button>
+                            </a>
+                        </div>
                     </div>
                     <br>
                     <div class="row">
