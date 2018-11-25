@@ -102,10 +102,10 @@
                                             {{$reserva->quarto->nomeQuarto}}
                                         </td>
                                         <td>
-                                            <a title="Edição reserva desabilitado" class="btn btn-flat btn-warning"
-                                               href="#">
-                                                {{--<i class="fa fa-fw fa-edit"></i>--}}
-                                            </a>
+                                                {{--<a title="Edição reserva desabilitado" class="btn btn-flat btn-warning"--}}
+                                                   {{--href="#">--}}
+                                                    {{--<i class="fa fa-fw fa-edit"></i>--}}
+                                                {{--</a>--}}
                                             <a onclick="return confirm('Quer realmente cancelar esta reserva?')" href="{{route('core.cancela.reserva', $reserva->id)}}"
                                                title="Cancelar Reserva" class="btn btn-flat btn-danger">
                                                 <i class="fa fa-w fa-window-close"></i>
