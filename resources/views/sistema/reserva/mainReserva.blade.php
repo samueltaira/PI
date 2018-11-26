@@ -79,6 +79,7 @@
                                         <th>Check Out</th>
                                         <th>Hospede</th>
                                         <th>Quarto</th>
+                                        <th>Status</th>
                                         <th>Ação</th>
                                       </tr>
                                 </thead>
@@ -100,6 +101,9 @@
                                         </td>
                                         <td>
                                             {{$reserva->quarto->nomeQuarto}}
+                                        </td>
+                                        <td>
+                                            {{$reserva->status}}
                                         </td>
                                         <td>
                                                 {{--<a title="Edição reserva desabilitado" class="btn btn-flat btn-warning"--}}

@@ -21,10 +21,12 @@ class ReservaController extends Controller
         $reservas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', 'aberto')
+            ->orWhere('reservas.status', 'Iniciada')
             ->paginate(20);
         $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', '<>', 'aberto')
+            ->Where('reservas.status', '<>', 'Iniciada')
             ->paginate(20);
 
         $checkin = Reserva::with(['hospede', 'quarto'])
@@ -221,6 +223,10 @@ class ReservaController extends Controller
             foreach ($t1->quartos as $k => $quarto) {
 
                 if ($quarto->capacidade != $capacidade) {
+                    $t1->quartos->forget($k);
+                }
+
+                if ($quarto->status_quarto != 'Ativo') {
                     $t1->quartos->forget($k);
                 }
 
