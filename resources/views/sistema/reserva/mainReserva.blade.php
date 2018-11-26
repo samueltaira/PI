@@ -50,7 +50,7 @@
                         @endif
                         <div class="row">
                             <form action="{{route('core.pesquisa.reserva')}}" method="GET">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3" style="margin-left: 2%">
                                     <div id="filtro" class="dataTables_filter">
                                         <label>Procurar:
                                             <input type="search" class="form-control input-sm"
@@ -166,7 +166,7 @@
                         @endif
                         <div class="row">
                             <form action="{{route('core.pesquisa.reservaAlterada')}}">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3" style="margin-left: 2%">
                                     <div id="filtro" class="dataTables_filter">
                                         <label>Procurar:
                                             <input type="search" class="form-control input-sm"
