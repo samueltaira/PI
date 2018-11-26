@@ -85,7 +85,6 @@
                                       </tr>
                                 </thead>
                                 <tbody>
-                                {{--{{dd($reservas)}}--}}
                                 @forelse($reservas as $reserva)
                                     <tr role="row">
                                         <td>
@@ -118,26 +117,14 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
                                 @empty
                                     <tr role="row">
                                         <td colspan="7">
                                             Nenhuma reserva no momento.
                                         </td>
                                     </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th colspan="7">ID</th>
-                                </tr>
-                                </tfoot>
-                                </table>
                                 @endforelse
+                            </table>
                         </div>
                     </div>
                     <div class="row">
@@ -229,26 +216,15 @@
                                             {{$reservaAlterada->status}}
                                         </td>
                                     </tr>
-                                <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                </tbody>
                             @empty
                                 <tr role="row">
                                     <td colspan="7">
                                         Nenhuma reserva no momento.
                                     </td>
                                 </tr>
-                                </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="7">ID</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            @endforelse
+                           @endforelse
+                         </table>
                         </div>
                     </div>
                     <div class="row">
