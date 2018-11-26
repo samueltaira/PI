@@ -48,25 +48,26 @@
                                 </div>
                             @endforeach
                         @endif
-                        <form action="{{route('core.pesquisa.reserva')}}" method="GET">
-                            <div class="col-sm-3">
-                                <div id="filtro" class="dataTables_filter">
-                                    <label>Procurar:
-                                        <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pela data de inicio"
-                                               size="20%" name="valorPesquisadoReserva">
-                                    </label>
+                        <div class="row">
+                            <form action="{{route('core.pesquisa.reserva')}}" method="GET">
+                                <div class="col-sm-3">
+                                    <div id="filtro" class="dataTables_filter">
+                                        <label>Procurar:
+                                            <input type="search" class="form-control input-sm"
+                                                   placeholder="Procure pela data de inicio"
+                                                   size="20%" name="valorPesquisadoReserva">
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="" style="text-align: center; position: absolute; top: 24%; left: 20%;">
-                                <button class="btn btn-success" type="submit">Pesquisar</button>
-                            </div>
-                        </form>
-                            <div style="text-align: center; position: absolute; top: 24%; left: 29%;">
-                                <a href="{{route('core.reserva')}}">
-                                    <button class="btn btn-default" type="submit">Limpar pesquisa</button>
-                                </a>
-                            </div>
+                                <div class="col-sm-1" style="text-align: center; position: inherit">
+                                    <button class="btn btn-success" type="submit">Pesquisar</button>
+                                </div>
+                                <div class="col-sm-1" style="text-align: center; position: inherit">
+                                    <a class="btn btn-default" href="{{route('core.reserva')}}">Limpar pesquisa
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <br>
                     <div class="row">
@@ -163,24 +164,26 @@
                                 </div>
                             @endforeach
                         @endif
-                        <form action="{{route('core.pesquisa.reservaAlterada')}}">
-                            <div class="col-sm-3">
-                                <div id="filtro" class="dataTables_filter">
-                                    <label>Procurar:
-                                        <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pela data de inicio"
-                                               size="20%" name="valorPesquisadoReservaAlterada">
-                                    </label>
+                        <div class="row">
+                            <form action="{{route('core.pesquisa.reservaAlterada')}}">
+                                <div class="col-sm-3">
+                                    <div id="filtro" class="dataTables_filter">
+                                        <label>Procurar:
+                                            <input type="search" class="form-control input-sm"
+                                                   placeholder="Procure pela data de inicio"
+                                                   size="20%" name="valorPesquisadoReservaAlterada">
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="" style="text-align: center; position: absolute; top: 12%; left: 20%;">
-                                <button class="btn btn-success" type="submit">Pesquisar</button>
-                            </div>
-                        </form>
-                        <div style="text-align: center; position: absolute; top: 12%; left: 29%;">
-                            <a href="{{route('core.reserva')}}">
-                                <button class="btn btn-default" type="submit">Limpar pesquisa</button>
-                            </a>
+                                <div class="col-sm-1" style="text-align: center; position: inherit">
+                                    <button class="btn btn-success" type="submit">Pesquisar</button>
+                                </div>
+                                <div class="col-sm-1" style="text-align: center; position: inherit">
+                                    <a href="{{route('core.reserva')}}">
+                                        <button class="btn btn-default" type="submit">Limpar pesquisa</button>
+                                    </a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <br>
