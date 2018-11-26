@@ -36,18 +36,6 @@
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        @if(count($errors) != 0)
-                            {{--{{dd($errors)}}--}}
-                            @foreach($errors->get('valorPesquisadoReserva') as $erro)
-                                <div class="teste alert alert-danger alert-dismissible" role="alert"
-                                     style="text-align: center; position: absolute; top: 17%; left: 45%; width: 50%">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <p>{{$erro}}</p>
-                                </div>
-                            @endforeach
-                        @endif
                         <div class="row">
                             <form action="{{route('core.pesquisa.reserva')}}" method="GET">
                                 <div class="col-sm-3" style="margin-left: 2%">
@@ -59,13 +47,25 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-sm-1" style="text-align: center; position: inherit">
+                                <div class="col-sm-1" style="text-align: center;">
                                     <button class="btn btn-success" type="submit">Pesquisar</button>
                                 </div>
-                                <div class="col-sm-1" style="text-align: center; position: inherit">
-                                    <a class="btn btn-default" href="{{route('core.reserva')}}">Limpar pesquisa
+                                <div class="col-sm-1" style="text-align: center;">
+                                    <a class="btn btn-default" href="{{route('core.reserva')}}">
+                                        Limpar pesquisa
                                     </a>
                                 </div>
+                                @if(count($errors) != 0)
+                                    {{--{{dd($errors)}}--}}
+                                    @foreach($errors->get('valorPesquisadoReserva') as $erro)
+                                        <div class="col-sm-offset-6 alert alert-danger alert-dismissible" style="padding: 5px; width: 460px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <p>{{$erro}}</p>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </form>
                         </div>
                     </div>
@@ -147,17 +147,6 @@
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        @if(count($errors) != 0)
-                            @foreach($errors->get('valorPesquisadoReservaAlterada') as $erro)
-                                <div class="teste alert alert-danger alert-dismissible" role="alert"
-                                     style="text-align: center; position: absolute; top: 8%; left: 45%; width: 50%">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <p>{{$erro}}</p>
-                                </div>
-                            @endforeach
-                        @endif
                         <div class="row">
                             <form action="{{route('core.pesquisa.reservaAlterada')}}">
                                 <div class="col-sm-3" style="margin-left: 2%">
@@ -173,10 +162,20 @@
                                     <button class="btn btn-success" type="submit">Pesquisar</button>
                                 </div>
                                 <div class="col-sm-1" style="text-align: center; position: inherit">
-                                    <a href="{{route('core.reserva')}}">
-                                        <button class="btn btn-default" type="submit">Limpar pesquisa</button>
+                                    <a class="btn btn-default" href="{{route('core.reserva')}}">
+                                        Limpar pesquisa
                                     </a>
                                 </div>
+                                @if(count($errors) != 0)
+                                    @foreach($errors->get('valorPesquisadoReservaAlterada') as $erro)
+                                        <div class="col-sm-offset-6 alert alert-danger alert-dismissible" style="padding: 5px; width: 460px;">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <p>{{$erro}}</p>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </form>
                         </div>
                     </div>
