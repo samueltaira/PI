@@ -23,9 +23,9 @@ class UserController extends Controller
     {
         $mensagens = [
             'nome.min' => "O nome deve conter pelo menos 3 caracteres",
-//            'nome.max' => "O nome deve conter no máximo 200 caracteres",
+            'nome.max' => "O nome deve conter no máximo 200 caracteres",
             'hotel.min' => "O Hotel deve conter pelo menos 3 caracteres",
-//            'hotel.max' => "O Hotel deve conter pelo menos 200 caracteres",
+            'hotel.max' => "O Hotel deve conter pelo menos 200 caracteres",
             'password.min' => "A senha deve conter no minimo 6 caracteres",
             'password.required' => "Favor preencher a senha",
             'telefone.numeric' => "No campo telefone, deverá conter apenas números",
@@ -37,10 +37,8 @@ class UserController extends Controller
         $this->validate($req,
             [
 
-//                'nome' => 'required|min:3|max:200',
-                'nome' => 'required|min:3',
-//                'hotel' => 'required|min:3|max:200',
-                'hotel' => 'required|min:3',
+                'nome' => 'required|min:3|max:200',
+                'hotel' => 'required|min:3|max:200',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:5|max:25',
                 'telefone' => 'required|numeric|digits_between:10,15'
