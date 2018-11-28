@@ -37,8 +37,10 @@ class UserController extends Controller
         $this->validate($req,
             [
 
-                'nome' => 'required|min:3|max:200',
-                'hotel' => 'required|min:3|max:200',
+//                'nome' => 'required|min:3|max:200',
+                'nome' => 'required|min:3',
+//                'hotel' => 'required|min:3|max:200',
+                'hotel' => 'required|min:3',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:5|max:25',
                 'telefone' => 'required|numeric|digits_between:10,15'
