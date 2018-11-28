@@ -22,6 +22,7 @@ class ReservaController extends Controller
             ->where('reservas.hotel_id', $hotel_id)
             ->where('reservas.status', 'aberto')
             ->orWhere('reservas.status', 'Iniciada')
+            ->where('reservas.hotel_id', $hotel_id)
             ->paginate(20);
         $reservasAlteradas = Reserva::with(['hospede', 'quarto'])
             ->where('reservas.hotel_id', $hotel_id)
