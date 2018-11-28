@@ -120,7 +120,9 @@ class PerfilController extends Controller
     {
         $mensagens = [
             'nome.min' => "O nome deve conter pelo menos 3 caracteres",
+            'nome.max' => "O nome deve conter no máximo 200 caracteres",
             'password.min' => "A senha deve conter no minimo 6 caracteres",
+            'password.required' => "Favor inserir uma senha",
             'telefone.numeric' => "No campo telefone, deverá conter apenas números",
             'telefone.required' => "O campo telefone, deve ser preenchido",
             'telefone.digits_between' => "O campo telefone, deve ter no mín 10 digitos e máx 15 digitos",
@@ -129,7 +131,7 @@ class PerfilController extends Controller
 
         $this->validate($req,
             [
-                'nome' => 'required|min:3',
+                'nome' => 'required|min:3|max:200',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:5|max:25',
                 'telefone' => 'required|numeric|digits_between:10,15'
