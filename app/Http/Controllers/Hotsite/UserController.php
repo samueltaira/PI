@@ -23,9 +23,9 @@ class UserController extends Controller
     {
         $mensagens = [
             'nome.min' => "O nome deve conter pelo menos 3 caracteres",
-            'nome.max' => "O nome deve conter no máximo 200 caracteres",
+//            'nome.max' => "O nome deve conter no máximo 200 caracteres",
             'hotel.min' => "O Hotel deve conter pelo menos 3 caracteres",
-            'hotel.max' => "O Hotel deve conter pelo menos 200 caracteres",
+//            'hotel.max' => "O Hotel deve conter pelo menos 200 caracteres",
             'password.min' => "A senha deve conter no minimo 6 caracteres",
             'password.required' => "Favor preencher a senha",
             'telefone.numeric' => "No campo telefone, deverá conter apenas números",
