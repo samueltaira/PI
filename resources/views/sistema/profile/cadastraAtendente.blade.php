@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" class="form-control" name="telefone" placeholder="47900000000">
+                        <input type="tel" class="form-control" name="telefone" placeholder="47900000000" value="{{old('telefone')}}">
                     </div>
                     <input type="hidden" name="hotel_id" value="{{auth()->user()->getHotelId()}}">
                     <input type="hidden" name="quartos" value="0">
