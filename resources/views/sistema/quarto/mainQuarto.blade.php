@@ -11,22 +11,15 @@
     @endif
     <a href="{{route('core.nova.reserva')}}">
         <button type="button" class="btn btn-flat btn-info btn-sm"
-            style=" width: 97%;margin-left: 20px; margin-right: 20px;font-size: 25px ">
-        Realizar uma Reserva
+                style=" width: 97%;margin-left: 20px; margin-right: 20px;font-size: 25px ">
+            Realizar uma Reserva
         </button>
     </a>
     <section class="content-header">
         <h1>
-            Mapa dos Quartos atualmente
+            Reservas de hoje
         </h1>
-        {{--<h4>--}}
-            {{--<a href="">--}}
-                {{--<i class="fa fa-filter">--}}
-                {{--</i> Filtrar quartos--}}
-            {{--</a>--}}
-        {{--</h4>--}}
     </section>
-    {{--{{dd($tudo)}}--}}
     <section class="content">
         <div class="row">
             @forelse($tudo as $reserva)

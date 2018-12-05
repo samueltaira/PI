@@ -130,11 +130,32 @@
                 </a><br>
             </div>
             <ul class="sidebar-menu" data-widget="tree">
+                <li class="treeview {{Request()->is('dashboard/*') ? 'active' : ''}}">
+                    <a href="">
+                        <i class="fa fa-tachometer"></i>
+                        <span>
+                            Dashboard
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="{{route('sistema.home.dashboard')}}">
+                                <i class="fa fa-info"></i> Informações gerais
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('sistema.home')}}">
+                                <i class="fa fa-map-o"></i> Mapa de reservas
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="treeview {{ Request()->is('core/*') ? 'active' : '' }}" id="Mapa">
                     <a href="">
-                        <i class="fa fa-map-o"></i>
+                        <i class="fa fa-bed"></i>
                         <span>
-                            Map Room
+                            Quartos
                         </span>
                         <span class="pull-right-container">
                             <span class="label label-primary pull-right"></span>
@@ -142,18 +163,13 @@
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="{{route('sistema.home')}}">
-                                <i class="fa fa-map"></i> Mapa dos Quartos
+                            <a href="{{route('sistema.lista.quartos')}}">
+                                <i class="fa  fa-list-alt"></i> Gerenciamento dos quartos
                             </a>
                         </li>
                         <li>
                             <a href="{{route('sistema.main.cadastra.quarto')}}">
                                 <i class="fa fa-plus"></i> Adicionar Quarto
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('sistema.lista.quartos')}}">
-                                <i class="fa  fa-list-alt"></i> Gerenciamento dos quartos
                             </a>
                         </li>
                     </ul>

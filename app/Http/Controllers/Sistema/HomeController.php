@@ -42,6 +42,34 @@ class HomeController extends Controller
         return view('sistema.quarto.mainQuarto', ['tudo'=>$tudo, 'checkin'=>$checkin, 'checkout'=>$checkout]);
     }
 
+    public function dashboard()
+    {
+        $hotel_id = auth()->user()->getHotelId();
+        $tudo = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                    ['reservas.status', '<>' ,'Cancelado'],
+                    ['reservas.status', '<>', 'Fechada'],
+                    ['reservas.inicioReserva', '<=', Carbon::now()]
+                ])
+            ->orderBy('fimReserva')
+            ->get();
+
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return view('sistema.quarto.dashboard', ['tudo'=>$tudo, 'checkin'=>$checkin, 'checkout'=>$checkout]);
+    }
+
 
     public function indexLista()
     {

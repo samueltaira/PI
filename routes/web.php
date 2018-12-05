@@ -28,8 +28,11 @@ Route::post('/cadastro/registrar', ['as' => 'hotsite.cadastro.registrar', 'uses'
 //grupo para restringir acesso ao sistema
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix'=>'dashboard'], function (){
+        Route::get('/mapa', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
+        Route::get('/dash', ['as' => 'sistema.home.dashboard', 'uses' => 'Sistema\HomeController@dashboard']);
+    });
     Route::group(['prefix' => 'core'], function () {
-        Route::get('/quartos', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
         Route::get('/listaQuartos', ['as' => 'sistema.lista.quartos', 'uses' => 'Sistema\HomeController@indexLista']);
         Route::get('/listaQuartos/search', ['as' => 'sistema.main.quartos.pesquisar', 'uses' => 'Sistema\HomeController@pesquisaQuarto']);
         Route::get('/cadastraQuarto', ['as' => 'sistema.main.cadastra.quarto', 'uses' => 'Sistema\HomeController@cadastrarQuarto']);
