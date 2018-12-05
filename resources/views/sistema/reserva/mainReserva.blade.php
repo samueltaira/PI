@@ -91,10 +91,10 @@
                                             {{$reserva->id}}
                                         </td>
                                         <td>
-                                            {{date('d-m-Y', strtotime($reserva->inicioReserva))}}
+                                            {{date('d/m/Y', strtotime($reserva->inicioReserva))}}
                                         </td>
                                         <td>
-                                            {{date('d-m-Y', strtotime($reserva->fimReserva))}}
+                                            {{date('d/m/Y', strtotime($reserva->fimReserva))}}
                                         </td>
                                         <td>
                                             {{$reserva->hospede->nome}}
@@ -200,10 +200,10 @@
                                             {{$reservaAlterada->id}}
                                         </td>
                                         <td>
-                                            {{date('d-m-Y', strtotime($reservaAlterada->inicioReserva))}}
+                                            {{date('d/m/Y', strtotime($reservaAlterada->inicioReserva))}}
                                         </td>
                                         <td>
-                                            {{date('d-m-Y', strtotime($reservaAlterada->fimReserva))}}
+                                            {{date('d/m/Y', strtotime($reservaAlterada->fimReserva))}}
                                         </td>
                                         <td>
                                             {{$reservaAlterada->hospede->nome}}

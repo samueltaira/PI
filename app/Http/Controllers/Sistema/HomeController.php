@@ -75,7 +75,7 @@ class HomeController extends Controller
         $search = $req->get('valorPesquisado');
 
         $quartos = DB::table('quartos')
-            ->where('nomeQuarto', 'like', '%' . $search . '%')
+            ->where('nomeQuarto', 'ilike', '%' . $search . '%')
             ->where('hotel_id', '=', $hotel_id)
             ->orderBy('id')
             ->paginate(10);

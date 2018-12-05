@@ -28,20 +28,22 @@
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        <form action="{{route('sistema.main.hospedes.pesquisar')}}" method="GET">
-                            <div class="col-sm-3">
-                                <div id="filtro" class="dataTables_filter">
-                                    <label>Procurar:
-                                        <input type="search" class="form-control input-sm"
-                                               placeholder="Procure pelo nome ou documento"
-                                               size="25%" name="valorPesquisado">
-                                    </label>
+                        <div class="row">
+                            <form action="{{route('sistema.main.hospedes.pesquisar')}}" method="GET">
+                                <div class="col-sm-3" style="margin-left: 2%">
+                                    <div id="filtro" class="dataTables_filter">
+                                        <label>Procurar:
+                                            <input type="search" class="form-control input-sm"
+                                                   placeholder="Procure pelo nome"
+                                                   size="20%" name="valorPesquisado">
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-1">
-                                <button class="btn btn-success" type="submit">Pesquisar</button>
-                            </div>
-                        </form>
+                                <div class="col-sm-1" style="text-align: center;">
+                                    <button class="btn btn-success" type="submit">Pesquisar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <br>
                     <div class="row">
@@ -64,7 +66,7 @@
                                     <tr role="row">
                                         <td>{{$hospede->id}}</td>
                                         <td>{{$hospede->nome}}</td>
-                                        <td>{{$hospede->dataNascimento}}</td>
+                                        <td>{{date('d/m/Y', strtotime($hospede->dataNascimento))}}</td>
                                         <td>{{$hospede->documento}}</td>
                                         <td>{{$hospede->cidade}}</td>
                                         <td>{{$hospede->email}}</td>
