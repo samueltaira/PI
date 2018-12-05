@@ -167,11 +167,13 @@
                                 <i class="fa  fa-list-alt"></i> Gerenciamento dos quartos
                             </a>
                         </li>
+                        @if( auth()->user()->admin == "sim" )
                         <li>
                             <a href="{{route('sistema.main.cadastra.quarto')}}">
                                 <i class="fa fa-plus"></i> Adicionar Quarto
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
 

@@ -54,8 +54,6 @@
                                         <th>ID</th>
                                         <th>Nome</th>
                                         <th>Data Nascimento</th>
-                                        <th>Documento</th>
-                                        <th>Cidade</th>
                                         <th>E-mail</th>
                                         <th>Contato</th>
                                         <th>Ação</th>
@@ -67,8 +65,6 @@
                                         <td>{{$hospede->id}}</td>
                                         <td>{{$hospede->nome}}</td>
                                         <td>{{date('d/m/Y', strtotime($hospede->dataNascimento))}}</td>
-                                        <td>{{$hospede->documento}}</td>
-                                        <td>{{$hospede->cidade}}</td>
                                         <td>{{$hospede->email}}</td>
                                         <td>{{$hospede->contato}}</td>
                                         <td>
@@ -90,8 +86,6 @@
                                         <th>ID</th>
                                         <th>Nome</th>
                                         <th>Data Nascimento</th>
-                                        <th>Documento</th>
-                                        <th>Cidade</th>
                                         <th>E-mail</th>
                                         <th>Contato</th>
                                         <th>Ação</th>

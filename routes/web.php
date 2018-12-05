@@ -35,12 +35,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'core'], function () {
         Route::get('/listaQuartos', ['as' => 'sistema.lista.quartos', 'uses' => 'Sistema\HomeController@indexLista']);
         Route::get('/listaQuartos/search', ['as' => 'sistema.main.quartos.pesquisar', 'uses' => 'Sistema\HomeController@pesquisaQuarto']);
-        Route::get('/cadastraQuarto', ['as' => 'sistema.main.cadastra.quarto', 'uses' => 'Sistema\HomeController@cadastrarQuarto']);
-        Route::post('/cadastraQuarto/salvar', ['as' => 'sistema.main.quarto.salvar', 'uses' => 'Sistema\HomeController@salvarQuarto']);
+        Route::get('/cadastraQuarto', ['as' => 'sistema.main.cadastra.quarto', 'uses' => 'Sistema\HomeController@cadastrarQuarto'])->middleware(\App\Http\Middleware\isAdmin::class);
+        Route::post('/cadastraQuarto/salvar', ['as' => 'sistema.main.quarto.salvar', 'uses' => 'Sistema\HomeController@salvarQuarto'])->middleware(\App\Http\Middleware\isAdmin::class);
         Route::get('/cadastraQuarto/inativar/{id}', ['as' => 'sistema.main.quarto.inativar', 'uses' => 'Sistema\HomeController@inativar']);
         Route::get('/cadastraQuarto/ativar/{id}', ['as' => 'sistema.main.quarto.ativar', 'uses' => 'Sistema\HomeController@ativar']);
-        Route::get('/cadastraQuarto/editar/{id}', ['as' => 'sistema.main.quartos.editar', 'uses' => 'Sistema\HomeController@editarQuarto']);
-        Route::post('/cadastraQuarto/atualiza/{id}', ['as' => 'sistema.main.quartos.atualizar', 'uses' => 'Sistema\HomeController@atualizarQuarto']);
+        Route::get('/cadastraQuarto/editar/{id}', ['as' => 'sistema.main.quartos.editar', 'uses' => 'Sistema\HomeController@editarQuarto'])->middleware(\App\Http\Middleware\isAdmin::class);
+        Route::post('/cadastraQuarto/atualiza/{id}', ['as' => 'sistema.main.quartos.atualizar', 'uses' => 'Sistema\HomeController@atualizarQuarto'])->middleware(\App\Http\Middleware\isAdmin::class);
         Route::get('/ativar/{id}', ['as' => 'ativa.reserva', 'uses' => 'Sistema\ReservaController@iniciarReserva']);
         Route::get('/fechar/{id}', ['as' => 'fecha.reserva', 'uses' => 'Sistema\ReservaController@fecharReserva']);
     });

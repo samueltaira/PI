@@ -28,12 +28,8 @@
                 {{csrf_field()}}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="nomeHospede">Nome</label>
+                        <label for="nomeHospede">*Nome</label>
                         <input type="text" class="form-control" name="nome" placeholder="Nome" value="{{old('nome')}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="cidadeHospede">Cidade</label>
-                        <input type="text" class="form-control" name="cidade" placeholder="Cidade" value="{{old('cidade')}}">
                     </div>
                     <div class="form-group">
                         <label for="emailHospede">Email</label>
@@ -44,11 +40,7 @@
                         <input type="text" class="form-control" name="contato" placeholder="Telefone Contato" value="{{old('contato')}}">
                     </div>
                     <div class="form-group">
-                        <label for="cpfHospede">CPF</label>
-                        <input type="text" class="form-control" name="documento" placeholder="CPF" value="{{old('documento')}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="dataNascimento">Data Nascimento</label>
+                        <label for="dataNascimento">*Data Nascimento</label>
                         <input type="date" class="form-control" name="dataNascimento" placeholder="00/00/0000" value="{{old('dataNascimento')}}">
                     </div>
                     <input type="hidden" name="hotel_id" id="hotel_id" value="{{auth()->user()->getHotelId()}}">

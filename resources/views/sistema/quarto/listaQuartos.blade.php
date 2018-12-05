@@ -80,12 +80,14 @@
                                         <td>{{$quarto->capacidade}}</td>
                                         <td>{{$quarto->status_quarto}}</td>
                                         <td>
+                                            @if(auth()->user()->admin == "sim")
                                             <label title="Editar quarto">
                                                 <a class="btn btn-flat btn-warning"
                                                    href="{{route('sistema.main.quartos.editar', $quarto->id)}}">
                                                     <i class="fa fa-fw fa-edit"></i>
                                                 </a>
                                             </label>
+                                            @endif
                                             <label title="Ativar quarto">
                                                 <a class="btn btn-flat btn-primary"
                                                    href="{{route('sistema.main.quarto.ativar', $quarto->id)}}">

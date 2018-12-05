@@ -88,18 +88,9 @@ class HospedeController extends Controller
             'nome.min' => "O nome deve conter pelo menos 3 caracteres",
             'nome.max' => "O nome deve conter no máximo 200 caracteres",
             'nome.required' => "Favor preencher o campo nome corretamente",
-            'cidade.min' => "A cidade deve conter pelo menos 3 caracteres",
-            'cidade.max' => "A cidade deve conter no máximo 200 caracteres",
-            'cidade.required' => "Favor preencher o campo cidade corretamente",
             'email.email' => "O email deve ser preenchido corretamente",
-            'email.required' => "Favor preencher o campo de email",
             'contato.numeric' => "No campo telefone, deverá conter apenas números",
-            'contato.required' => "O campo telefone, deve ser preenchido",
             'contato.digits_between' => "O campo telefone, deve conter entre 10 e 15 digitos",
-            'documento.required' => "Favor preencher o campo documento",
-            'documento.numeric' => "Favor preencher o campo documento, somente com números",
-            'documento.digits_between' => "O campo documento deve conter entre 11 e 15 dígitos",
-            'documento.unique' => "Já existe um cadastro com este documento",
             'dataNascimento.required' => "Favor preencher o campo de data nascimento!",
             'dataNascimento.date_format' => "Favor preencher o campo de data de nascimento de maneira correta (Dia-Mês-Ano)"
         ];
@@ -107,10 +98,8 @@ class HospedeController extends Controller
         $this->validate($req,
             [
                 'nome' => 'required|min:3|max:200',
-                'cidade' => 'required|min:3|max:200',
-                'email' => 'required|email',
-                'contato' => 'required|numeric|digits_between:10,15',
-                'documento' => 'required|numeric|digits_between:11,15|unique:hospedes',
+                'email' => 'email',
+                'contato' => 'numeric|digits_between:10,15',
                 'dataNascimento' => 'required|date_format:Y-m-d'
 
             ], $mensagens);

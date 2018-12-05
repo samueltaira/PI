@@ -9,7 +9,7 @@ class Hospede extends Model
 {
 
     protected $fillable = [
-        'id', 'nome', 'cidade', 'email', 'contato', 'documento', 'dataNascimento', 'hotel_id'
+        'id', 'nome', 'email', 'contato', 'dataNascimento', 'hotel_id'
     ];
 
     public function hotels()

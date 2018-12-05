@@ -45,15 +45,6 @@ class HomeController extends Controller
     public function dashboard()
     {
         $hotel_id = auth()->user()->getHotelId();
-        $tudo = Reserva::with(['hospede', 'quarto'])
-            ->where([['reservas.hotel_id', $hotel_id],
-                    ['reservas.status', '<>' ,'Cancelado'],
-                    ['reservas.status', '<>', 'Fechada'],
-                    ['reservas.inicioReserva', '<=', Carbon::now()]
-                ])
-            ->orderBy('fimReserva')
-            ->get();
-
         $checkin = Reserva::with(['hospede', 'quarto'])
             ->where([['reservas.hotel_id', $hotel_id],
                 ['reservas.status', '=' ,'aberto'],
@@ -67,7 +58,31 @@ class HomeController extends Controller
             ])
             ->get();
 
-        return view('sistema.quarto.dashboard', ['tudo'=>$tudo, 'checkin'=>$checkin, 'checkout'=>$checkout]);
+        $totalHospedes = Hospede::where('hotel_id','=',$hotel_id)->count();
+        $totalQuartos = Quarto::where('hotel_id','=',$hotel_id)->count();
+        $totalReservasMes = Reserva::where('hotel_id','=',$hotel_id)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->count();
+        $totalReservasConcluidasMes = Reserva::where([
+            ['hotel_id','=',$hotel_id],
+            ['status', '=', 'Fechada']
+        ])
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->count();
+        $totalReservasCanceladasMes = Reserva::where([
+            ['hotel_id','=',$hotel_id],
+            ['status', '=', 'Cancelado']
+        ])
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->count();
+
+
+
+        return view('sistema.quarto.dashboard',
+            ['checkin'=>$checkin, 'checkout'=>$checkout, 'totalHospedes'=>$totalHospedes,
+                'totalQuartos'=>$totalQuartos, 'totalReservasMes'=>$totalReservasMes,
+                'totalReservasConcluidasMes'=>$totalReservasConcluidasMes,
+                'totalReservasCanceladasMes'=>$totalReservasCanceladasMes]);
     }
 
 

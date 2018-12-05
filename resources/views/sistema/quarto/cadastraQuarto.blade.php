@@ -29,11 +29,11 @@
                 {{csrf_field()}}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="nomeQuarto">Nome:</label>
-                        <input type="text" class="form-control" name="nomeQuarto" placeholder="Nome" value="{{old('nomeQuarto')}}">
+                        <label for="nomeQuarto">*Nome</label>
+                        <input type="text" class="form-control" name="nomeQuarto" placeholder="Nome do quarto" value="{{old('nomeQuarto')}}">
                     </div>
                     <div class="form-group">
-                        <label for="capacidade">Capacidade do quarto:</label><br>
+                        <label for="capacidade">*Capacidade do quarto</label><br>
                         <select name="capacidade">
                             <option value="Individual"> Individual<br>
                             <option value="Duplo"> Duplo<br>
