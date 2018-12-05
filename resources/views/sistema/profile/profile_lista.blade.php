@@ -47,7 +47,7 @@
                                     <a class="btn btn-flat btn-danger"
                                        onclick="return confirm('Atenção!!!!!\n\nVocê tem certeza que quer excluir este usuário?\n\nEsta ação é irreversível!!!!!')"
                                        href="{{route('sistema.main.deleta.perfil', $atendente->id)}}">
-                                        <i class="fa fa-fw fa-window-close"></i>
+                                        <i class="fa fa-fw fa-trash-o"></i>
                                     </a>
                                 </td>
                             </tr>

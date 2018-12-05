@@ -112,7 +112,7 @@
                                                 {{--</a>--}}
                                             <a onclick="return confirm('Quer realmente cancelar esta reserva?')" href="{{route('core.cancela.reserva', $reserva->id)}}"
                                                title="Cancelar Reserva" class="btn btn-flat btn-danger">
-                                                <i class="fa fa-w fa-window-close"></i>
+                                                <i class="fa fa-w fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
