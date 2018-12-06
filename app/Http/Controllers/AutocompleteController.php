@@ -26,6 +26,8 @@ class AutocompleteController extends Controller
             $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
             foreach ($data as $row) {
                 $output .= '<li><a href="#">Nome: ' . $row->nome.' ('.date('d/m/Y',strtotime($row->dataNascimento)).')</a></li>';
+                $output .= "<input type='hidden' name='hospedeId' id='hospedeId' value='$row->id' >";
+
             }
             $output .= '</ul>';
             echo $output;

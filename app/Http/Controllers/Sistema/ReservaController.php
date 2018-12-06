@@ -281,20 +281,22 @@ class ReservaController extends Controller
             ])
             ->get();
 
-        $teste2 = (int)substr($req->input('hospede'), 1, 1);
+        $teste2 = $req->input('hospedeId');
 
         if($teste2 <= 0){
+
             return redirect()->route('core.nova.reserva')
                 ->with('message_erro', 'deu ruim.')
                 ->with('checkin', $checkin)
                 ->with('checkout', $checkout);
+
         }
             else{
             $reserva = new Reserva;
             $reserva->inicioReserva = Carbon::parse($req->input('inicioReserva'));
             $reserva->fimReserva = Carbon::parse($req->input('fimReserva'));
             $reserva->hotel_id = $req->input('hotel_id');
-            $reserva->hospede_id = substr($req->input('hospede'), 1, 1);
+            $reserva->hospede_id = $req->input('hospedeId');
             $reserva->quarto_id = $req->input('quarto_id');
             $reserva->consumo = $req->input('consumo');
             $reserva->efetuouReserva = $req->input('efetuouReserva');

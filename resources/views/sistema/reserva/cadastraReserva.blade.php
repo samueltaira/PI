@@ -75,9 +75,9 @@
                     @if(isset($hotel))
                         <div class="form-group">
                             <label for="hospede">Hóspede:</label>
-                                @if($hospedes ->count() > 0)
+                                @if($hospedes->count() > 0)
                                     <input type="text" autocomplete="off" class="form-control" name="hospede" id="nome"
-                                           placeholder="Pesquisar por um hóspede cadastrado, não esqueça de diferenciar letras maísculas de minúsculas"
+                                           placeholder="Pesquisar por um hóspede cadastrado"
                                            value="{{old('nome')}}">
                                     <div id="listaNomes"></div>
                                     {{ csrf_field() }}
@@ -120,7 +120,8 @@
         </div>
     </section>
 
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
             $('#nome').keyup(function () {
                 var query = $(this).val();
