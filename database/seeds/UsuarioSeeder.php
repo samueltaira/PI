@@ -39,10 +39,8 @@ class UsuarioSeeder extends Seeder
 
         $dados4=[
           'nome' => 'Samuel Taira da Costa',
-          'cidade'  => 'Penha-SC',
           'email' => 'samueltaira@hotmail.com',
           'contato'  => '47991616054',
-          'documento'  => '09089702938',
           'dataNascimento'  => '03/11/1993',
           'hotel_id'  => '1'
         ];
