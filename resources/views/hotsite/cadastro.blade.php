@@ -22,12 +22,12 @@
                 {{csrf_field()}}
 
                 <div class="wrap-input100 validate-input">
-                    <input required class="input100" type="text" name="nome" placeholder="Nome" value="{{old('nome')}}">
+                    <input required class="input100" type="text" name="nome" placeholder="Nome do Administrador" value="{{old('nome')}}">
                     <span class="focus-input100" data-placeholder="&#xe82a;"></span>
                 </div>
 
                 <div required class="wrap-input100 validate-input">
-                    <input required class="input100" type="text" name="hotel" placeholder="Hotel"
+                    <input required class="input100" type="text" name="hotel" placeholder="Nome do Hotel"
                            value="{{old('hotel')}}">
                     <span class="focus-input100" data-placeholder="&#xe801;"></span>
                 </div>
