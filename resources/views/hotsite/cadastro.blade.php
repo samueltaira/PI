@@ -3,77 +3,69 @@
 @section('titulo', 'Cadastro')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <body>
 
 @include('hotsite.padrao.header')
 
 <div class="limiter"><br>
-
-
     <div class="container-login100" style="background-image: url('{{'../assets/images/bg-02.jpg'}}');">
-
-
-        <div class="wrap-login100 p-t-30 p-b-50">
-
-
-            <form action="{{route('hotsite.cadastro.registrar')}}" method="post"
-                  class="login100-form validate-form p-b-33 p-t-5">
-                {{csrf_field()}}
-
-                <div class="wrap-input100 validate-input">
-                    <input required class="input100" type="text" name="nome" placeholder="Nome do Administrador" value="{{old('nome')}}">
-                    <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+    <div class="wrap-login100 p-t-30 p-b-50" style="text-align:center">
+        <div style="background-color:white; border-radius: 10px;">
+            <span style="font-size:25px;">
+                CADASTRO
+            </span>
+        </div>
+        <div style="background:white; padding:40px; padding-right:60px; padding-left:60px;margin:10px; border-radius: 10px;">
+              <form method="post" action="{{route('hotsite.cadastro.registrar')}}">
+              {{csrf_field()}}
+                <div class="form-group">
+                    <label for="nomeDoAdministrador">Nome do Administrador</label>
+                    <input style="text-align:center" required type="text" class="form-control" id="nomeDoAdministrador" name="nome" value="{{old('nome')}}">
+                    <!-- <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small> -->
+                </div>
+                <div class="form-group">
+                    <label for="nomeDoHotel">Nome do Hotel</label>
+                    <input style="text-align:center" required type="text" class="form-control" id="nomeDoHotel" name="hotel" value="{{old('hotel')}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input required style="text-align:center" type="email" class="form-control" id="email" name="email" value="{{old('email')}}">
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input required type="password" style="text-align:center" class="form-control" id="senha" name="password" placeholder="*******">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input required style="text-align:center" type="tel" class="form-control" id="telefone" name="telefone" value="{{old('telefone')}}">
                 </div>
 
-                <div required class="wrap-input100 validate-input">
-                    <input required class="input100" type="text" name="hotel" placeholder="Nome do Hotel"
-                           value="{{old('hotel')}}">
-                    <span class="focus-input100" data-placeholder="&#xe801;"></span>
-                </div>
+                <input type="hidden" name="quartos" value="0">
+                <input type="hidden" name="admin" value="sim">
 
-                <div required class="wrap-input100 validate-input">
-                    <input class="input100" type="email" name="email" placeholder="E-mail" value="{{old('email')}}">
-                    <span class="focus-input100" data-placeholder="&#xe818;"></span>
-                </div>
-
-                <div required class="wrap-input100 validate-input">
-                    <input class="input100" type="password" name="password" placeholder="Senha">
-                    <span class="focus-input100" data-placeholder="&#xe80f;"></span>
-                </div>
-
-                <div required class="wrap-input100 validate-input">
-                    <input class="input100" type="tel" name="telefone" placeholder="Telefone"
-                           value="{{old('telefone')}}">
-                    <span class="focus-input100" data-placeholder="&#xe830;"></span>
-                </div>
-
-                    <input type="hidden" name="quartos" value="0">
-                    <input type="hidden" name="admin" value="sim">
-
-
-                <div class="container-login100-form-btn m-t-32">
-                    <button class="login100-form-btn">
-                        Cadastrar
-                    </button>
-                </div>
-
-
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
             </form>
+        </div>
         </div>
         @if(count($errors) != 0)
             @foreach($errors->all() as $erro)
-                <div class="teste alert alert-danger alert-dismissible" role="alert"
-                     style="text-align: center; position: absolute; top: 20%; left: 10%; width: 20%">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <p>{{$erro}}</p>
-                </div>
+                <button id="erro" class="alert alert-danger" role="alert"
+                     style="text-align: center; position: absolute; top: 20%; 
+                     left: 5%; width: 25%">
+                     <p>{{$erro}}</p>
+                </button>
              @endforeach
         @endif
     </div>
 </div>
+<script>
+$(document).ready(function() {
+	setTimeout(function () {
+		$('.alert').fadeOut('slow');
+    }, 3000);});
+
+</script>
 @include('hotsite.padrao.footer')
 
 </body>
