@@ -17,7 +17,7 @@
             </span>
         </div>
         <div style="background:white; padding:40px; padding-right:60px; padding-left:60px;margin:10px; border-radius: 10px;">
-              <form method="post" action="{{route('hotsite.cadastro.registrar')}}">
+            <form method="post" action="{{route('hotsite.cadastro.registrar')}}">
               {{csrf_field()}}
                 <div class="form-group">
                     <label for="nomeDoAdministrador">Nome do Administrador</label>
@@ -40,7 +40,6 @@
                     <label for="telefone">Telefone</label>
                     <input required style="text-align:center" type="tel" class="form-control" id="telefone" name="telefone" value="{{old('telefone')}}">
                 </div>
-
                 <input type="hidden" name="quartos" value="0">
                 <input type="hidden" name="admin" value="sim">
 
@@ -49,21 +48,23 @@
         </div>
         </div>
         @if(count($errors) != 0)
-            @foreach($errors->all() as $erro)
-                <button id="erro" class="alert alert-danger" role="alert"
-                     style="text-align: center; position: absolute; top: 20%; 
-                     left: 5%; width: 25%">
-                     <p>{{$erro}}</p>
-                </button>
-             @endforeach
+            <div id="erro" class="alerta" style="text-align: center; 
+            position: fixed; top: 20%; left: 5%; width: 25%">
+                <ul class="list-group">
+                    @foreach($errors->all() as $erro)
+                        <li class="list-group-item list-group-item-danger" >{{$erro}}</li><br>
+                    @endforeach
+                </ul>
+            </div>
         @endif
     </div>
 </div>
 <script>
+
 $(document).ready(function() {
 	setTimeout(function () {
-		$('.alert').fadeOut('slow');
-    }, 3000);});
+		$('.alerta').fadeOut('slow');
+    }, 5000);});
 
 </script>
 @include('hotsite.padrao.footer')
