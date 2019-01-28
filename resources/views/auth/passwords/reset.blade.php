@@ -25,29 +25,30 @@
                 Recupere sua conta
             </span>
 
-            <form method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}"
-                  class="login100-form validate-form p-b-33 p-t-5">
-                @csrf
+            <div style="text-align:center;background:white; padding-top:30px;padding-bottom:10px; padding-right:70px; padding-left:70px;margin:10px; border-radius: 10px;">
+            <form method="post" action="{{ route('password.request') }}">
+                {{csrf_field()}}
                 <input type="hidden" name="token" value="{{ $token }}">
-                <div align="center" class="wrap-input100 validate-input">
-                    <label for="email">{{ __('E-Mail') }}</label>
-                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                           name="email"
-                           value="{{ $email ?? old('email') }}" required autofocus>
-                    <label for="password">{{ __('Password') }}</label>
-                    <input id="password" type="password"
-                           class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                           name="password" required>
-                    <label for="password-confirm">{{  __('Confirm Password') }}</label>
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                           required>
-                    <div class="container-login100-form-btn m-t-32">
-                        <button type="submit" class="login100-form-btn">
-                            {{ __('Resetar senha') }}
-                        </button>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input required style="text-align:center" type="email" class="form-control" 
+                        id="email" name="email" value="{{old('email')}}" required>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input required type="password" style="text-align:center" class="form-control"
+                         id="senha" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Confirmar senha</label>
+                        <input required type="password" style="text-align:center" class="form-control"
+                         id="senha" name="password_confirmation">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Resetar senha</button>
+                    </form>
+            </div>
+        </div>
         </div>
     </div>
 </div>
