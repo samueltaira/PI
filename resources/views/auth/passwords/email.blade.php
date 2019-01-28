@@ -25,29 +25,24 @@
                 </div>
             @endif
 
-            <span class="login100-form-title p-b-41" style="font-family: Ubuntu-Bold, sans-serif;">
-                Recupere sua conta
+            <div style="background-color:white; border-radius: 10px; text-align:center">
+            <span style="font-size:25px;">
+                RECUPERAR SENHA
             </span>
+        </div>
 
-            <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}"
-                  class="login100-form validate-form p-b-33 p-t-5">
-                @csrf
-
-                <div align="center" class="wrap-input100 validate-input">
-
-                    <label for="email">{{ __('E-mail para recuperação de conta') }}</label>
-                    <input id="email" type="email"
-                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
-                           value="{{ old('email') }}" required>
-
-                    <div class="container-login100-form-btn m-t-32">
-                        <button type="submit" class="login100-form-btn">
-                            {{ __('Enviar link de reset para e-mail') }}
-                        </button>
+        <div style="text-align:center;background:white; padding-top:30px;padding-bottom:10px; padding-right:70px; padding-left:70px;margin:10px; border-radius: 10px;">
+            <form method="post" action="{{ route('password.email') }}">
+                {{csrf_field()}}
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input required style="text-align:center" type="email" class="form-control" 
+                        id="email" name="email" value="{{old('email')}}" required>
                     </div>
-                    <br>
-                </div>
-            </form>
+
+                    <button type="submit" class="btn btn-primary">Enviar e-mail de recuperação</button>
+                    </form>
+            </div>
         </div>
     </div>
 </div>

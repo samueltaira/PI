@@ -38,12 +38,6 @@
                     <a href="{{route('password.request')}}" class="btn" style="font-family: Ubuntu-Regular, sans-serif;">
                         {{ __('Esqueceu sua senha?')}}
                     </a>
-
-                
-                <!-- <div class="col-lg-12">
-
-                </div>
-            </form> -->
             </div>
         </div>
     </div>
