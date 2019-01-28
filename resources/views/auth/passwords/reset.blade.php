@@ -44,7 +44,6 @@
                         <input required type="password" style="text-align:center" class="form-control"
                          id="senha" name="password_confirmation">
                     </div>
-
                     <button type="submit" class="btn btn-primary">Resetar senha</button>
                     </form>
             </div>
