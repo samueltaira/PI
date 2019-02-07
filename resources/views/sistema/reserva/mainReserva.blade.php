@@ -9,11 +9,11 @@
         </div>
         <div>
         <a href="{{route('core.nova.reserva')}}">
-            <button type="button" class="btn btn-flat btn-warning btn-sm"
-                    style="font-size: 25px ">
-                Realizar uma Reserva
-            </button>
-        </a>
+        <button type="button" class="btn btn-flat btn-warning active btn-sm"
+                style=" width: 98%;margin-left: 10px; margin-right: 10px;font-size: 25px ">
+            Realizar uma nova Reserva
+        </button>
+    </a>
         </div><br>
         @if(Session::has('container message_cancelado'))
             <div class="container alert alert-warning alert-dismissible">
@@ -75,10 +75,9 @@
                             <table class="table table-bordered table-striped dataTable">
                                 <thead>
                                     <tr role="row">
-                                        <th>ID</th>
+                                        <th>Hospede</th>
                                         <th>Check In</th>
                                         <th>Check Out</th>
-                                        <th>Hospede</th>
                                         <th>Quarto</th>
                                         <th>Status</th>
                                         <th>Ação</th>
@@ -88,16 +87,13 @@
                                 @forelse($reservas as $reserva)
                                     <tr role="row">
                                         <td>
-                                            {{$reserva->id}}
+                                            {{$reserva->hospede->nome}}
                                         </td>
-                                        <td>
+                                          <td>
                                             {{date('d/m/Y', strtotime($reserva->inicioReserva))}}
                                         </td>
                                         <td>
                                             {{date('d/m/Y', strtotime($reserva->fimReserva))}}
-                                        </td>
-                                        <td>
-                                            {{$reserva->hospede->nome}}
                                         </td>
                                         <td>
                                             {{$reserva->quarto->nomeQuarto}}
@@ -116,7 +112,6 @@
                                             </a>
                                         </td>
                                     </tr>
-                                </tbody>
                                 @empty
                                     <tr role="row">
                                         <td colspan="7">
@@ -124,6 +119,7 @@
                                         </td>
                                     </tr>
                                 @endforelse
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -185,10 +181,9 @@
                             <table class="table table-bordered table-striped dataTable">
                                 <thead>
                                 <tr role="row">
-                                    <th>ID</th>
+                                    <th>Hospede</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
-                                    <th>Hospede</th>
                                     <th>Quarto</th>
                                     <th>Status</th>
                                 </tr>
@@ -197,16 +192,13 @@
                                 @forelse($reservasAlteradas as $reservaAlterada)
                                     <tr role="row">
                                         <td>
-                                            {{$reservaAlterada->id}}
+                                            {{$reservaAlterada->hospede->nome}}
                                         </td>
                                         <td>
                                             {{date('d/m/Y', strtotime($reservaAlterada->inicioReserva))}}
                                         </td>
                                         <td>
                                             {{date('d/m/Y', strtotime($reservaAlterada->fimReserva))}}
-                                        </td>
-                                        <td>
-                                            {{$reservaAlterada->hospede->nome}}
                                         </td>
                                         <td>
                                             {{$reservaAlterada->quarto->nomeQuarto}}

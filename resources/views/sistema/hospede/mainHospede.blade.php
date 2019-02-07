@@ -51,7 +51,6 @@
                             <table class="table table-bordered table-striped dataTable">
                                 <thead>
                                     <tr role="row">
-                                        <th>ID</th>
                                         <th>Nome</th>
                                         <th>Data Nascimento</th>
                                         <th>E-mail</th>
@@ -62,7 +61,6 @@
                                 <tbody>
                                 @forelse($hospedes as $hospede)
                                     <tr role="row">
-                                        <td>{{$hospede->id}}</td>
                                         <td>{{$hospede->nome}}</td>
                                         <td>{{date('d/m/Y', strtotime($hospede->dataNascimento))}}</td>
                                         <td>{{$hospede->email}}</td>
@@ -83,7 +81,6 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Nome</th>
                                         <th>Data Nascimento</th>
                                         <th>E-mail</th>

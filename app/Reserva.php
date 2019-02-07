@@ -24,4 +24,9 @@ class Reserva extends Model
     {
         return $this->belongsTo(Hospede::class);
     }
+
+    public function consumo()
+    {
+        return $this->hasMany(Consumo::class);
+    }
 }

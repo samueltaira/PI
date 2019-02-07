@@ -10,7 +10,7 @@
         </div>
     @endif
     <a href="{{route('core.nova.reserva')}}">
-        <button type="button" class="btn btn-flat btn-info btn-sm"
+        <button type="button" class="btn btn-flat btn-warning active btn-sm"
                 style=" width: 97%;margin-left: 20px; margin-right: 20px;font-size: 25px ">
             Realizar uma Reserva
         </button>
@@ -89,11 +89,18 @@
                                         </a>
                                     @endif
                                 </div>
-                                {{--<div class="flex-column-7">--}}
-                                    {{--<a title="Gerenciar consumo" href="#" class="btn-sm" style="background: lightgray; color: black; margin-right: 33%">--}}
-                                        {{--<i class="fa fa-cutlery"></i> Consumo--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
+                                @if($reserva->status == "Iniciada")
+                                <div class="flex-column-3">
+                                    <a title="Adicionar consumo" href="#" class="btn-sm" style="background: lightgray; color: black;">
+                                       <i class="fa fa-cutlery"></i> Add item
+                                    </a>
+                                </div>
+                                <div class="flex-column-3" style="margin-right:3%">
+                                    <a title="Listar consumo" href="#" class="btn-sm" style="background: lightgray; color: black;">
+                                       <i class="fa fa-list"></i> List item
+                                    </a>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="small-box-footer"></div>
@@ -101,10 +108,10 @@
 
                 </div>
             @empty
-                <button type="button" class="btn btn-flat btn-default btn-sm"
-                        style=" width: 97%;margin-left: 20px; margin-right: 20px;font-size: 25px;">
+                <div class="alert btn-flat btn-default btn-sm"
+                        style="text-align:center; width: 97%;margin-left: 20px; margin-right: 20px;font-size: 25px;">
                     Ops, você não possui reservas para hoje!
-                </button>
+                </div>
             @endforelse
         </div>
     </section>
