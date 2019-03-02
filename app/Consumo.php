@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class Consumo extends Model
 {
+
+    protected $fillable = [
+        'id', 'item', 'valor', 'quantidade', 'reserva_id'
+    ];
+
+
     public function reserva()
     {
         return $this->belongsTo(Reserva::class);

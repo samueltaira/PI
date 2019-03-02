@@ -22,15 +22,16 @@ Route::get('/politica', function () {
 //Rotas para o hotsite
 Route::get('/', ['as' => 'hotsite.home', 'uses' => 'Hotsite\HomeController@index']);
 Route::get('/cadastro', ['as' => 'hotsite.cadastro', 'uses' => 'Hotsite\HomeController@cadastro']);
-
 Route::post('/cadastro/registrar', ['as' => 'hotsite.cadastro.registrar', 'uses' => 'Hotsite\UserController@registrar']);
 
 //grupo para restringir acesso ao sistema
 
 Route::group(['middleware' => 'auth'], function () {
+
     Route::group(['prefix'=>'dashboard'], function (){
         Route::get('/mapa', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
         Route::get('/dash', ['as' => 'sistema.home.dashboard', 'uses' => 'Sistema\HomeController@dashboard']);
+        Route::post('testex', ['as' => 'testex', 'uses' => 'ConsumoController@adicionarConsumo']);
     });
     Route::group(['prefix' => 'core'], function () {
         Route::get('/listaQuartos', ['as' => 'sistema.lista.quartos', 'uses' => 'Sistema\HomeController@indexLista']);
@@ -69,7 +70,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/l', ['as' => 'sistema.main.perfil', 'uses' => 'Sistema\PerfilController@index']);
         Route::post('/alterar', ['as' => 'sistema.main.altera.senha', 'uses' => 'Sistema\PerfilController@alteraSenha']);
         Route::get('/indexAlterar', ['as' => 'sistema.main.alterar.senha', 'uses' => 'Sistema\PerfilController@indexAlterarSenha']);
-
         Route::get('/lista', ['as' => 'sistema.main.lista.perfil', 'uses' => 'Sistema\PerfilController@listar'])->middleware(\App\Http\Middleware\isAdmin::class);
         Route::get('/cadastra', ['as' => 'sistema.main.cadastra.perfil', 'uses' => 'Sistema\PerfilController@cadastrar'])->middleware(\App\Http\Middleware\isAdmin::class);;
         Route::post('/salvar', ['as' => 'sistema.main.salva.perfil', 'uses' => 'Sistema\PerfilController@registrar'])->middleware(\App\Http\Middleware\isAdmin::class);
