@@ -21,6 +21,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <i class="icon fa fa-check"></i>Item adicionado com sucesso!!
         </div>
+        <br>
     @endif
     <section class="content-header">
         <h1>
@@ -83,31 +84,29 @@
                                 </div>
                             </div>
                             <div class="flex-row" style="margin-bottom: 10px">
-                                <div class="flex-colum-3">
+                                <div class="flex-colum-7">
                                     @if($reserva->status != "Iniciada")
-                                        <a onclick="return confirm('Você quer iniciar a reserva?')" title="Iniciar Reserva" href="{{route('ativa.reserva', $reserva->id)}}" class="btn-sm"
-                                            style="background: lightgray; color: black; margin-left: 8%;">
+                                        <a onclick="return confirm('Você quer iniciar a reserva?')" 
+                                        title="Iniciar Reserva" href="{{route('ativa.reserva', $reserva->id)}}"
+                                        class="btn-sm" style="background: lightgray; color: black; margin-left: 8%;">
                                             <i class="fa fa-play-circle"></i> Iniciar reserva
                                         </a>
                                     @else
-                                        <a onclick="return confirm('Você quer finalizar esta reserva?')"
-                                        href="{{route('fecha.reserva', $reserva->id)}}" class="btn-sm"
+                                        <a href="{{route('lista', $reserva->id)}}" class="btn-sm"
                                            style="background: lightgray; color: black; margin-left: 8%;">
-                                            <i class="fa fa-play-circle"></i> Fechar reserva
+                                            <i class="fa fa-list"></i> Resumo reserva
                                         </a>
                                     @endif
                                 </div>
                                 @if($reserva->status == "Iniciada")
-                                <div class="flex-column-3">
-                                    <button type="button" id="adicionarConsumo" title="Adicionar consumo" class="btn-sm" style="background: lightgray; color: black;"
-                                    data-reserva_id="{{$reserva->id}}" data-nome_quarto="{{$reserva->quarto->nomeQuarto}}" data-toggle="modal" data-target="#modalExemplo2">
+                                <div class="flex-colum-3">
+                                    <button id="adicionarConsumo" title="Adicionar consumo" class="btn-sm" 
+                                    style="background: lightgray; color: black;"
+                                    data-reserva_id="{{$reserva->id}}"
+                                    data-hotel_id="{{auth()->user()->getHotelId()}}"  
+                                    data-nome_quarto="{{$reserva->quarto->nomeQuarto}}" 
+                                    data-toggle="modal" data-target="#modalExemplo2">
                                        <i class="fa fa-cutlery"></i> Add item
-                                    </button>
-                                </div>
-                                <div class="flex-column-3" style="margin-right:3%">
-                                    <button title="Listar consumo" href="#" class="btn-sm" style="background: lightgray; color: black;"
-                                    data-toggle="modal" data-target="#modalExemplo">
-                                       <i class="fa fa-list"></i> List item
                                     </button>
                                 </div>
                                 @endif
@@ -126,64 +125,30 @@
         </div>
     </section>
 
-    <!-- Modal listar consumo -->
-    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Consumo - Quarto 202</h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center">Item</th>
-                                <th style="text-align:center">Quantidade</th>
-                                <th style="text-align:center">Valor Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align:center">Chocolate</td>
-                                <td style="text-align:center">2</td>
-                                <td style="text-align:center">R$ 10,50</td>
-                            </tr>
-                            <tr>
-                                <th style="text-align:center" colspan="3">Valor Total: R$ 10,50</th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-     <!-- Modal adicionar consumo -->
+        <!-- Modal adicionar consumo -->
      <div class="modal fade" id="modalExemplo2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="quartoReserva">Consumo do quarto -</h4>
+                    <h4 class="modal-title" id="quartoReservaAdicionar" value=""></h4>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{{route('testex')}}">
                     {{csrf_field()}}
                         <input type="hidden" name="reserva_id" id="reserva_id">
+                        <input type="hidden" name="hotel_id" id="hotel_id">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Nome do Item</label>
-                                <input type="text" class="form-control" name="item" id="item">
+                                <input required type="text" class="form-control" name="item" id="item">
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Quantidade</label>
-                                <input type="number" name="quantidade" class="form-control" id="quantidade">
+                                <input required type="number" name="quantidade" class="form-control" id="quantidade">
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Valor do Item</label>
-                                <input type="money" class="form-control" name="valor" id="valor">
+                                <input required type="number" min="0.00" step="0.01" class="form-control" name="valor" id="valor">
                             </div>
                             </div>
                                 <div class="modal-footer">
@@ -207,12 +172,13 @@
                 $(document).on('show.bs.modal','#modalExemplo2', function(event) {
                 var button = $(event.relatedTarget);
                 var recipient = button.data('reserva_id');
+                var recipient3 = button.data('hotel_id');
                 var recipient2 = button.data('nome_quarto');
                 var modal = $(this);
                 modal.find('.modal-body #reserva_id').val(recipient);
-                
-                // alert(recipient);
-                // alert(recipient2);
+                modal.find('.modal-body #hotel_id').val(recipient3);
+                $('#quartoReservaAdicionar').text('Consumo do quarto: '+recipient2);
+
             });
         });
         </script>

@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/mapa', ['as' => 'sistema.home', 'uses' => 'Sistema\HomeController@index']);
         Route::get('/dash', ['as' => 'sistema.home.dashboard', 'uses' => 'Sistema\HomeController@dashboard']);
         Route::post('testex', ['as' => 'testex', 'uses' => 'ConsumoController@adicionarConsumo']);
+        Route::get('/listaConsumo/{id}', ['as' => 'lista', 'uses' => 'ConsumoController@listarConsumo']);
     });
     Route::group(['prefix' => 'core'], function () {
         Route::get('/listaQuartos', ['as' => 'sistema.lista.quartos', 'uses' => 'Sistema\HomeController@indexLista']);

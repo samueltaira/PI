@@ -20,6 +20,8 @@ class CreateConsumosTable extends Migration
             $table->integer('quantidade');
             $table->integer('reserva_id');
             $table->foreign('reserva_id')->references('id')->on('reservas');
+            $table->integer('hotel_id');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->timestamps();
         });
     }
