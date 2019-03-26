@@ -31,13 +31,36 @@ class ConsumoController extends Controller
             ])
             ->get();
 
-        return redirect()->route('sistema.home')->with('Mensagem', 'Hóspede cadastrado com sucesso.');
+        return redirect()->route('sistema.home')->with('Mensagem', 'Consumo cadastrado com sucesso.');
+    }
+
+    public function apagarConsumo($id)
+    {
+        $item = Consumo::find($id);
+        $teste = $item->reserva_id;
+        $item->delete();
+
+        $hotel_id = auth()->user()->getHotelId();
+        $checkin = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'aberto'],
+                ['reservas.inicioReserva', '=', Carbon::now()]
+            ])
+            ->get();
+        $checkout = Reserva::with(['hospede', 'quarto'])
+            ->where([['reservas.hotel_id', $hotel_id],
+                ['reservas.status', '=' ,'Iniciada'],
+                ['reservas.fimReserva', '=', Carbon::now()]
+            ])
+            ->get();
+
+        return redirect()->route('lista', $teste)
+        ->with('Mensagem_apagou', 'Item removido com sucesso.');
     }
 
 
         public function listarConsumo($id)
     {
-        // $registro = Reserva::find($id);
         $hotel_id = auth()->user()->getHotelId();
         
         $checkin = Reserva::with(['hospede', 'quarto'])
@@ -58,6 +81,9 @@ class ConsumoController extends Controller
             ->where('reserva_id', '=', $id)
             ->paginate(10);
 
+            $reserva = Reserva::find($id);
+            $nomeQuarto = $reserva->quarto->nomeQuarto;
+
             $valor_total = DB::table('consumos')
                 ->select('quantidade', 'valor')
                 ->where('hotel_id', '=', $hotel_id)
@@ -71,7 +97,7 @@ class ConsumoController extends Controller
 
 
         return view('sistema.quarto.listaConsumo', ['consumo' => $consumo, 'checkin'=>$checkin,
-        'checkout'=>$checkout, 'total'=>$total, 'reserva_id'=>$id]);
+        'checkout'=>$checkout, 'total'=>$total, 'reserva_id'=>$id, 'nomeQuarto'=>$nomeQuarto]);
     }
     
 }

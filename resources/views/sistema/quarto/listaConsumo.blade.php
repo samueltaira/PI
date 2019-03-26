@@ -10,10 +10,18 @@
         </section>
         <br>
 
+        @if(Session::has('Mensagem_apagou'))
+        <br><div class="alert alert-warning alert-dismissible" style=" width: 97%;margin-left: 20px; margin-right: 20px;
+   font-size: 15px ">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <i class="icon fa fa-check"></i>Item removido com sucesso!!
+        </div>
+    @endif
+
         <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Consumo</h3>
+                <h3 class="box-title">Consumo {{$nomeQuarto}}</h3>
             </div>
             <div class="box-body">
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
@@ -36,7 +44,7 @@
                                         <td style="text-align:center">{{$item->quantidade}}</td>
                                         <td style="text-align:center">R$ {{$item->valor}}</td>
                                         <td style="text-align:center">
-                                            <a href="#">
+                                            <a href="{{route('apaga.consumo', $item->id)}}">
                                                 <i class="icon fa fa-trash"></i>
                                             </a>
                                         </td>
@@ -65,11 +73,10 @@
             </button>
         </a>
         <br><br>
-        <a href="{{url()->previous()}}" title="Voltar">
+        <a href="{{route('sistema.home')}}" title="Voltar">
             <button type="button" class="btn btn-flat btn-default active btn-sm" style=" width: 97%;margin-left: 20px; margin-right: 20px;font-size: 25px ">
             <i class="fa fa-caret-square-o-left"></i> Voltar
             </button>
         </a>
-
     </div>
 @endsection

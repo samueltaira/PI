@@ -22,7 +22,7 @@ class Quarto extends Model
 
 
 
-    public function getNome()
+    public function getNome($id)
     {
         return $this->nome;
     }

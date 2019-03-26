@@ -1,17 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 Auth::routes();
 
 //Rota para politica
@@ -33,6 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dash', ['as' => 'sistema.home.dashboard', 'uses' => 'Sistema\HomeController@dashboard']);
         Route::post('testex', ['as' => 'testex', 'uses' => 'ConsumoController@adicionarConsumo']);
         Route::get('/listaConsumo/{id}', ['as' => 'lista', 'uses' => 'ConsumoController@listarConsumo']);
+        Route::get('/apagaConsumo/{id}', ['as' => 'apaga.consumo', 'uses' => 'ConsumoController@apagarConsumo']);
     });
     Route::group(['prefix' => 'core'], function () {
         Route::get('/listaQuartos', ['as' => 'sistema.lista.quartos', 'uses' => 'Sistema\HomeController@indexLista']);
