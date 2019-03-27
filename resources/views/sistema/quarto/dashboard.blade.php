@@ -1,5 +1,5 @@
 @extends('sistema.padraoSistema.head')
-@section('titulo', 'Mapa de Reserva')
+@section('titulo', 'Dashboard')
 @section('content')
     <br>
     <section class="content-header">

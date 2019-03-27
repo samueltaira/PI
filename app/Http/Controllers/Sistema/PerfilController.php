@@ -123,9 +123,7 @@ class PerfilController extends Controller
             'nome.max' => "O nome deve conter no máximo 200 caracteres",
             'password.min' => "A senha deve conter no minimo 6 caracteres",
             'password.required' => "Favor inserir uma senha",
-            'telefone.numeric' => "No campo telefone, deverá conter apenas números",
             'telefone.required' => "O campo telefone, deve ser preenchido",
-            'telefone.digits_between' => "O campo telefone, deve ter no mín 10 digitos e máx 15 digitos",
             'email.unique' => "Este e-mail já foi utilizado"
         ];
 
@@ -134,7 +132,7 @@ class PerfilController extends Controller
                 'nome' => 'required|min:3|max:200',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:5|max:25',
-                'telefone' => 'required|numeric|digits_between:10,15'
+                'telefone' => 'required'
 
             ], $mensagens);
 

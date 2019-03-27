@@ -1,10 +1,12 @@
 @extends('sistema.padraoSistema.head')
-@section('titulo', 'Hóspedes')
+@section('titulo', 'Atendentes')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 @section('content')
     <section class="content-header">
         <div>
             <h1>
-                Hóspede
+                Atendentes
             </h1>
         </div>
         @if(count($errors) != 0)
@@ -41,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" class="form-control" name="telefone" placeholder="47900000000" value="{{old('telefone')}}">
+                        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(47) 9 9999 9999" value="{{old('telefone')}}">
                     </div>
                     <input type="hidden" name="hotel_id" value="{{auth()->user()->getHotelId()}}">
                     <input type="hidden" name="quartos" value="0">
@@ -57,3 +59,6 @@
         </div>
     </section>
 @endsection
+<script>    $(document).ready(function($){
+        $("#telefone").mask("(99) 9 9999-9999");
+    });</script>

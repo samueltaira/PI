@@ -1,5 +1,8 @@
 @extends('sistema.padraoSistema.head')
 @section('titulo', 'Hóspedes')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 @section('content')
     <section class="content-header">
         <div>
@@ -37,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="contatoHospede">Contato</label>
-                        <input type="text" class="form-control" name="contato" placeholder="Telefone Contato" value="{{old('contato')}}">
+                        <input type="text" class="form-control" name="contato" id="telefone" placeholder="(47) 9 9999 9999" value="{{old('contato')}}">
                     </div>
                     <div class="form-group">
                         <label for="dataNascimento">*Data Nascimento</label>
@@ -57,3 +60,7 @@
         </div>
     </section>
 @endsection
+
+<script>    $(document).ready(function($){
+        $("#telefone").mask("(99) 9 9999-9999");
+    });</script>

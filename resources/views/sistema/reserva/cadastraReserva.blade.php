@@ -1,5 +1,5 @@
 @extends('sistema.padraoSistema.head')
-@section('titulo', 'Quartos')
+@section('titulo', 'Reservas')
 @section('content')
 
     <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">

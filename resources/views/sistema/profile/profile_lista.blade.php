@@ -1,5 +1,5 @@
 @extends('sistema.padraoSistema.head')
-@section('titulo', 'Perfil')
+@section('titulo', 'Profile')
 @section('content')
     <section class="content-header">
         <div>

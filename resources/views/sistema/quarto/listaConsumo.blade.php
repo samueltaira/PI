@@ -1,5 +1,5 @@
 @extends('sistema.padraoSistema.head')
-@section('titulo', 'Quartos')
+@section('titulo', 'Consumo')
 @section('content')
     <div>
 

@@ -4,6 +4,8 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
 <body>
 
 @include('hotsite.padrao.header')
@@ -22,7 +24,6 @@
                 <div class="form-group">
                     <label for="nomeDoAdministrador">Nome do Administrador</label>
                     <input style="text-align:center" required type="text" class="form-control" id="nomeDoAdministrador" name="nome" value="{{old('nome')}}">
-                    <!-- <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small> -->
                 </div>
                 <div class="form-group">
                     <label for="nomeDoHotel">Nome do Hotel</label>
@@ -38,7 +39,8 @@
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
-                    <input required style="text-align:center" type="tel" class="form-control" id="telefone" name="telefone" value="{{old('telefone')}}">
+                    <input required style="text-align:center" type="text" class="form-control" id="telefone" name="telefone" 
+                    value="{{old('telefone')}}">
                 </div>
                 <input type="hidden" name="quartos" value="0">
                 <input type="hidden" name="admin" value="sim">
@@ -59,12 +61,19 @@
         @endif
     </div>
 </div>
+
+
+
 <script>
 
 $(document).ready(function() {
 	setTimeout(function () {
 		$('.alerta').fadeOut('slow');
     }, 5000);});
+
+    $(document).ready(function($){
+        $("#telefone").mask("(99) 9 9999-9999");
+    });
 
 </script>
 @include('hotsite.padrao.footer')

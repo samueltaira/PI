@@ -33,6 +33,7 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!-- jQuery 3 -->
     <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
     <style type="text/css">
         .flex-row {
