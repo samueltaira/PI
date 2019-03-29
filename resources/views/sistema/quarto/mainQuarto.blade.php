@@ -80,7 +80,7 @@
                                     </span>
                                 </div>
                                 <div class="flex-colum-3">
-                                    {{$reserva->fimReserva}}
+                                    {{date('d-m-Y', strtotime($reserva->fimReserva))}}
                                 </div>
                             </div>
                             <div class="flex-row" style="margin-bottom: 10px">

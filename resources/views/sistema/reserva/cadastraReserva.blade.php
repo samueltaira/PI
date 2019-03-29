@@ -94,6 +94,9 @@
                                             <option value="{{$t10->id}}">{{$t10->nomeQuarto}}<br>
                                         @endforeach
                                     </select>
+                                    <br><br>
+                                    <label for="valorDiaria">Valor da diária:</label><br>
+                                    <input required type="text" name="valorDiaria" id="valorDiaria">
                                     <div class="box-footer">
                                         <button type="submit" formaction="{{route('core.realiza.reserva')}}"
                                                 class="btn btn-success">
@@ -114,7 +117,6 @@
                 </div>
 
                 <input type="hidden" name="hotel_id" value="{{auth()->user()->getHotelId()}}">
-                <input type="hidden" name="consumo" value="x">
                 <input type="hidden" name="efetuouReserva" value="{{auth()->user()->nome}}">
             </form>
         </div>

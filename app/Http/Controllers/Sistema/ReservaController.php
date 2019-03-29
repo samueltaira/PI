@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sistema;
 
 use Input;
 use App\Hotel;
+use App\Consumo;
 use App\Reserva;
 use App\Quarto;
 use App\Hospede;
@@ -236,8 +237,7 @@ class ReservaController extends Controller
                     if ($inicioReserva == $reserva->fimReserva && $reserva->status == 'aberto')
                     {
                         $t1->quartos->forget($k);
-                    }
-                    else if(($inicioReserva >= $reserva->inicioReserva && $fimReserva >= $reserva->fimReserva)&&
+                    }else if(($inicioReserva >= $reserva->inicioReserva && $fimReserva >= $reserva->fimReserva)&&
                         ($reserva->status == 'Cancelado' || $reserva->status == 'Fechada')
                         ||
                         ($inicioReserva >= $reserva->inicioReserva && $fimReserva <= $reserva->fimReserva) &&
@@ -298,9 +298,27 @@ class ReservaController extends Controller
             $reserva->hotel_id = $req->input('hotel_id');
             $reserva->hospede_id = $req->input('hospedeId');
             $reserva->quarto_id = $req->input('quarto_id');
-            $reserva->consumo = $req->input('consumo');
+            $reserva->valorDiaria = $req->input('valorDiaria');
             $reserva->efetuouReserva = $req->input('efetuouReserva');
             $reserva->save();
+
+            $diasReservados = Carbon::parse($req->input('fimReserva'))
+            ->diffInDays(Carbon::parse($req->input('inicioReserva')));
+            // dd($diasReservados);
+            // die();
+
+            $contador = $diasReservados;
+            for($contador; $contador > 0 ; $contador--)
+            {
+                $consumo = new Consumo;
+                $consumo->hotel_id = $req->input('hotel_id');
+                $consumo->item = "Diária";
+                $consumo->valor = $req->input('valorDiaria');
+                $consumo->quantidade = 1;
+                $consumo->reserva_id = Reserva::all()->last()->id;
+                $consumo->save();
+            }
+
 
             return redirect()->route('core.reserva')
                 ->with('message', 'Reserva efetuada com sucesso.')
