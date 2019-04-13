@@ -5,6 +5,7 @@
     <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
     <script src="http://demo.expertphp.in/js/jquery.js"></script>
     <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 
     <section class="content-header">
@@ -96,7 +97,7 @@
                                     </select>
                                     <br><br>
                                     <label for="valorDiaria">Valor da diária:</label><br>
-                                    <input required type="text" name="valorDiaria" id="valorDiaria">
+                                    <input type="text"  name="valorDiaria" id="valorDiaria">
                                         <button type="submit" formaction="{{route('core.realiza.reserva')}}"
                                                 class="btn btn-success">
                                             Reservar
@@ -146,5 +147,11 @@
 
         });
     </script>
+
+<script>   
+    $(document).ready(function($){
+        $("#valorDiaria").mask("000.00");
+    });
+</script>
 
 @endsection
