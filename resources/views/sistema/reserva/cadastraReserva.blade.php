@@ -97,12 +97,10 @@
                                     <br><br>
                                     <label for="valorDiaria">Valor da diária:</label><br>
                                     <input required type="text" name="valorDiaria" id="valorDiaria">
-                                    <div class="box-footer">
                                         <button type="submit" formaction="{{route('core.realiza.reserva')}}"
                                                 class="btn btn-success">
                                             Reservar
                                         </button>
-                                    </div>
                                 @else
                                     <tr role="row">
                                         <div class="callout callout-warning">
