@@ -1,5 +1,4 @@
 <?php
-URL::forceSchema('https');
 Auth::routes();
 
 //Rota para politica
