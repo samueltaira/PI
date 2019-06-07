@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Fonts e icones do login -->
-    <link rel="stylesheet" type="text/css" href="{{asset('../assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css', true)}}">
-    <link rel="stylesheet" type="text/css" href="{{sset('../assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css', true)}}">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
     <!-- Css geral -->
     <link rel="stylesheet" type="text/css" href="{{asset('../assets/css/util.css', true)}}">
