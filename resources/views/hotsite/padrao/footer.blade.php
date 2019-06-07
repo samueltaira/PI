@@ -34,7 +34,7 @@
 
 
 <!-- jQuery 3 -->
-<script src="{{secure_asset('../assets/js/jquery.min.js')}}"></script>
+<script src="{{secure_asset('../assets/js/jquery.min.js', true)}}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{secure_asset('../assets/js/jquery-ui.min.js')}}"></script>
+<script src="{{secure_asset('../assets/js/jquery-ui.min.js', true)}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
