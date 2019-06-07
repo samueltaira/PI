@@ -24,10 +24,7 @@
     <div class="footer-right">
         <div class="footer-icons">
 
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-github"></i></a>
+            <a href="https://www.facebook.com/ControlHotel"><i class="fa fa-facebook"></i></a>
 
         </div>
 
@@ -37,7 +34,7 @@
 
 
 <!-- jQuery 3 -->
-<script src="{{asset('../assets/js/jquery.min.js')}}"></script>
+<script src="{{secure_asset('../assets/js/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{asset('../assets/js/jquery-ui.min.js')}}"></script>
+<script src="{{secure_asset('../assets/js/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
