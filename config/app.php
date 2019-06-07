@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'controlhotel.herokuapp.com'),
+    'url' => env('APP_URL', 'https://controlhotel.com.br'),
 
     /*
     |--------------------------------------------------------------------------
