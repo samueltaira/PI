@@ -1,4 +1,4 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <footer class="footer-distributed main-footer">
 
     <div class="footer-left">
