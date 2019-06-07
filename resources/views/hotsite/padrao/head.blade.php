@@ -27,7 +27,7 @@
     <!-- CSS header -->
     <link rel="stylesheet" href="{{asset('../assets/css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../assets/css/header-fixed.css')}}">
-    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 
     <!-- CSS footer-->
     <link rel="stylesheet" href="{{asset('../assets/css/footer.css')}}">
