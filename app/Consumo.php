@@ -23,4 +23,5 @@ class Consumo extends Model
         return $this->belongsTo(Hotel::class);
     }
     
+    
 }
