@@ -34,11 +34,6 @@
                                value="{{isset($registro->nome) ? $registro->nome : ''}}">
                     </div>
                     <div class="form-group">
-                        <label for="cidadeHospede">Cidade</label>
-                        <input type="text" class="form-control" name="cidade" placeholder="Cidade"
-                               value="{{isset($registro->cidade) ? $registro->cidade : ''}}">
-                    </div>
-                    <div class="form-group">
                         <label for="emailHospede">Email</label>
                         <input type="email" class="form-control" name="email" placeholder="Insira o e-mail"
                                value="{{isset($registro->email) ? $registro->email : ''}}">
@@ -47,11 +42,6 @@
                         <label for="contatoHospede">Contato</label>
                         <input type="text" class="form-control" name="contato" placeholder="Telefone Contato"
                                value="{{isset($registro->contato) ? $registro->contato : ''}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="cpfHospede">CPF</label>
-                        <input type="text" class="form-control" name="documento" placeholder="CPF"
-                               value="{{isset($registro->documento) ? $registro->documento : ''}}">
                     </div>
                     <div class="form-group">
                         <label for="dataNascimento">Data Nascimento</label>
