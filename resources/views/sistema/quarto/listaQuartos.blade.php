@@ -64,7 +64,6 @@
                             <table id="Hospedes" class="table table-bordered table-striped dataTable" role="grid">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Nome</th>
                                     <th>Capacidade</th>
                                     <th>Status atual do quarto</th>
@@ -75,7 +74,6 @@
 
                                 @forelse($quartos as $quarto)
                                     <tr role="row" class="odd">
-                                        <td>{{$quarto->id}}</td>
                                         <td>{{$quarto->nomeQuarto}}</td>
                                         <td>{{$quarto->capacidade}}</td>
                                         <td>{{$quarto->status_quarto}}</td>
@@ -112,7 +110,6 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Nome</th>
                                         <th>Capacidade</th>
                                         <th>Status atual do quarto</th>
