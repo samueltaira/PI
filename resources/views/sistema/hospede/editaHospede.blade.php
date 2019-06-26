@@ -29,22 +29,22 @@
                 <input type="hidden" name="_method" value="put">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="nomeHospede">Nome</label>
+                        <label for="nomeHospede">*Nome</label>
                         <input type="text" class="form-control" name="nome" placeholder="Nome"
                                value="{{isset($registro->nome) ? $registro->nome : ''}}">
                     </div>
                     <div class="form-group">
-                        <label for="emailHospede">Email</label>
+                        <label for="emailHospede">*Email</label>
                         <input type="email" class="form-control" name="email" placeholder="Insira o e-mail"
                                value="{{isset($registro->email) ? $registro->email : ''}}">
                     </div>
                     <div class="form-group">
-                        <label for="contatoHospede">Contato</label>
+                        <label for="contatoHospede">*Contato</label>
                         <input type="text" class="form-control" name="contato" placeholder="Telefone Contato"
                                value="{{isset($registro->contato) ? $registro->contato : ''}}">
                     </div>
                     <div class="form-group">
-                        <label for="dataNascimento">Data Nascimento</label>
+                        <label for="dataNascimento">*Data Nascimento</label>
                         <input type="date" class="form-control" name="dataNascimento" placeholder="00/00/0000"
                                value="{{isset($registro->dataNascimento) ? $registro->dataNascimento : ''}}">
                     </div>
