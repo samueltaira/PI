@@ -35,11 +35,11 @@
                         <input type="text" class="form-control" name="nome" placeholder="Nome" value="{{old('nome')}}">
                     </div>
                     <div class="form-group">
-                        <label for="emailHospede">Email</label>
+                        <label for="emailHospede">*Email</label>
                         <input type="email" class="form-control" name="email" placeholder="Insira o e-mail" value="{{old('email')}}">
                     </div>
                     <div class="form-group">
-                        <label for="contatoHospede">Contato</label>
+                        <label for="contatoHospede">*Contato</label>
                         <input type="text" class="form-control" name="contato" id="telefone" placeholder="(47) 9 9999 9999" value="{{old('contato')}}">
                     </div>
                     <div class="form-group">
