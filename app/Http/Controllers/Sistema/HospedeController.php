@@ -175,10 +175,8 @@ class HospedeController extends Controller
         $this->validate($req,
             [
                 'nome' => 'required|min:3|max:200',
-                'cidade' => 'required|min:3|max:200',
                 'email' => 'required|email',
                 'contato' => 'required',
-                'documento' => 'required|numeric|digits_between:11,15',
                 'dataNascimento' => 'required'
 
             ], $mensagens);
