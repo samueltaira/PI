@@ -30,19 +30,19 @@
                 {{csrf_field()}}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="nome">Nome</label>
+                        <label for="nome">*Nome</label>
                         <input type="text" class="form-control" name="nome" placeholder="Nome" value="{{old('nome')}}">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">*Email</label>
                         <input type="email" class="form-control" name="email" placeholder="Insira o e-mail" value="{{old('email')}}">
                     </div>
                     <div class="form-group">
-                        <label for="senha">Senha</label>
+                        <label for="senha">*Senha</label>
                         <input type="password" class="form-control" name="password" placeholder="************">
                     </div>
                     <div class="form-group">
-                        <label for="telefone">Telefone</label>
+                        <label for="telefone">*Telefone</label>
                         <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(47) 9 9999 9999" value="{{old('telefone')}}">
                     </div>
                     <input type="hidden" name="hotel_id" value="{{auth()->user()->getHotelId()}}">
